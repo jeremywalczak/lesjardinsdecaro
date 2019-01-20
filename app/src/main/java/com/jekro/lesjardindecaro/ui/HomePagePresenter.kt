@@ -1,16 +1,17 @@
 package com.jekro.lesjardindecaro.ui
 
 import com.auchan.uikit.mvp.AbsPresenter
+import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 
 class HomePagePresenter (
     override var view: HomePageContract.View,
-    private var couponRepo: CouponsRepository
+    private var  configurationRepo: ConfigurationRepository
 ) : AbsPresenter<HomePageContract.View, HomePageContract.Presenter>(),
     HomePageContract.Presenter {
 
     override fun start() {
         addSubscription(
-            couponRepo.getDateCoupons(),
+            configurationRepo.getConfiguration(),
             view::displayResult,
             view::displayError
         )
