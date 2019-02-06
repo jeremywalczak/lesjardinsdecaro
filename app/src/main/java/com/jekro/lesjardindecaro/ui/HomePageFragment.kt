@@ -1,5 +1,6 @@
 package com.jekro.lesjardindecaro.ui
 
+import android.os.Bundle
 import com.auchan.uikit.module.ModuleInteractor
 import com.auchan.uikit.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
@@ -26,4 +27,9 @@ HomePageContract.View {
 
     override val presenter: HomePageContract.Presenter by inject { parametersOf(this) }
     override val moduleInteractor: ModuleInteractor by inject()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        //presenter.start()
+    }
 }
