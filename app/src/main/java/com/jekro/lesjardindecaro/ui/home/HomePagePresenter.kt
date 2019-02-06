@@ -1,4 +1,4 @@
-package com.jekro.lesjardindecaro.ui
+package com.jekro.lesjardindecaro.ui.home
 
 import com.auchan.uikit.mvp.AbsPresenter
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository

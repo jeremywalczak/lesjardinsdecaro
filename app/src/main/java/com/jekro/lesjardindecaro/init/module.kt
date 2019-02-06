@@ -2,8 +2,8 @@ package com.jekro.lesjardindecaro.init
 
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 import com.jekro.lesjardindecaro.service.ConfigurationService
-import com.jekro.lesjardindecaro.ui.HomePageContract
-import com.jekro.lesjardindecaro.ui.HomePagePresenter
+import com.jekro.lesjardindecaro.ui.home.HomePageContract
+import com.jekro.lesjardindecaro.ui.home.HomePagePresenter
 import org.koin.dsl.module.module
 import java.util.*
 

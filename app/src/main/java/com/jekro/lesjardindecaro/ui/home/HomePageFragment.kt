@@ -1,17 +1,17 @@
-package com.jekro.lesjardindecaro.ui
+package com.jekro.lesjardindecaro.ui.home
 
 import android.os.Bundle
 import com.auchan.uikit.module.ModuleInteractor
 import com.auchan.uikit.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
-import com.jekro.lesjardindecaro.model.Configuration
+import com.jekro.lesjardindecaro.model.Products
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
 class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Presenter>(),
-HomePageContract.View {
+    HomePageContract.View {
 
-    override fun displayResult(listCoupons: List<Configuration>) {
+    override fun displayResult(listCoupons: List<Products>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

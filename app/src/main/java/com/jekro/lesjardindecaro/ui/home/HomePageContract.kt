@@ -1,13 +1,13 @@
-package com.jekro.lesjardindecaro.ui
+package com.jekro.lesjardindecaro.ui.home
 
 import com.auchan.uikit.mvp.BasePresenter
 import com.auchan.uikit.mvp.BaseView
-import com.jekro.lesjardindecaro.model.Configuration
+import com.jekro.lesjardindecaro.model.Products
 
 interface HomePageContract {
     interface Presenter : BasePresenter<View>
 
     interface View : BaseView<Presenter> {
-        fun displayResult(listCoupons: List<Configuration>)
+        fun displayResult(products: List<Products>)
     }
 }
