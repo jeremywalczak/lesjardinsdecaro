@@ -14,4 +14,508 @@
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
+    <style name="c1_caption_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="c1_caption_basic_400">
+        <item name="android:textColor">#ffcdcbcb</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="c1_caption_basic_500">
+        <item name="android:textColor">#ff978d91</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="c1_caption_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="c1_caption_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="c2_caption_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="c2_caption_basic_400">
+        <item name="android:textColor">#ffcdcbcb</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="c2_caption_basic_500">
+        <item name="android:textColor">#ff978d91</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="c2_caption_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="c2_caption_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="check_01">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="h1_headline_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">11.70pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h1_headline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">11.70pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h1_headline_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">11.70pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h2_headline_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">10.80pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h2_headline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">10.80pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h2_headline_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">10.80pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h3_headline_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">9.90pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h3_headline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">9.90pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h3_headline_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">9.90pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h4_headline_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">9.00pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h4_headline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">9.00pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h4_headline_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">9.00pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h5_headline_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">8.10pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h5_headline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">8.10pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h5_headline_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">8.10pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h6_headline_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h6_headline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="h6_headline_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="input_01_edittext">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_feedback">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_help">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_help_disabled">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_help_empty">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_label">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_label_disabled">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_label_empty">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_label_error">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="input_01_label_success">
+        <item name="android:textColor">#ff00d68f</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="label_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="label_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="label_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_black</item>
+    </style>
+    <style name="list_01_feedback">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_help">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_help_empty">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_input">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_label">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_label_empty">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_label_error">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="list_01_label_success">
+        <item name="android:textColor">#ff00d68f</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">5.40pt</item>
+        <item name="android:paddingStart">@dimen/spacing_m</item>
+        <item name="android:paddingEnd">@dimen/spacing_m</item>
+    </style>
+    <style name="p1_paragraph_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_basic_400">
+        <item name="android:textColor">#ffcdcbcb</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_basic_500">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_danger_200">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_information_200">
+        <item name="android:textColor">#ff0095ff</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_success_200">
+        <item name="android:textColor">#ff00d68f</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p1_paragraph_warning_200">
+        <item name="android:textColor">#ffffaa00</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_basic_400">
+        <item name="android:textColor">#ffcdcbcb</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_basic_500">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_danger_200">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_information_200">
+        <item name="android:textColor">#ff0095ff</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_success_200">
+        <item name="android:textColor">#ff00d68f</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_underline_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="p2_paragraph_warning_200">
+        <item name="android:textColor">#ffffaa00</item>
+        <item name="android:textSize">6.30pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="radio_01" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">4.50pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="s1_subtitle_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_basic_400">
+        <item name="android:textColor">#ffcdcbcb</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_basic_500">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_danger_200">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_information_200">
+        <item name="android:textColor">#ff0095ff</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_success_200">
+        <item name="android:textColor">#ff00d68f</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s1_subtitle_warning_200">
+        <item name="android:textColor">#ffffaa00</item>
+        <item name="android:textSize">7.20pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_basic_100">
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_basic_400">
+        <item name="android:textColor">#ffcdcbcb</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_basic_500">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_basic_600">
+        <item name="android:textColor">#ff333333</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_danger_200">
+        <item name="android:textColor">#fff62131</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_information_200">
+        <item name="android:textColor">#ff0095ff</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_success_200">
+        <item name="android:textColor">#ff00d68f</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="s2_subtitle_warning_200">
+        <item name="android:textColor">#ffffaa00</item>
+        <item name="android:textSize">5.85pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_bold</item>
+    </style>
+    <style name="tabbar_basic_500">
+        <item name="android:textColor">#ff979191</item>
+        <item name="android:textSize">4.50pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
+    <style name="tabbar_primary_01_500">
+        <item name="android:textColor">#ffe0001a</item>
+        <item name="android:textSize">4.50pt</item>
+        <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
+    </style>
 </resources>

@@ -4,6 +4,8 @@ import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 import com.jekro.lesjardindecaro.service.ConfigurationService
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import com.jekro.lesjardindecaro.ui.home.HomePagePresenter
+import com.jekro.lesjardindecaro.ui.list.ListProductContract
+import com.jekro.lesjardindecaro.ui.list.ListProductPresenter
 import org.koin.dsl.module.module
 import java.util.*
 
@@ -21,6 +23,12 @@ val initModule = module {
         HomePagePresenter(
             params[0],
             get()
+        )
+    }
+
+    factory<ListProductContract.Presenter> { params ->
+        ListProductPresenter(
+            params[0]
         )
     }
 }

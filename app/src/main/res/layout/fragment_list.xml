@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/root_relativelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/basic_200"
+        android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/detail_toolbar"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/basic_100"
+            android:elevation="4dp"
+            tools:layout_height="50dp">
+
+        <TextView
+                android:id="@+id/detail_toolbar_title"
+                style="@style/h6_headline_basic_600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Title" />
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/main_container"
+            android:layout_width="match_parent"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/search_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/detail_toolbar"
+            android:background="@color/basic_100"
+            android:orientation="horizontal"
+            android:paddingTop="@dimen/spacing_m"
+            android:paddingBottom="@dimen/spacing_m">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/search_constraintlayout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:paddingStart="@dimen/spacing_m"
+                android:animateLayoutChanges="true"
+                android:paddingEnd="@dimen/spacing_m"
+                android:orientation="horizontal">
+            <EditText
+                    android:id="@+id/search_edittext"
+                    style="@style/p2_paragraph_basic_600"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="Search"
+                    android:background="@drawable/shape_basic_300_with_radius"
+                    android:drawablePadding="8dp"
+                    android:drawableTint="@color/basic_500"
+                    android:hint="Rechercher"
+                    android:imeOptions="actionDone"
+                    android:inputType="textVisiblePassword|textNoSuggestions"
+                    android:maxLines="1"
+                    android:paddingTop="@dimen/spacing_s"
+                    android:paddingEnd="@dimen/spacing_s"
+                    android:paddingStart="@dimen/spacing_s"
+                    android:paddingBottom="@dimen/spacing_s"
+                    android:singleLine="true"
+                    android:textColor="@color/basic_500"
+                    android:textColorHint="@color/basic_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/search_cancel_button"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="UnusedAttribute" />
+
+            <LinearLayout
+                    android:id="@+id/search_cancel_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:clickable="true"
+                    android:paddingStart="@dimen/spacing_m"
+                    app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Annuler"
+                        android:textStyle="bold"
+                        style="@style/p2_paragraph_primary_01_500"/>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/search_constraintlayout"
+                android:scrollbars="none"
+                app:layout_constraintStart_toStartOf="parent">
+            <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/filters_chipgroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:paddingStart="@dimen/spacing_m"
+                    android:paddingEnd="@dimen/spacing_m"
+                    android:layout_marginTop="@dimen/spacing_m"
+                    android:gravity="start"
+                    app:chipSpacingVertical="@dimen/spacing_s"
+                    app:singleLine="true"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <include
+            layout="@layout/include_autocomplete"
+            android:id="@+id/autocomplete_include"
+            android:layout_below="@id/search_linearlayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            tools:visibility="gone" />
+
+
+</RelativeLayout>

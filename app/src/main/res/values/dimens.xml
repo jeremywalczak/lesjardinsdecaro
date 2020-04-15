@@ -5,4 +5,17 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="radius_l">7.20pt</dimen>
+    <dimen name="radius_m">2.70pt</dimen>
+    <dimen name="spacing_l">14.40pt</dimen>
+    <dimen name="spacing_m">7.20pt</dimen>
+    <dimen name="spacing_s">3.60pt</dimen>
+    <dimen name="spacing_xl">28.80pt</dimen>
+    <dimen name="spacing_xs">1.80pt</dimen>
+    <dimen name="elevation">7dp</dimen>
+    <dimen name="loading">8dp</dimen>
+    <dimen name="default_small_radius">3dp</dimen>
+    <dimen name="default_radius">7dp</dimen>
+    <dimen name="default_big_radius">14dp</dimen>
+    <dimen name="default_radius_bottom_sheet">@dimen/default_big_radius</dimen>
 </resources>

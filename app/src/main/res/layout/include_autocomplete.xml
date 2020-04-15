@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/autoCompleteLinear"
+    android:background="@color/basic_200"
+    android:orientation="vertical">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/autoCompleteRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/autocomplete_list_no_result"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/autocomplete_list_no_result_title"
+            style="@style/h6_headline_basic_600"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:gravity="center"
+            android:text="Produit non trouvé" />
+
+        <TextView
+            android:id="@+id/autocomplete_list_no_result_description"
+            style="@style/p1_paragraph_basic_600"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/autocomplete_list_no_result_title"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:layout_marginBottom="@dimen/spacing_s"
+            android:gravity="center"
+            android:maxLines="3"
+            android:ellipsize="end"
+            android:text="Produit non trouvé" />
+
+    </RelativeLayout>
+</LinearLayout>
