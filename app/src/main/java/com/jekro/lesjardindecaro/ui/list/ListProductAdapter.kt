@@ -13,6 +13,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Product
+import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_product.*
 
@@ -38,7 +39,8 @@ class ListProductAdapter(
         val couponsItemHolder = holder as CouponViewHolder
         val coupon = objects[position]
         couponsItemHolder.product_title.text = coupon.title
-        couponsItemHolder.produit_image.load(coupon.image)
+        //couponsItemHolder.produit_image.load(coupon.image)
+        Picasso.get().load("https://cdn.pixabay.com/photo/2015/12/07/12/47/design-1080750_1280.png").placeholder(R.drawable.button_buy).into(couponsItemHolder.produit_image)
     }
 
     inner class CouponViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
