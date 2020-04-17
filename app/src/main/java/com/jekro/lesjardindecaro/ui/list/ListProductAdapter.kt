@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.shape.ShapeAppearanceModel
 import com.jekro.lesjardindecaro.R
+import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Product
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_product.*
@@ -18,7 +19,7 @@ import kotlinx.android.synthetic.main.list_item_product.*
 
 class ListProductAdapter(
     private val context: Context,
-    var objects: MutableList<Product>
+    var objects: ArrayList<Product>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var onItemClick: ((View, Product) -> Unit)? = null
@@ -37,6 +38,7 @@ class ListProductAdapter(
         val couponsItemHolder = holder as CouponViewHolder
         val coupon = objects[position]
         couponsItemHolder.product_title.text = coupon.title
+        couponsItemHolder.produit_image.load(coupon.image)
     }
 
     inner class CouponViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
