@@ -2,6 +2,7 @@ package com.jekro.lesjardindecaro.init
 
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 import com.jekro.lesjardindecaro.service.ConfigurationService
+import com.jekro.lesjardindecaro.service.ConfigurationServiceMock
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import com.jekro.lesjardindecaro.ui.home.HomePagePresenter
 import com.jekro.lesjardindecaro.ui.list.ListProductContract
@@ -13,7 +14,11 @@ val initModule = module {
 
     single<ConfigurationRepository> { ConfigurationRepository(get()) }
 
-    single<ConfigurationService> { ConfigurationService() }
+    single<ConfigurationService> { ConfigurationServiceMock() }
+
+    /*single {
+        get<Retrofit>(named("retrofit")).create(ConfigurationService::class.java)
+    }*/
 
 
     single(name = "locale") { Locale.forLanguageTag("fr-LU") }

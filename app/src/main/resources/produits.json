@@ -1,0 +1,33 @@
+[
+    {
+      "id": "1",
+      "title": "Promotion exceptionnelle !!!",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "499 €",
+      "promo_price": "299 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c20a.png",
+      "category": "legume"
+    },
+    {
+      "id": "2",
+      "title": "Promotion exceptionnelle de ouf !!!",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "699 €",
+      "promo_price": "1 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c20a.png",
+      "category": "legume"
+    },
+    {
+      "id": "3",
+      "title": "Promotion exceptionnelle !!!",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "499 €",
+      "promo_price": "299 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://www.stickpng.com/assets/thumbs/580b57fcd9996e24bc43c20a.png",
+      "category": "fruit"
+    }
+]
+
