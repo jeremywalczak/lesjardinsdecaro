@@ -14,8 +14,8 @@ class DetailFragment : AbsFragment<HomePageContract.View, HomePageContract.Prese
 HomePageContract.View {
 
     override fun displayResult(configuration: Configuration) {
-        TODO("Not yet implemented")
     }
+
 
     override fun setRequesting(requesting: Boolean) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

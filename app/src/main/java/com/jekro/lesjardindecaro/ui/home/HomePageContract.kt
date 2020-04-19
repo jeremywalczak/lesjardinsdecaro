@@ -6,7 +6,9 @@ import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 
 interface HomePageContract {
-    interface Presenter : BasePresenter<View>
+    interface Presenter : BasePresenter<View> {
+        var configuration: Configuration?
+    }
 
     interface View : BaseView<Presenter> {
         fun displayResult(configuration: Configuration)

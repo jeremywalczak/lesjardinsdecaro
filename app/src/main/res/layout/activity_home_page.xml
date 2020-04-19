@@ -9,19 +9,36 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <include
                 android:id="@+id/toolbar2"
                 layout="@layout/app_bar_home_page"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
-        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                     android:id="@+id/mainContainer"
-                     android:orientation="vertical"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent"
-                     android:layout_below="@+id/toolbar2"/>
+        <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/mainContainer"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/toolbar2"/>
+
+            <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/panierImageView"
+                    android:baselineAlignBottom="true"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:src="@drawable/button_buy"
+                    android:layout_marginBottom="@dimen/spacing_xl"/>
+
+        </FrameLayout>
+
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView

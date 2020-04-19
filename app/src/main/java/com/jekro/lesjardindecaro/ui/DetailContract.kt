@@ -8,6 +8,6 @@ interface DetailContract {
     interface Presenter : BasePresenter<View>
 
     interface View : BaseView<Presenter> {
-        fun displayResult(listCoupons: List<Configuration>)
+        fun displayResult()
     }
 }

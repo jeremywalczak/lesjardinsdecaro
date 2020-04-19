@@ -70,7 +70,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="16dp" app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toStartOf="@+id/fruitsImageView" android:src="@drawable/button_cave"
-            app:layout_constraintBottom_toTopOf="@+id/panierImageView"
+            app:layout_constraintBottom_toTopOf="@+id/bottomView"
             app:layout_constraintTop_toBottomOf="@+id/legumesImageView"
             android:padding="10dp"/>
     <ImageView
@@ -80,7 +80,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="16dp" app:layout_constraintStart_toEndOf="@+id/caveImageView"
             app:layout_constraintHorizontal_bias="0.5" android:src="@drawable/button_fruit"
-            app:layout_constraintBottom_toTopOf="@+id/panierImageView"
+            app:layout_constraintBottom_toTopOf="@+id/bottomView"
             app:layout_constraintTop_toBottomOf="@+id/epicerieImageView"
             android:scaleType="fitCenter" android:padding="10dp"/>
     <ImageView
@@ -93,12 +93,13 @@
     <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/panierImageView"
+            android:id="@+id/bottomView"
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:src="@drawable/button_buy"
             app:layout_constraintHeight_percent="0.14"
+            android:visibility="invisible"
             android:layout_marginBottom="16dp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

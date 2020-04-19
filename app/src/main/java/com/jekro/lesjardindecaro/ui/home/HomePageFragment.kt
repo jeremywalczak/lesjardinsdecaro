@@ -1,6 +1,5 @@
 package com.jekro.lesjardindecaro.ui.home
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
@@ -12,7 +11,7 @@ import com.auchan.uikit.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
-import com.jekro.lesjardindecaro.ui.list.ListProductActivity
+import com.jekro.lesjardindecaro.ui.list.ListProductFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_homepage.*
 import org.koin.android.ext.android.inject
@@ -23,10 +22,13 @@ import kotlin.collections.ArrayList
 class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Presenter>(),
     HomePageContract.View {
 
+    private val swipeTimer = Timer()
+
     override fun displayResult(configuration: Configuration) {
         val products = configuration.products
+        carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
 
-        initBannerViewPager(configuration)
+        initBannerViewPager()
 
         accountImageView?.setOnClickListener {
             activity!!.drawer_layout.openDrawer(Gravity.LEFT)
@@ -43,23 +45,22 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { it.category ==  "fruit"})
             true
         }
-        panierImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent)
+        /*panierImageView?.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent)
             true
-        }
+        }*/
     }
 
-    private fun initBannerViewPager(configuration: Configuration) {
-        carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
+    private fun initBannerViewPager() {
         var page = 0
-
         val handler = Handler()
-        val swipeTimer = Timer()
         swipeTimer.schedule(object : TimerTask() {
             override fun run() {
                 handler.post(Runnable {
-                    val numPages: Int = carrousselHomePageViewPager.adapter!!.count
-                    page = (page + 1) % numPages
-                    carrousselHomePageViewPager.setCurrentItem(page, true)
+                    if (carrousselHomePageViewPager != null) {
+                        val numPages: Int = carrousselHomePageViewPager.adapter!!.count
+                        page = (page + 1) % numPages
+                        carrousselHomePageViewPager.setCurrentItem(page, true)
+                    }
                 })
             }
         }, 5000, 5000)
@@ -100,12 +101,14 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
             view.scaleX = 1F
             view.scaleY = 1F
             if (!productsFiltered.isNullOrEmpty()) {
-                val intent = Intent(activity, ListProductActivity::class.java)
-                intent.putParcelableArrayListExtra(PRODUCTS, ArrayList(productsFiltered))
-                startActivity(intent)
+                activity!!.supportFragmentManager.beginTransaction().add(
+                    R.id.mainContainer,
+                    ListProductFragment.newInstance(ArrayList(productsFiltered))
+                ).addToBackStack(ListProductFragment::class.java.toString()).commit()
             }
         }
     }
+
 
     companion object {
         const val PRODUCTS = "PRODUCTS"

@@ -1,6 +1,8 @@
 package com.jekro.lesjardindecaro.ui.list
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
@@ -9,6 +11,7 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.auchan.uikit.module.ModuleInteractor
@@ -20,6 +23,7 @@ import com.jekro.lesjardindecaro.addSearchDelayListener
 import com.jekro.lesjardindecaro.hideKeyboard
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.toDp
+import com.jekro.lesjardindecaro.ui.home.HomePageActivity
 import com.jekro.lesjardindecaro.ui.home.HomePageFragment.Companion.PRODUCTS
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.android.ext.android.inject
@@ -41,14 +45,15 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        val products = activity?.intent?.getParcelableArrayListExtra<Product>(PRODUCTS)
+        val products = arguments?.getParcelableArrayList<Product>(PRODUCTS)
         products?.let {
             presenter.buildFiltersType(it)
         }
-        val productsAdapter = ListProductAdapter(context!!, products!!)
+        val productsAdapter = ListProductAdapter(context!!, products?: arrayListOf())
         initRecyclerView(productsAdapter)
         initFiltersChips()
         manageSearchEditText()
+        (activity as HomePageActivity).moveCart()
     }
 
     override fun displayResult(products: List<Product>) {
@@ -282,5 +287,14 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
         return chipsSelected
     }
 
+    companion object {
+        const val PRODUCTS = "PRODUCTS"
+        fun newInstance(products: ArrayList<Product>?) =
+            ListProductFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelableArrayList(PRODUCTS, products?: arrayListOf())
+                }
+            }
+    }
 
 }
