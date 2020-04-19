@@ -40,8 +40,14 @@ class ListProductAdapter(
         val coupon = objects[position]
         couponsItemHolder.product_title.text = coupon.title
         couponsItemHolder.produit_image.load(coupon.image)
-        couponsItemHolder.promo_base.text = coupon.basePrice
-        couponsItemHolder.promo_price.text = coupon.promoPrice
+        if (!coupon.promoPrice.isNullOrEmpty()) {
+            couponsItemHolder.promo_price.text = coupon.promoPrice
+            couponsItemHolder.promo_base.text = coupon.basePrice
+            couponsItemHolder.promo_base.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
+        } else {
+            couponsItemHolder.promo_price.text = coupon.basePrice
+            couponsItemHolder.promo_base.visibility = View.GONE
+        }
     }
 
     inner class CouponViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

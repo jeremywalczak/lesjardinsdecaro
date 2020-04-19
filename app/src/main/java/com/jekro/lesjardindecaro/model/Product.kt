@@ -8,7 +8,7 @@ data class Product(
     @SerializedName("base_price")
     val basePrice: String,
     @SerializedName("promo_price")
-    val promoPrice: String,
+    val promoPrice: String?,
     @SerializedName("use_period_validity")
     val usePeriodValidity: String,
     @SerializedName("title")
@@ -18,7 +18,9 @@ data class Product(
     @SerializedName("image")
     val image: String,
     @SerializedName("category")
-    val category: String
+    val category: String,
+    @SerializedName("types")
+    val types: List<String>?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -27,7 +29,8 @@ data class Product(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString()
+        parcel.readString(),
+        parcel.createStringArrayList()
     ) {
     }
 
@@ -39,6 +42,7 @@ data class Product(
         parcel.writeString(description)
         parcel.writeString(image)
         parcel.writeString(category)
+        parcel.writeStringList(types)
     }
 
     override fun describeContents(): Int {

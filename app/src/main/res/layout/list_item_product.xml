@@ -5,7 +5,7 @@
     android:id="@+id/couponFrameLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/basic_100"
+    android:background="@drawable/shape_basic_100_with_radius"
     android:clipChildren="false"
     android:clipToPadding="false"
     android:paddingStart="@dimen/spacing_l"

@@ -97,7 +97,6 @@
                         android:layout_height="match_parent"
                         android:text="Annuler"
                         android:textStyle="bold"
-                        android:visibility="gone"
                         style="@style/p2_paragraph_primary_01_500"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
