@@ -43,10 +43,14 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { it.category ==  "fruit"})
             true
         }
+        panierImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent)
+            true
+        }
     }
 
     private fun initBannerViewPager(configuration: Configuration) {
         carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
+        mainVpIndicator.setViewPager(carrousselHomePageViewPager)
         var page = 0
 
         val handler = Handler()
@@ -82,7 +86,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         super.onActivityCreated(savedInstanceState)
     }
 
-    private fun animateCategoryButton(view: View, motionEvent: MotionEvent, productsFiltered: List<Product>) {
+    private fun animateCategoryButton(view: View, motionEvent: MotionEvent, productsFiltered: List<Product>? = null) {
         if (motionEvent.action == MotionEvent.ACTION_DOWN) {
             view.performHapticFeedback(
                 HapticFeedbackConstants.VIRTUAL_KEY,
@@ -96,9 +100,11 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
             view.alpha = 1F
             view.scaleX = 1F
             view.scaleY = 1F
-            val intent = Intent(activity, ListProductActivity::class.java)
-            intent.putParcelableArrayListExtra(PRODUCTS, ArrayList(productsFiltered))
-            startActivity(intent)
+            if (!productsFiltered.isNullOrEmpty()) {
+                val intent = Intent(activity, ListProductActivity::class.java)
+                intent.putParcelableArrayListExtra(PRODUCTS, ArrayList(productsFiltered))
+                startActivity(intent)
+            }
         }
     }
 
