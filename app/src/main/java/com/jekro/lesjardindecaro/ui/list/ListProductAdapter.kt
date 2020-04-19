@@ -23,7 +23,7 @@ class ListProductAdapter(
     var objects: ArrayList<Product>
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    var onItemClick: ((View, Product) -> Unit)? = null
+    var onItemClick: ((Product?) -> Unit)? = null
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -37,15 +37,16 @@ class ListProductAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val couponsItemHolder = holder as CouponViewHolder
-        val coupon = objects[position]
-        couponsItemHolder.product_title.text = coupon.title
-        couponsItemHolder.produit_image.load(coupon.image)
-        if (!coupon.promoPrice.isNullOrEmpty()) {
-            couponsItemHolder.promo_price.text = coupon.promoPrice
-            couponsItemHolder.promo_base.text = coupon.basePrice
+        val product = objects[position]
+        couponsItemHolder.product = product
+        couponsItemHolder.product_title.text = product.title
+        couponsItemHolder.produit_image.load(product.image)
+        if (!product.promoPrice.isNullOrEmpty()) {
+            couponsItemHolder.promo_price.text = product.promoPrice
+            couponsItemHolder.promo_base.text = product.basePrice
             couponsItemHolder.promo_base.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
         } else {
-            couponsItemHolder.promo_price.text = coupon.basePrice
+            couponsItemHolder.promo_price.text = product.basePrice
             couponsItemHolder.promo_base.visibility = View.GONE
         }
     }
@@ -55,9 +56,9 @@ class ListProductAdapter(
         var product: Product? = null
 
         init {
-            /*itemView.setOnClickListener {
-                onItemClick?.invoke(coupon_image, coupon!!)
-            }*/
+            itemView.setOnClickListener {
+                onItemClick?.invoke(product)
+            }
         }
     }
 }

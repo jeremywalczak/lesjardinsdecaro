@@ -5,9 +5,11 @@ import android.view.Gravity
 import com.auchan.uikit.module.ModuleInteractor
 import com.auchan.uikit.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
+import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
+import com.jekro.lesjardindecaro.ui.list.ListProductFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_homepage.*
@@ -18,14 +20,24 @@ class DetailFragment : AbsFragment<HomePageContract.View, HomePageContract.Prese
 HomePageContract.View {
 
     override fun displayResult(configuration: Configuration) {
-        var numberProduct = product_number.toString().toInt()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        val product = arguments?.getParcelable<Product>(PRODUCT)
+        product?.let {
+            detailProduitImageView?.load(product.image)
+            descriptionTextView.text = product.description
+        }
+
+        var numberProduct = product_number.text.toString().toInt()
         minus?.setOnClickListener {
             numberProduct -= 1
-            product_number.setText(numberProduct)
+            product_number.setText(numberProduct.toString())
         }
         plus?.setOnClickListener {
             numberProduct += 1
-            product_number.setText(numberProduct)
+            product_number.setText(numberProduct.toString())
 
         }
     }
@@ -39,13 +51,18 @@ HomePageContract.View {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_homepage
+    override fun getLayoutId(): Int = R.layout.fragment_detail
 
     override val presenter: HomePageContract.Presenter by inject { parametersOf(this) }
     override val moduleInteractor: ModuleInteractor by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        //presenter.start()
+    companion object {
+        const val PRODUCT = "PRODUCT"
+        fun newInstance(product: Product) =
+            DetailFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelable(PRODUCT, product)
+                }
+            }
     }
 }

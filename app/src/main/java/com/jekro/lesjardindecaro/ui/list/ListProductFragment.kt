@@ -1,8 +1,6 @@
 package com.jekro.lesjardindecaro.ui.list
 
 import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
@@ -11,7 +9,6 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.auchan.uikit.module.ModuleInteractor
@@ -23,8 +20,8 @@ import com.jekro.lesjardindecaro.addSearchDelayListener
 import com.jekro.lesjardindecaro.hideKeyboard
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.toDp
+import com.jekro.lesjardindecaro.ui.DetailFragment
 import com.jekro.lesjardindecaro.ui.home.HomePageActivity
-import com.jekro.lesjardindecaro.ui.home.HomePageFragment.Companion.PRODUCTS
 import kotlinx.android.synthetic.main.fragment_list.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -50,6 +47,14 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
             presenter.buildFiltersType(it)
         }
         val productsAdapter = ListProductAdapter(context!!, products?: arrayListOf())
+        productsAdapter.onItemClick = {product ->
+            product?.let {
+                activity!!.supportFragmentManager.beginTransaction().add(
+                    R.id.mainContainer,
+                    DetailFragment.newInstance(it)
+                ).addToBackStack(DetailFragment::class.java.toString()).commit()
+            }
+        }
         initRecyclerView(productsAdapter)
         initFiltersChips()
         manageSearchEditText()

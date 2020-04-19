@@ -108,9 +108,4 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
             }
         }
     }
-
-
-    companion object {
-        const val PRODUCTS = "PRODUCTS"
-    }
 }
