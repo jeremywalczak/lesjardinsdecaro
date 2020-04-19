@@ -25,13 +25,15 @@
             android:layout_marginEnd="16dp"/>
 
     <TextView
+            android:id="@+id/editText2"
             android:layout_width="348dp"
             android:layout_height="100dp"
-            android:inputType="textMultiLine|textPersonName"
-            android:text="Ceci est la magnifique description d'une pomme granit"
             android:ems="10"
-            tools:layout_editor_absoluteY="436dp" tools:layout_editor_absoluteX="0dp" android:id="@+id/editText2"
-            android:singleLine="true"/>
+            android:inputType="textMultiLine|textPersonName"
+            android:singleLine="true"
+            android:text="Ceci est la magnifique description d'une pomme granit"
+            tools:layout_editor_absoluteX="31dp"
+            tools:layout_editor_absoluteY="416dp" />
 
     <ImageView
             android:layout_width="0dp"
@@ -43,7 +45,7 @@
     <ImageView
             android:layout_width="88dp"
             android:layout_height="63dp"
-            android:id="@+id/imageView7"
+            android:id="@+id/imageView8"
             android:src="@drawable/button_buy"
             app:layout_constraintHeight_percent="0.14" tools:layout_editor_absoluteY="606dp"
             tools:layout_editor_absoluteX="161dp"/>
@@ -53,18 +55,27 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            tools:layout_editor_absoluteY="553dp" tools:layout_editor_absoluteX="98dp" android:id="@+id/editText3"
+            tools:layout_editor_absoluteY="556dp" tools:layout_editor_absoluteX="150dp" android:id="@+id/product_number"
             android:text="2" android:textAlignment="center"/>
-    <ImageButton
-            android:text="-"
-            android:layout_width="38dp"
-            android:src="@drawable/button_buy"
-            android:layout_height="33dp" tools:layout_editor_absoluteY="553dp"
-            tools:layout_editor_absoluteX="46dp" android:id="@+id/button" style="@style/Widget.AppCompat.Button"/>
-    <Button
-            android:text="+"
-            android:layout_width="38dp"
-            android:layout_height="33dp" tools:layout_editor_absoluteY="553dp"
-            tools:layout_editor_absoluteX="229dp" android:id="@+id/button2" style="@style/Widget.AppCompat.Button"/>
+
+    <ImageView
+            android:clickable="true"
+            android:id="@+id/minus"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_minus"
+            app:layout_constraintHeight_percent="0.14"
+            tools:layout_editor_absoluteX="80dp"
+            tools:layout_editor_absoluteY="556dp" />
+
+    <ImageView
+            android:clickable="true"
+            android:id="@+id/plus"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_plus"
+            app:layout_constraintHeight_percent="0.14"
+            tools:layout_editor_absoluteX="265dp"
+            tools:layout_editor_absoluteY="556dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
