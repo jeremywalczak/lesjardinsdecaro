@@ -50,7 +50,6 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
 
     private fun initBannerViewPager(configuration: Configuration) {
         carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
-        mainVpIndicator.setViewPager(carrousselHomePageViewPager)
         var page = 0
 
         val handler = Handler()
