@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/basic_200"
+        android:animateLayoutChanges="true"
         android:orientation="vertical">
 
     <androidx.appcompat.widget.Toolbar
@@ -30,6 +31,7 @@
             android:layout_width="match_parent"
             android:clipChildren="false"
             android:clipToPadding="false"
+            android:layout_marginTop="@dimen/spacing_m"
             android:layout_height="match_parent"
             android:visibility="gone"
             tools:visibility="visible" />
@@ -95,6 +97,7 @@
                         android:layout_height="match_parent"
                         android:text="Annuler"
                         android:textStyle="bold"
+                        android:visibility="gone"
                         style="@style/p2_paragraph_primary_01_500"/>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

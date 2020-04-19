@@ -1,0 +1,49 @@
+{
+  "carroussel_image_home_page" : [
+    "https://pngimage.net/wp-content/uploads/2019/05/fruit-background-png-3.png",
+    "https://banner2.cleanpng.com/20180311/qbq/kisspng-fruit-vegetable-nutrition-healthy-diet-piles-of-fruits-and-vegetables-5aa50eb94550b5.0289227815207666492839.jpg",
+    "https://www.pngkit.com/png/detail/86-869820_banner-collection-of-fruits-and-high-quality-fruit.png"
+  ],
+  "products" : [
+    {
+      "id": "1",
+      "title": "Orange",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "499 €",
+      "promo_price": "299 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://pngimg.com/uploads/orange/orange_PNG809.png",
+      "category": "fruit"
+    },
+    {
+      "id": "2",
+      "title": "Bananes",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "699 €",
+      "promo_price": "1 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://pngimg.com/uploads/banana/banana_PNG845.png",
+      "category": "fruit"
+    },
+    {
+      "id": "3",
+      "title": "Noix de Coco",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "699 €",
+      "promo_price": "1 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://pngimg.com/uploads/coconut/coconut_PNG9158.png",
+      "category": "fruit"
+    },
+    {
+      "id": "4",
+      "title": "Frites",
+      "description": "Cupcake gummi bears cupcake pudding. Donut chupa chups croissant oat cake sesame snaps topping cookie pastry. Jujubes dragée carrot cake. Tiramisu tiramisu chupa chups chupa chups powder jelly-o tart chocolate bar donut. Biscuit ice cream icing ice cream cheesecake.",
+      "base_price": "499 €",
+      "promo_price": "299 €",
+      "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
+      "image": "https://pngimg.com/uploads/potato_chips/potato_chips_PNG82.png",
+      "category": "legume"
+    }
+  ]
+}

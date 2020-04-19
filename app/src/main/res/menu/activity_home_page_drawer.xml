@@ -5,11 +5,9 @@
 
     <group android:checkableBehavior="single">
         <item
-                android:id="@+id/nav_myaccount"
-                android:title="Mon compte"/>
-        <item
-                android:id="@+id/nav_login"
-                android:title="Me déconnecter"/>
+                android:icon="@drawable/ic_hamburger_icon"
+                android:id="@+id/nav_myinformations"
+                android:title="Mes informations"/>
     </group>
 
     <item android:title="Autre">
