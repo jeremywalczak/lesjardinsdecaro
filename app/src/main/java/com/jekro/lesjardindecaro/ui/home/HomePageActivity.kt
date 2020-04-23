@@ -190,7 +190,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         }, 1)
     }
 
-    private fun boundFabZoom() {
+    fun boundFabZoom() {
         val scaleX = panierImageView.scaleX
         val scaleY = panierImageView.scaleY
         val animSet = AnimatorSet()

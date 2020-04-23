@@ -22,6 +22,7 @@
       "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
       "image": "https://pngimg.com/uploads/orange/orange_PNG809.png",
       "category": "fruit",
+      "unite": "gr",
       "types" : [
         "Agrume",
         "Fruit exo"
@@ -49,6 +50,7 @@
       "use_period_validity": "Valide jusqu'à la fin du mois de Janvier",
       "image": "https://pngimg.com/uploads/coconut/coconut_PNG9158.png",
       "category": "fruit",
+      "unite": "gr",
       "types" : [
         "Fruit exo"
       ]

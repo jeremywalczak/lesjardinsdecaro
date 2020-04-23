@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:background="@color/basic_200"
+        android:clickable="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -66,6 +67,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+
+    <TextView
+            android:id="@+id/uniteTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="gr"
+            android:visibility="gone"
+            tools:visibility="visible"
+            style="@style/h2_headline_basic_600"
+            app:layout_constraintBottom_toBottomOf="@+id/product_number"
+            app:layout_constraintEnd_toStartOf="@+id/plus"
+            app:layout_constraintStart_toEndOf="@+id/product_number"
+            app:layout_constraintTop_toTopOf="@+id/product_number" />
 
     <ImageView
             android:id="@+id/minus"

@@ -9,6 +9,8 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.auchan.uikit.module.ModuleInteractor
@@ -18,11 +20,15 @@ import com.google.android.material.chip.ChipDrawable
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.addSearchDelayListener
 import com.jekro.lesjardindecaro.hideKeyboard
+import com.jekro.lesjardindecaro.model.AutoCompleteEntry
+import com.jekro.lesjardindecaro.model.AutoCompleteViewType
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.toDp
 import com.jekro.lesjardindecaro.ui.DetailFragment
 import com.jekro.lesjardindecaro.ui.home.HomePageActivity
+import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.include_autocomplete.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -39,15 +45,18 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
     private var isInSearchMode = false
     private var textWatcherQuery: TextWatcher? = null
     private var textWatcherDeleteSearch: TextWatcher? = null
+    private var suggestionAdapter: AutoCompleteAdapter? = null
+    private var productsAdapter: ListProductAdapter? = null
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val products = arguments?.getParcelableArrayList<Product>(PRODUCTS)
         products?.let {
             presenter.buildFiltersType(it)
+            presenter.initialEntries.addAll(it)
         }
-        val productsAdapter = ListProductAdapter(context!!, products?: arrayListOf())
-        productsAdapter.onItemClick = {product ->
+        productsAdapter = ListProductAdapter(context!!, products?: arrayListOf())
+        productsAdapter!!.onItemClick = {product ->
             product?.let {
                 activity!!.supportFragmentManager.beginTransaction().add(
                     R.id.mainContainer,
@@ -55,7 +64,8 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
                 ).addToBackStack(DetailFragment::class.java.toString()).commit()
             }
         }
-        initRecyclerView(productsAdapter)
+        initAutoCompleteRecyclerView()
+        initRecyclerView(productsAdapter!!)
         initFiltersChips()
         manageSearchEditText()
         (activity as HomePageActivity).moveCart()
@@ -70,6 +80,69 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
     override fun displayError(throwable: Throwable) {
     }
 
+    override fun displaySuggestions(suggestions: List<AutoCompleteEntry>, search: String) {
+        (activity as HomePageActivity).panierImageView.visibility = View.GONE
+        autoCompleteRecycler.visibility =
+            if (!suggestions.isNullOrEmpty() || search.isNullOrEmpty()) View.VISIBLE else View.GONE
+        suggestionAdapter?.items = suggestions
+        suggestionAdapter?.notifyDataSetChanged()
+    }
+
+    override fun displayProductsFiltered(products: List<Product>) {
+        productsAdapter?.objects = ArrayList(products)
+        productsAdapter?.notifyDataSetChanged()
+        autocomplete_include.visibility = View.GONE
+        search_edittext.clearFocus()
+        hideKeyboard()
+    }
+
+    private fun initAutoCompleteRecyclerView() {
+        suggestionAdapter = AutoCompleteAdapter(activity!!, arrayListOf())
+        suggestionAdapter?.onItemClick = { autoCompleteEntry ->
+            if (autoCompleteEntry.type == AutoCompleteViewType.ITEM) {
+                when {
+                    autoCompleteEntry.product != null -> {
+                        getToProductDetail(null, autoCompleteEntry.product)
+                    }
+                    else -> {
+                        /*displayCouponsFiltered(
+                            ArrayList(
+                                presenter.getCouponsSortedAndFiltered(
+                                    null,
+                                    null,
+                                    autoCompleteEntry.rawValue!!
+                                )
+                            )
+                        )*/
+                        initFiltersChips()
+                    }
+                }
+            }
+        }
+        autoCompleteRecycler.adapter = suggestionAdapter
+        autoCompleteRecycler.layoutManager = LinearLayoutManager(context)
+        autoCompleteRecycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                if (RecyclerView.SCROLL_STATE_DRAGGING == newState) {
+                    activity?.hideKeyboard()
+                }
+            }
+        })
+    }
+
+    private fun getToProductDetail(image: View?, item: Product) {
+        hideKeyboard()
+        val options = if (image != null) ActivityOptionsCompat.makeSceneTransitionAnimation(
+            activity!!,
+            image,
+            image.transitionName
+        ) else null
+            activity!!.supportFragmentManager.beginTransaction().add(
+                R.id.mainContainer,
+                DetailFragment.newInstance(product = item)
+            ).addToBackStack(DetailFragment::class.java.toString()).commit()
+    }
 
     private fun initRecyclerView(productAdapter: ListProductAdapter) {
         search_linearlayout.post {
@@ -195,6 +268,7 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
         })
 
         search_cancel_button.setOnTouchListener { view, motionEvent ->
+            (activity as HomePageActivity).panierImageView.visibility = View.VISIBLE
             isInSearchMode = false
             filtersChecked.clear()
             search_edittext.setText("")

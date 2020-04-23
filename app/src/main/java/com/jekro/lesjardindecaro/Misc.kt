@@ -4,20 +4,25 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import android.text.Editable
+import android.text.Html
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import com.squareup.picasso.Transformation
+import java.util.*
 
 class Constants {
     companion object {
@@ -149,4 +154,20 @@ fun Int.toPx(): Int = (this * Resources.getSystem().displayMetrics.density).toIn
 
 fun Fragment.hideKeyboard() {
     view?.let { activity?.hideKeyboard(it) }
+}
+
+@Suppress("DEPRECATION")
+fun TextView.setHtmlText(html: String?) {
+    html?.let {
+        text = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            Html.fromHtml(it, Html.FROM_HTML_MODE_LEGACY)
+        } else {
+            Html.fromHtml(it)
+        }
+        movementMethod = if (html.toLowerCase(Locale.getDefault()).contains("<a href")) {
+            LinkMovementMethod.getInstance()
+        } else {
+            null
+        }
+    }
 }

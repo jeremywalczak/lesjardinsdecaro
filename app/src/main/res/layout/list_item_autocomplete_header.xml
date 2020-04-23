@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/list_item_header_value"
+    style="@style/h6_headline_basic_600"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/basic_300"
+    android:orientation="vertical"
+    android:padding="@dimen/spacing_m"
+    android:textStyle="bold"
+    tools:text="Carrotes" />

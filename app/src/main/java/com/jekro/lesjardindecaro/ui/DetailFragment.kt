@@ -2,12 +2,16 @@ package com.jekro.lesjardindecaro.ui
 
 import android.os.Bundle
 import android.view.Gravity
+import android.view.HapticFeedbackConstants
+import android.view.MotionEvent
+import android.view.View
 import com.auchan.uikit.module.ModuleInteractor
 import com.auchan.uikit.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
+import com.jekro.lesjardindecaro.ui.home.HomePageActivity
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import com.jekro.lesjardindecaro.ui.list.ListProductFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
@@ -29,16 +33,49 @@ HomePageContract.View {
             detailProduitImageView?.load(product.image)
             descriptionTextView.text = product.description
         }
+        if (!product?.unite.isNullOrEmpty()) {
+            uniteTextView.visibility = View.VISIBLE
+            uniteTextView.text = product?.unite
+            product_number.setText("100")
+        } else {
+            product_number.setText("1")
+        }
 
         var numberProduct = product_number.text.toString().toInt()
-        minus?.setOnClickListener {
-            numberProduct -= 1
-            product_number.setText(numberProduct.toString())
-        }
-        plus?.setOnClickListener {
-            numberProduct += 1
-            product_number.setText(numberProduct.toString())
+        minus?.setOnTouchListener { view, motionEvent ->
+            animateButton(view, motionEvent) {
+                if ((product?.unite.isNullOrEmpty() && numberProduct > 1) ||
+                    (!product?.unite.isNullOrEmpty() && numberProduct > 100)) {
+                    numberProduct -= if (product?.unite.isNullOrEmpty()) 1 else 100
+                    product_number.setText(numberProduct.toString())
+                }
+            }
 
+            true
+        }
+        plus?.setOnTouchListener { view, motionEvent ->
+            animateButton(view, motionEvent) {numberProduct += if (product?.unite.isNullOrEmpty()) 1 else 100
+                product_number.setText(numberProduct.toString())}
+
+            true
+        }
+    }
+
+    private fun animateButton(view: View, motionEvent: MotionEvent, operation: (() -> Unit)?) {
+        if (motionEvent.action == MotionEvent.ACTION_DOWN) {
+            view.performHapticFeedback(
+                HapticFeedbackConstants.VIRTUAL_KEY,
+                HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING
+            )
+            view.alpha = 0.9F
+            view.scaleX = 0.9F
+            view.scaleY = 0.9F
+        }
+        if (motionEvent.action == MotionEvent.ACTION_UP) {
+            view.alpha = 1F
+            view.scaleX = 1F
+            view.scaleY = 1F
+            operation?.invoke()
         }
     }
 

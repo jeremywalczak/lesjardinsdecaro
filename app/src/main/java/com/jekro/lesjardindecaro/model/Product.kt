@@ -19,10 +19,13 @@ data class Product(
     val image: String,
     @SerializedName("category")
     val category: String,
+    @SerializedName("unite")
+    val unite: String?,
     @SerializedName("types")
     val types: List<String>?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readString(),
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
@@ -42,6 +45,7 @@ data class Product(
         parcel.writeString(description)
         parcel.writeString(image)
         parcel.writeString(category)
+        parcel.writeString(unite)
         parcel.writeStringList(types)
     }
 
