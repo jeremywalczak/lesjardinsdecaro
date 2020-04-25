@@ -30,23 +30,23 @@ HomePageContract.View {
         super.onActivityCreated(savedInstanceState)
         val product = arguments?.getParcelable<Product>(PRODUCT)
         product?.let {
-            detailProduitImageView?.load(product.image)
+            detailProduitImageView?.load("http://lejardindecaro.fr${product.image.url}")
             descriptionTextView.text = product.description
+            titleTextView.text = product.title
         }
-        if (!product?.unite.isNullOrEmpty()) {
+        if (!product?.unity.isNullOrEmpty()) {
             uniteTextView.visibility = View.VISIBLE
-            uniteTextView.text = product?.unite
-            product_number.setText("100")
-        } else {
-            product_number.setText("1")
+            uniteTextView.text = product?.unity
         }
+
+        product_number.setText(product!!.defaultQuantity.toString())
 
         var numberProduct = product_number.text.toString().toInt()
         minus?.setOnTouchListener { view, motionEvent ->
             animateButton(view, motionEvent) {
-                if ((product?.unite.isNullOrEmpty() && numberProduct > 1) ||
-                    (!product?.unite.isNullOrEmpty() && numberProduct > 100)) {
-                    numberProduct -= if (product?.unite.isNullOrEmpty()) 1 else 100
+                if ((product?.unity.isNullOrEmpty() && numberProduct > 1) ||
+                    (!product?.unity.isNullOrEmpty() && numberProduct > 100)) {
+                    numberProduct -= if (product?.unity.isNullOrEmpty()) 1 else 100
                     product_number.setText(numberProduct.toString())
                 }
             }
@@ -54,7 +54,7 @@ HomePageContract.View {
             true
         }
         plus?.setOnTouchListener { view, motionEvent ->
-            animateButton(view, motionEvent) {numberProduct += if (product?.unite.isNullOrEmpty()) 1 else 100
+            animateButton(view, motionEvent) {numberProduct += if (product?.unity.isNullOrEmpty()) 1 else 100
                 product_number.setText(numberProduct.toString())}
 
             true

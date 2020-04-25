@@ -5,48 +5,64 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 
 data class Product(
-    @SerializedName("base_price")
-    val basePrice: String,
-    @SerializedName("promo_price")
-    val promoPrice: String?,
-    @SerializedName("use_period_validity")
-    val usePeriodValidity: String,
+    @SerializedName("id")
+    val id: String,
     @SerializedName("title")
     val title: String,
     @SerializedName("description")
     val description: String?,
+    @SerializedName("price")
+    val price: Price,
+    @SerializedName("status")
+    val status: String?,
     @SerializedName("image")
-    val image: String,
-    @SerializedName("category")
-    val category: String,
-    @SerializedName("unite")
-    val unite: String?,
-    @SerializedName("types")
-    val types: List<String>?
+    val image: Image,
+    @SerializedName("new")
+    val new: Boolean,
+    @SerializedName("category_id")
+    val categoryId: String?,
+    @SerializedName("reduce")
+    val reduce: String?,
+    @SerializedName("default_quantity")
+    val defaultQuantity: Int,
+    @SerializedName("unity")
+    val unity: String?,
+    @SerializedName("origin")
+    val origin: String?,
+    @SerializedName("cat")
+    val cat: String?
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readParcelable(Price::class.java.classLoader),
+        parcel.readString(),
+        parcel.readParcelable(Image::class.java.classLoader),
+        parcel.readByte() != 0.toByte(),
         parcel.readString(),
         parcel.readString(),
+        parcel.readInt(),
         parcel.readString(),
         parcel.readString(),
-        parcel.readString(),
-        parcel.createStringArrayList()
+        parcel.readString()
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(basePrice)
-        parcel.writeString(promoPrice)
-        parcel.writeString(usePeriodValidity)
+        parcel.writeString(id)
         parcel.writeString(title)
         parcel.writeString(description)
-        parcel.writeString(image)
-        parcel.writeString(category)
-        parcel.writeString(unite)
-        parcel.writeStringList(types)
+        parcel.writeParcelable(price, flags)
+        parcel.writeString(status)
+        parcel.writeParcelable(image, flags)
+        parcel.writeByte(if (new) 1 else 0)
+        parcel.writeString(categoryId)
+        parcel.writeString(reduce)
+        parcel.writeInt(defaultQuantity)
+        parcel.writeString(unity)
+        parcel.writeString(origin)
+        parcel.writeString(cat)
     }
 
     override fun describeContents(): Int {

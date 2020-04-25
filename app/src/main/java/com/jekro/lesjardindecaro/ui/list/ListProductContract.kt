@@ -3,6 +3,7 @@ package com.jekro.lesjardindecaro.ui.list
 import com.auchan.uikit.mvp.BasePresenter
 import com.auchan.uikit.mvp.BaseView
 import com.jekro.lesjardindecaro.model.AutoCompleteEntry
+import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Product
 
 class ListProductContract {
@@ -10,6 +11,7 @@ class ListProductContract {
     interface Presenter : BasePresenter<View> {
         var filtersType: MutableList<String>
         var initialEntries : MutableList<Product>
+        var hashProductCategories: HashMap<Product, List<Category>>
 
         fun buildFiltersType(products: ArrayList<Product>)
 

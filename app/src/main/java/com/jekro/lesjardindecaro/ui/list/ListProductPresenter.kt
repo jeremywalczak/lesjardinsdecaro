@@ -3,6 +3,7 @@ package com.jekro.lesjardindecaro.ui.list
 import com.auchan.uikit.mvp.AbsPresenter
 import com.jekro.lesjardindecaro.model.AutoCompleteEntry
 import com.jekro.lesjardindecaro.model.AutoCompleteViewType
+import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Product
 
 class ListProductPresenter(
@@ -11,6 +12,8 @@ class ListProductPresenter(
     ListProductContract.Presenter {
 
     override var initialEntries = mutableListOf<Product>()
+
+    override var hashProductCategories: HashMap<Product, List<Category>> = hashMapOf()
 
     override var filtersType: MutableList<String> = mutableListOf()
 
@@ -22,9 +25,9 @@ class ListProductPresenter(
     override fun buildFiltersType(products: ArrayList<Product>) {
         filtersType = mutableListOf()
         products?.forEach {
-            it.types?.forEach { type ->
-                if (!filtersType.contains(type))
-                    filtersType.add(type)
+            hashProductCategories[it]?.forEach { category ->
+                if (!filtersType.contains(category.title))
+                    filtersType.add(category.title)
             }
         }
     }
@@ -43,11 +46,11 @@ class ListProductPresenter(
             if (search.isNullOrEmpty())
                 return initialEntries
             else
-                return initialEntries.filter {formatSearch(it.title).contains(search) }
+                return initialEntries.filter {it.description != null && formatSearch(it.description).contains(search) }
         } else {
             if (search.isNullOrEmpty()) {
                 type.forEach { myType ->
-                    initialEntries.filter {it.types!!.contains(myType) }?.forEach {
+                    initialEntries.filter {hashProductCategories[it]?.firstOrNull { category -> category.title == myType } != null }?.forEach {
                         if (!entriesSortedAndFiltered.contains(it))
                             entriesSortedAndFiltered.add(it)
                     }
@@ -55,7 +58,7 @@ class ListProductPresenter(
                 return entriesSortedAndFiltered
             } else {
                 type.forEach { myType ->
-                    initialEntries.filter {it.types!!.contains(myType) && formatSearch(it.title).contains(search) }?.forEach {
+                    initialEntries.filter {hashProductCategories[it]?.firstOrNull { category -> category.title == myType } != null && it.description != null && formatSearch(it.description).contains(search) }?.forEach {
                         if (!entriesSortedAndFiltered.contains(it))
                             entriesSortedAndFiltered.add(it)
                     }
@@ -69,11 +72,11 @@ class ListProductPresenter(
     override fun searchSuggestions(search: String) {
         val result = mutableListOf<AutoCompleteEntry>()
         if (!search.isNullOrEmpty()) {
-            initialEntries.filter {formatSearch(it.title).contains(search) }?.forEach { productEntry ->
+            initialEntries.filter {it.description != null && formatSearch(it.description).contains(search) }?.forEach { productEntry ->
                 result.add(
                     AutoCompleteEntry(
-                        productEntry.title.replace(search, "<b>$search</b>"),
-                        productEntry.title,
+                        productEntry.description?.replace(search, "<b>$search</b>"),
+                        productEntry.description,
                         productEntry,
                         AutoCompleteViewType.ITEM
                     )

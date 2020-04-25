@@ -6,9 +6,11 @@ import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Toast
 import com.auchan.uikit.module.ModuleInteractor
 import com.auchan.uikit.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
+import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.ui.list.ListProductFragment
@@ -26,23 +28,27 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
 
     override fun displayResult(configuration: Configuration) {
         val products = configuration.products
-        carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
-
-        initBannerViewPager()
+        val categoryFruit = configuration.categories.first { category -> category.id == "24" }
+        val categoryLegume = configuration.categories.first { category -> category.id == "25" }
+        val categoryEpicerieCave = configuration.categories.first { category -> category.id == "26" }
+        configuration.carrousselImageHomePage?.let {
+            carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
+            initBannerViewPager()
+        }
 
         accountImageView?.setOnClickListener {
             activity!!.drawer_layout.openDrawer(Gravity.LEFT)
         }
-        legumesImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { it.category ==  "legume"})
+        legumesImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryLegume)}, presenter.hashProductCategories)
             true
         }
-        epicerieImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { it.category ==  "epicerie"})
+        epicerieImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
             true
         }
-        caveImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { it.category ==  "cave"})
+        caveImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
             true
         }
-        fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { it.category ==  "fruit"})
+        fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryFruit)}, presenter.hashProductCategories)
             true
         }
         /*panierImageView?.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent)
@@ -70,6 +76,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     }
 
     override fun displayError(throwable: Throwable) {
+        Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_homepage
@@ -82,11 +89,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         presenter.start()
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
-    private fun animateCategoryButton(view: View, motionEvent: MotionEvent, productsFiltered: List<Product>? = null) {
+    private fun animateCategoryButton(view: View, motionEvent: MotionEvent, productsFiltered: List<Product>? = null, hashMapProductCategories: HashMap<Product, List<Category>>) {
         if (motionEvent.action == MotionEvent.ACTION_DOWN) {
             view.performHapticFeedback(
                 HapticFeedbackConstants.VIRTUAL_KEY,
@@ -103,7 +106,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
             if (!productsFiltered.isNullOrEmpty()) {
                 activity!!.supportFragmentManager.beginTransaction().add(
                     R.id.mainContainer,
-                    ListProductFragment.newInstance(ArrayList(productsFiltered))
+                    ListProductFragment.newInstance(ArrayList(productsFiltered), hashMapProductCategories)
                 ).addToBackStack(ListProductFragment::class.java.toString()).commit()
             }
         }

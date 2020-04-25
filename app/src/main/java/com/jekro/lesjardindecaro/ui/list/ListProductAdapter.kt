@@ -1,19 +1,13 @@
 package com.jekro.lesjardindecaro.ui.list
 
 import android.content.Context
-import android.graphics.Color
-import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.shape.ShapeAppearanceModel
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Product
-import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_product.*
 
@@ -39,16 +33,16 @@ class ListProductAdapter(
         val couponsItemHolder = holder as CouponViewHolder
         val product = objects[position]
         couponsItemHolder.product = product
-        couponsItemHolder.product_title.text = product.title
-        couponsItemHolder.produit_image.load(product.image)
-        if (!product.promoPrice.isNullOrEmpty()) {
-            couponsItemHolder.promo_price.text = product.promoPrice
-            couponsItemHolder.promo_base.text = product.basePrice
-            couponsItemHolder.promo_base.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
-        } else {
-            couponsItemHolder.promo_price.text = product.basePrice
-            couponsItemHolder.promo_base.visibility = View.GONE
+        couponsItemHolder.product_title.text = product.description
+        product.image.url?.let {
+            couponsItemHolder.produit_image.load("http://lejardindecaro.fr${product.image.url}")
+            //CustomPicasso(context).with(context)?.load("http://i.imgur.com/DvpvklR.png")?.into(couponsItemHolder.produit_image)
+            //CustomPicasso(context).getNewInstance(context)!!.load("http://lejardindecaro.fr${product.image.url}")?.into(couponsItemHolder.produit_image)
+            //ImageLoader.getInstance().displayImage("http://i.imgur.com/DvpvklR.png", couponsItemHolder.produit_image)
         }
+        couponsItemHolder.priceTextView.text = (product.price.fractional.toFloat() / 100).toString() + " €"
+        couponsItemHolder.categoryTextView.text = product.cat
+        couponsItemHolder.originTextView.text = product.origin
     }
 
     inner class CouponViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

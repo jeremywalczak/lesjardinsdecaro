@@ -28,61 +28,64 @@
             android:layout_height="105dp"
             android:padding="@dimen/spacing_m"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/promo_left_panel"
+            app:layout_constraintEnd_toStartOf="@+id/product_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/promo_left_panel"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/spacing_m"
-            android:padding="@dimen/spacing_s"
-            app:layout_constraintStart_toEndOf="@+id/produit_image"
-            app:layout_constraintTop_toTopOf="parent">
-        </FrameLayout>
 
-        <LinearLayout
-            android:id="@+id/promo_right_panel"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="@dimen/spacing_m"
-            android:gravity="center"
-            android:orientation="vertical"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/promo_left_panel"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/promo_price"
-                style="@style/h6_headline_basic_600"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                tools:text="11,11 €" />
-
-            <TextView
-                android:id="@+id/promo_base"
-                style="@style/c2_caption_basic_600"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                tools:text="20 €" />
-
-        </LinearLayout>
 
         <TextView
-            android:id="@+id/product_title"
-            style="@style/s2_subtitle_basic_600"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/spacing_s"
-            android:maxLines="2"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/produit_image"
-            app:layout_constraintTop_toBottomOf="@+id/promo_left_panel"
-            tools:text="Title label should be short, but can be on 2 lines if needed." />
+                android:id="@+id/product_title"
+                style="@style/s2_subtitle_basic_600"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="@dimen/spacing_s"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/produit_image"
+                tools:text="Title label should be short, but can be on 2 lines if needed." />
+
+        <TextView
+                android:id="@+id/priceTextView"
+                style="@style/h6_headline_basic_600"
+                android:textColor="@color/primary_02_400"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/product_title"
+
+                app:layout_constraintStart_toEndOf="@+id/produit_image"
+                tools:text="11,11 €" />
+
+        <TextView
+                android:id="@+id/originTextView"
+                style="@style/c1_caption_basic_500"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/priceTextView"
+                android:layout_marginTop="@dimen/spacing_xs"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/produit_image"
+                tools:text="Origine France" />
+
+        <TextView
+                android:id="@+id/categoryTextView"
+                style="@style/c1_caption_basic_500"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/originTextView"
+                android:layout_marginTop="@dimen/spacing_xs"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toEndOf="@+id/produit_image"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/spacing_s"
+                tools:text="Categorie : Extra" />
 
 
         <ImageView

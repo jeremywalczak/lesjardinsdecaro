@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import com.squareup.picasso.Transformation
+import kotlinx.android.synthetic.main.list_item_product.*
 import java.util.*
 
 class Constants {
@@ -51,25 +52,24 @@ fun ImageView.load(
         this.setImageDrawable(null)
         return
     }
-
-    Picasso.get().cancelRequest(this)
+    CustomPicasso(context).with(context)!!.cancelRequest(this)
     var creator: RequestCreator? = null
     if (value.startsWith("http") || value.startsWith("https") || value.contains(".svg")) {
         creator = if (placeholder != null) {
-            Picasso.get().load(value).error(placeholder).placeholder(placeholder)
+            CustomPicasso(context).with(context)!!.load(value).error(placeholder).placeholder(placeholder)
                 .config(Bitmap.Config.RGB_565)
         } else {
-            Picasso.get().load(value).config(Bitmap.Config.RGB_565)
+            CustomPicasso(context).with(context)!!.load(value).config(Bitmap.Config.RGB_565)
         }
     } else if (!value.startsWith("svg_") && !value.startsWith("ic_")) {
         val identifier = context.resources.getIdentifier(value, "drawable", context.packageName)
         if (identifier != 0) {
             creator = if (placeholder != null) {
-                Picasso.get().load(identifier).error(placeholder).placeholder(placeholder).config(
+                CustomPicasso(context).with(context)!!.load(identifier).error(placeholder).placeholder(placeholder).config(
                     Bitmap.Config.RGB_565
                 )
             } else {
-                Picasso.get().load(identifier).config(Bitmap.Config.RGB_565)
+                CustomPicasso(context).with(context)!!.load(identifier).config(Bitmap.Config.RGB_565)
             }
         }
     }

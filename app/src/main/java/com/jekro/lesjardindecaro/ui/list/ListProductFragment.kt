@@ -22,6 +22,7 @@ import com.jekro.lesjardindecaro.addSearchDelayListener
 import com.jekro.lesjardindecaro.hideKeyboard
 import com.jekro.lesjardindecaro.model.AutoCompleteEntry
 import com.jekro.lesjardindecaro.model.AutoCompleteViewType
+import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.toDp
 import com.jekro.lesjardindecaro.ui.DetailFragment
@@ -51,6 +52,7 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val products = arguments?.getParcelableArrayList<Product>(PRODUCTS)
+        val hashProductCategories = (arguments?.getSerializable(CATEGORIES_PRODUCTS)) as HashMap<Product, List<Category>>
         products?.let {
             presenter.buildFiltersType(it)
             presenter.initialEntries.addAll(it)
@@ -368,10 +370,12 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
 
     companion object {
         const val PRODUCTS = "PRODUCTS"
-        fun newInstance(products: ArrayList<Product>?) =
+        const val CATEGORIES_PRODUCTS = "CATEGORIES_PRODUCTS"
+        fun newInstance(products: ArrayList<Product>?, hashProductCategories: HashMap<Product, List<Category>>) =
             ListProductFragment().apply {
                 arguments = Bundle().apply {
                     putParcelableArrayList(PRODUCTS, products?: arrayListOf())
+                    putSerializable(CATEGORIES_PRODUCTS, hashProductCategories)
                 }
             }
     }
