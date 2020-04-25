@@ -29,6 +29,7 @@ HomePageContract.View {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val product = arguments?.getParcelable<Product>(PRODUCT)
+        val shouldMoveCartButton = arguments?.getBoolean(SHOULD_MOVE_CART_BUTTON)
         product?.let {
             detailProduitImageView?.load("http://lejardindecaro.fr${product.image.url}")
             descriptionTextView.text = product.description
@@ -59,6 +60,8 @@ HomePageContract.View {
 
             true
         }
+        if (shouldMoveCartButton != null && shouldMoveCartButton)
+            (activity as HomePageActivity).moveCart()
     }
 
     private fun animateButton(view: View, motionEvent: MotionEvent, operation: (() -> Unit)?) {
@@ -95,10 +98,12 @@ HomePageContract.View {
 
     companion object {
         const val PRODUCT = "PRODUCT"
-        fun newInstance(product: Product) =
+        const val SHOULD_MOVE_CART_BUTTON = "SHOULD_MOVE_CART_BUTTON"
+        fun newInstance(product: Product, shouldMoveCartButton: Boolean) =
             DetailFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(PRODUCT, product)
+                    putBoolean(SHOULD_MOVE_CART_BUTTON, shouldMoveCartButton)
                 }
             }
     }

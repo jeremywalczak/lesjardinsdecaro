@@ -13,6 +13,7 @@ import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
+import com.jekro.lesjardindecaro.ui.DetailFragment
 import com.jekro.lesjardindecaro.ui.list.ListProductFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_homepage.*
@@ -33,8 +34,21 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         val categoryEpicerieCave = configuration.categories.first { category -> category.id == "26" }
         val promos = configuration.products.filter { product -> !product.reduce.isNullOrEmpty() }
         if (!promos.isNullOrEmpty()) {
-            //carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, promos)
-            //initBannerViewPager()
+
+            /*val test = arrayListOf<Product>()
+            test.add(promos.first())
+            test.add(promos.first())*/
+
+            val adapter = HomePageCarrousselAdapter(context!!, promos)
+            adapter?.onItemClick = { product ->
+                activity!!.supportFragmentManager.beginTransaction().add(
+                    R.id.mainContainer,
+                    DetailFragment.newInstance(product, true)
+                ).addToBackStack(DetailFragment::class.java.toString()).commit()
+
+            }
+            carrousselHomePageViewPager.adapter = adapter
+            initBannerViewPager()
         }
 
         accountImageView?.setOnClickListener {

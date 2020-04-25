@@ -18,20 +18,58 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
         <TextView
                 android:id="@+id/list_item_banner_reduce"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@color/primary_02_400"
-                android:textColor="@color/basic_200"
+                style="@style/h2_headline_basic_600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
                 android:layout_marginStart="@dimen/spacing_xl"
-                android:text="100%"/>
+                android:text="100%"
+                android:textColor="#fdde24" />
+
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/spacing_s"
+                android:layout_marginEnd="@dimen/spacing_xl"
+                android:layout_marginStart="@dimen/spacing_xl"
+                android:orientation="vertical">
+            <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                <TextView
+                        android:id="@+id/list_item_banner_base_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="5.90€"/>
+
+                <TextView
+                        android:id="@+id/list_item_banner_promo_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_s"
+                        android:text="5.02€"
+                        android:textColor="@color/primary_02_400"
+                        android:textStyle="bold" />
+            </LinearLayout>
+            <TextView
+                    android:id="@+id/list_item_banner_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/h4_headline_basic_600"
+                    android:text="Titre"/>
+        </LinearLayout>
 
 
         <ImageView
                 android:id="@+id/list_item_banner_picture"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/spacing_s"
                 android:elevation="@dimen/elevation"
                 android:orientation="vertical" />

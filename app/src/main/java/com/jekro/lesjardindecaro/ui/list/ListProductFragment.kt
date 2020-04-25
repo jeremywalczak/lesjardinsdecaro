@@ -62,7 +62,7 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
             product?.let {
                 activity!!.supportFragmentManager.beginTransaction().add(
                     R.id.mainContainer,
-                    DetailFragment.newInstance(it)
+                    DetailFragment.newInstance(it, false)
                 ).addToBackStack(DetailFragment::class.java.toString()).commit()
             }
         }
@@ -142,7 +142,7 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
         ) else null
             activity!!.supportFragmentManager.beginTransaction().add(
                 R.id.mainContainer,
-                DetailFragment.newInstance(product = item)
+                DetailFragment.newInstance(product = item, shouldMoveCartButton = false)
             ).addToBackStack(DetailFragment::class.java.toString()).commit()
     }
 
