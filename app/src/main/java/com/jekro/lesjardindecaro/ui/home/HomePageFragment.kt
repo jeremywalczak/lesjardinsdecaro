@@ -31,9 +31,10 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         val categoryFruit = configuration.categories.first { category -> category.id == "24" }
         val categoryLegume = configuration.categories.first { category -> category.id == "25" }
         val categoryEpicerieCave = configuration.categories.first { category -> category.id == "26" }
-        configuration.carrousselImageHomePage?.let {
-            carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, configuration.carrousselImageHomePage)
-            initBannerViewPager()
+        val promos = configuration.products.filter { product -> !product.reduce.isNullOrEmpty() }
+        if (!promos.isNullOrEmpty()) {
+            //carrousselHomePageViewPager.adapter = HomePageCarrousselAdapter(context!!, promos)
+            //initBannerViewPager()
         }
 
         accountImageView?.setOnClickListener {

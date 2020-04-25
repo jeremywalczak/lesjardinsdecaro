@@ -11,15 +11,30 @@
         android:paddingEnd="@dimen/spacing_s"
         android:paddingBottom="12dp">
 
-    <ImageView
-            android:id="@+id/list_item_banner_picture"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginBottom="@dimen/spacing_s"
-            android:elevation="@dimen/elevation"
-            android:orientation="vertical"
+    <FrameLayout
             app:layout_constraintDimensionRatio="H, 343:132"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <TextView
+                android:id="@+id/list_item_banner_reduce"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:background="@color/primary_02_400"
+                android:textColor="@color/basic_200"
+                android:layout_marginStart="@dimen/spacing_xl"
+                android:text="100%"/>
+
+
+        <ImageView
+                android:id="@+id/list_item_banner_picture"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginBottom="@dimen/spacing_s"
+                android:elevation="@dimen/elevation"
+                android:orientation="vertical" />
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,19 +7,21 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
+import com.jekro.lesjardindecaro.Constants
 import com.jekro.lesjardindecaro.Constants.Companion.IMAGE_CROP
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.RoundedTransformation
 import com.jekro.lesjardindecaro.load
+import com.jekro.lesjardindecaro.model.Product
 import com.squareup.picasso.Picasso
 
 class HomePageCarrousselAdapter (
 private val context: Context,
-private val banners: List<String>,
+private val products: List<Product>,
 private val placeholder: Int? = null
 ) : PagerAdapter() {
 
-    override fun getCount(): Int = banners.size
+    override fun getCount(): Int = products.size
 
     var onItemClick: ((String, String?) -> Unit)? = null
 
@@ -31,10 +33,13 @@ private val placeholder: Int? = null
 
         val rowView = View.inflate(context, layout, null)
         val imageView = rowView.findViewById<ImageView>(R.id.list_item_banner_picture)
+        val reduceTextView = rowView.findViewById<TextView>(R.id.list_item_banner_reduce)
 
-        imageView.load(
-            banners[position]
-        )
+        reduceTextView.text = products[position].reduce
+        products[position].image.url?.let {
+            imageView.load("http://lejardindecaro.fr${it}")
+        }
+
 
         container.addView(rowView)
 

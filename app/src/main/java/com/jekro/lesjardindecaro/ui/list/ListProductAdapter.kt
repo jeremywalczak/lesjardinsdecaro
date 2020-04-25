@@ -36,9 +36,6 @@ class ListProductAdapter(
         couponsItemHolder.product_title.text = product.description
         product.image.url?.let {
             couponsItemHolder.produit_image.load("http://lejardindecaro.fr${product.image.url}")
-            //CustomPicasso(context).with(context)?.load("http://i.imgur.com/DvpvklR.png")?.into(couponsItemHolder.produit_image)
-            //CustomPicasso(context).getNewInstance(context)!!.load("http://lejardindecaro.fr${product.image.url}")?.into(couponsItemHolder.produit_image)
-            //ImageLoader.getInstance().displayImage("http://i.imgur.com/DvpvklR.png", couponsItemHolder.produit_image)
         }
         couponsItemHolder.priceTextView.text = (product.price.fractional.toFloat() / 100).toString() + " €"
         couponsItemHolder.categoryTextView.text = product.cat

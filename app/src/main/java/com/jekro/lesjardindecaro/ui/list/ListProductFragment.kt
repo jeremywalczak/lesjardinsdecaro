@@ -52,7 +52,7 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val products = arguments?.getParcelableArrayList<Product>(PRODUCTS)
-        val hashProductCategories = (arguments?.getSerializable(CATEGORIES_PRODUCTS)) as HashMap<Product, List<Category>>
+        presenter.hashProductCategories = (arguments?.getSerializable(CATEGORIES_PRODUCTS)) as HashMap<Product, List<Category>>
         products?.let {
             presenter.buildFiltersType(it)
             presenter.initialEntries.addAll(it)
