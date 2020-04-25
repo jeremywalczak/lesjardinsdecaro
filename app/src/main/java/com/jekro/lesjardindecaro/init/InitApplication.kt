@@ -5,15 +5,22 @@ import android.graphics.Bitmap
 import com.jakewharton.picasso.OkHttp3Downloader
 import com.jekro.lesjardindecaro.SVGRequestHandler
 import com.squareup.picasso.Picasso
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidLogger
 import org.koin.android.logger.AndroidLogger
+import org.koin.core.context.startKoin
 
 
 class InitApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        startKoin(androidContext = this.applicationContext, modules = listOf(initModule), logger = AndroidLogger())
+        startKoin{
+            androidLogger()
+            androidContext(this@InitApplication)
+            modules(initModule)
+            modules(networkModule)
+        }
 
         Picasso.setSingletonInstance(
             Picasso.Builder(this.applicationContext)

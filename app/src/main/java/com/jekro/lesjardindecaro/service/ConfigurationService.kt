@@ -8,6 +8,6 @@ import io.reactivex.Single
 import retrofit2.http.GET
 
 interface ConfigurationService  {
-    @GET("/Configuration")
+    @GET("/products.json")
     fun getConfiguration(): Single<Configuration>
 }
