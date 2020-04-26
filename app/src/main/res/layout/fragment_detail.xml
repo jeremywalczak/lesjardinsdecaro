@@ -29,12 +29,14 @@
             android:layout_marginTop="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"/>
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"/>
 
     <TextView
             android:id="@+id/descriptionTextView"
-            android:layout_width="348dp"
+            android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
             android:layout_height="100dp"
             android:ems="10"
             android:inputType="textMultiLine|textPersonName"
@@ -44,7 +46,31 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailProduitImageView" />
-
+    <TextView
+            android:id="@+id/priceTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:singleLine="true"
+            style="@style/h4_headline_basic_600"
+            android:textColor="@color/primary_02_400"
+            android:text="10 €"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+    <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:layout_marginEnd="@dimen/spacing_m"
+            android:singleLine="true"
+            android:text="Ceci est la magnifique description d'une pomme granit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
 
     <ImageView
             android:id="@+id/imageView6"
@@ -69,7 +95,7 @@
             app:layout_constraintBottom_toTopOf="@+id/imageView6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/categoryTextView" />
 
     <TextView
             android:id="@+id/uniteTextView"
@@ -110,7 +136,7 @@
             app:layout_constraintTop_toTopOf="@+id/product_number"
             android:focusable="true" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addBuy"
             android:layout_width="200dp"
             android:layout_height="69dp"

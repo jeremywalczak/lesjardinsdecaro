@@ -1,4 +1,4 @@
-package com.auchan.uikit.mvp
+package com.jekro.lesjardindecaro.mvp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.auchan.uikit.module.ModuleInteractor
+import com.auchan.uikit.mvp.BasePresenter
 
 abstract class AbsFragment<V, P : BasePresenter<V>> : Fragment() {
     abstract val presenter: P
@@ -13,12 +14,7 @@ abstract class AbsFragment<V, P : BasePresenter<V>> : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.destroy()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        presenter.onCreate()
+        presenter.onDestroy()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

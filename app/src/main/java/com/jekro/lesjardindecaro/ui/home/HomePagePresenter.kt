@@ -30,6 +30,10 @@ class HomePagePresenter (
         )
     }
 
+    override fun retry() {
+        start()
+    }
+
     private fun getCategoriesFromProduct(product: Product): List<Category> {
         val categories = arrayListOf<Category>()
         val category = configuration?.categories?.firstOrNull { it.id == product.categoryId }

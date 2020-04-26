@@ -9,12 +9,11 @@ import android.text.TextWatcher
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.auchan.uikit.module.ModuleInteractor
-import com.auchan.uikit.mvp.AbsFragment
+import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import com.jekro.lesjardindecaro.R

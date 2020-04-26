@@ -1,22 +1,18 @@
 package com.jekro.lesjardindecaro.ui
 
 import android.os.Bundle
-import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
 import com.auchan.uikit.module.ModuleInteractor
-import com.auchan.uikit.mvp.AbsFragment
+import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.ui.home.HomePageActivity
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
-import com.jekro.lesjardindecaro.ui.list.ListProductFragment
-import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_detail.*
-import kotlinx.android.synthetic.main.fragment_homepage.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -39,6 +35,9 @@ HomePageContract.View {
             uniteTextView.visibility = View.VISIBLE
             uniteTextView.text = product?.unity
         }
+
+        priceTextView.text = String.format("%.2f", product!!.price.fractional.toFloat() / 100) + " €"
+        categoryTextView.text = product.cat
 
         product_number.setText(product!!.defaultQuantity.toString())
 

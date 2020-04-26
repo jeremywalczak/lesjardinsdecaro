@@ -6,11 +6,13 @@ import android.view.Gravity
 import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
+import android.widget.FrameLayout
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import com.auchan.uikit.module.ModuleInteractor
-import com.auchan.uikit.mvp.AbsFragment
-import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
-import com.creativityapps.gmailbackgroundlibrary.BackgroundMail.OnSendingCallback
+import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Configuration
@@ -31,6 +33,9 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     private val swipeTimer = Timer()
 
     override fun displayResult(configuration: Configuration) {
+        activity!!.findViewById<FrameLayout>(R.id.mainContainer).visibility = View.VISIBLE
+        activity!!.findViewById<LinearLayout>(R.id.error_container).visibility = View.GONE
+        activity!!.findViewById<ImageView>(R.id.panierImageView).visibility = View.VISIBLE
         /*BackgroundMail.newBuilder(activity!!)
             .withUsername("lesjardinsdecaro@gmail.com")
             .withPassword("jeje200889")
@@ -55,18 +60,18 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
 
 
 
-        val products = configuration.products
+        val products = configuration.products.filter { it.status == "1" }
         val categoryFruit = configuration.categories.first { category -> category.id == "24" }
         val categoryLegume = configuration.categories.first { category -> category.id == "25" }
         val categoryEpicerieCave = configuration.categories.first { category -> category.id == "26" }
         val promos = configuration.products.filter { product -> !product.reduce.isNullOrEmpty() }
         if (!promos.isNullOrEmpty()) {
 
-            /*val test = arrayListOf<Product>()
+            val test = arrayListOf<Product>()
             test.add(promos.first())
-            test.add(promos.first())*/
+            test.add(promos.first())
 
-            val adapter = HomePageCarrousselAdapter(context!!, promos)
+            val adapter = HomePageCarrousselAdapter(context!!, test)
             adapter?.onItemClick = { product ->
                 activity!!.supportFragmentManager.beginTransaction().add(
                     R.id.mainContainer,
@@ -118,6 +123,12 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     }
 
     override fun displayError(throwable: Throwable) {
+        activity!!.findViewById<ImageView>(R.id.panierImageView).visibility = View.GONE
+        activity!!.findViewById<FrameLayout>(R.id.mainContainer).visibility = View.GONE
+        activity!!.findViewById<LinearLayout>(R.id.error_container).visibility = View.VISIBLE
+        activity!!.findViewById<AppCompatButton>(R.id.retry_button)?.setOnClickListener {
+            presenter.retry()
+        }
         Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
     }
 
