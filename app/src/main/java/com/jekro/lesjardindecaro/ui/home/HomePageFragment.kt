@@ -9,6 +9,8 @@ import android.view.View
 import android.widget.Toast
 import com.auchan.uikit.module.ModuleInteractor
 import com.auchan.uikit.mvp.AbsFragment
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
+import com.creativityapps.gmailbackgroundlibrary.BackgroundMail.OnSendingCallback
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Configuration
@@ -22,12 +24,37 @@ import org.koin.core.parameter.parametersOf
 import java.util.*
 import kotlin.collections.ArrayList
 
+
 class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Presenter>(),
     HomePageContract.View {
 
     private val swipeTimer = Timer()
 
     override fun displayResult(configuration: Configuration) {
+        /*BackgroundMail.newBuilder(activity!!)
+            .withUsername("lesjardinsdecaro@gmail.com")
+            .withPassword("jeje200889")
+            .withSenderName("Application Android Yacaro")
+            .withMailTo("dav.bastien@gmail.com")
+            .withType(BackgroundMail.TYPE_PLAIN)
+            .withSubject("Test")
+            .withBody("Vegeta est naze")
+            .withSendingMessage("hello")
+            .withOnSuccessCallback(object : OnSendingCallback {
+                override fun onSuccess() {
+                    // do some magic
+                    Toast.makeText(activity, "nice :D", Toast.LENGTH_LONG).show()
+                }
+
+                override fun onFail(e: Exception) {
+                    // do some magic
+                    Toast.makeText(activity, "Oooooh :(", Toast.LENGTH_LONG).show()
+                }
+            })
+            .send()*/
+
+
+
         val products = configuration.products
         val categoryFruit = configuration.categories.first { category -> category.id == "24" }
         val categoryLegume = configuration.categories.first { category -> category.id == "25" }
