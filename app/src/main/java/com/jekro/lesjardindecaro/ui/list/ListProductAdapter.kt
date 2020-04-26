@@ -33,7 +33,7 @@ class ListProductAdapter(
         val couponsItemHolder = holder as CouponViewHolder
         val product = objects[position]
         couponsItemHolder.product = product
-        couponsItemHolder.product_title.text = product.description
+        couponsItemHolder.product_title.text = product.title
         product.image.url?.let {
             couponsItemHolder.produit_image.load("http://lejardindecaro.fr${product.image.url}")
         }

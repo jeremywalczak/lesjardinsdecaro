@@ -46,7 +46,7 @@ class ListProductPresenter(
             if (search.isNullOrEmpty())
                 return initialEntries
             else
-                return initialEntries.filter {it.description != null && formatSearch(it.description).contains(search) }
+                return initialEntries.filter {it.title != null && formatSearch(it.title).contains(search) }
         } else {
             if (search.isNullOrEmpty()) {
                 type.forEach { myType ->
@@ -58,7 +58,7 @@ class ListProductPresenter(
                 return entriesSortedAndFiltered
             } else {
                 type.forEach { myType ->
-                    initialEntries.filter {hashProductCategories[it]?.firstOrNull { category -> category.title == myType } != null && it.description != null && formatSearch(it.description).contains(search) }?.forEach {
+                    initialEntries.filter {hashProductCategories[it]?.firstOrNull { category -> category.title == myType } != null && it.title != null && formatSearch(it.title).contains(search) }?.forEach {
                         if (!entriesSortedAndFiltered.contains(it))
                             entriesSortedAndFiltered.add(it)
                     }
@@ -72,11 +72,11 @@ class ListProductPresenter(
     override fun searchSuggestions(search: String) {
         val result = mutableListOf<AutoCompleteEntry>()
         if (!search.isNullOrEmpty()) {
-            initialEntries.filter {it.description != null && formatSearch(it.description).contains(search) }?.forEach { productEntry ->
+            initialEntries.filter {it.title != null && formatSearch(it.title).contains(search) }?.forEach { productEntry ->
                 result.add(
                     AutoCompleteEntry(
-                        productEntry.description?.replace(search, "<b>$search</b>"),
-                        productEntry.description,
+                        productEntry.title?.replace(search, "<b>$search</b>"),
+                        productEntry.title,
                         productEntry,
                         AutoCompleteViewType.ITEM
                     )

@@ -107,15 +107,7 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
                         getToProductDetail(null, autoCompleteEntry.product)
                     }
                     else -> {
-                        /*displayCouponsFiltered(
-                            ArrayList(
-                                presenter.getCouponsSortedAndFiltered(
-                                    null,
-                                    null,
-                                    autoCompleteEntry.rawValue!!
-                                )
-                            )
-                        )*/
+                        displayProductsFiltered(presenter.getProductFiltered(null, autoCompleteEntry.product?.title))
                         initFiltersChips()
                     }
                 }
@@ -235,15 +227,14 @@ class ListProductFragment : AbsFragment<ListProductContract.View, ListProductCon
 
         search_edittext.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                /*displayCouponsFiltered(
+                displayProductsFiltered(
                     ArrayList(
-                        presenter.getCouponsSortedAndFiltered(
-                            null,
+                        presenter.getProductFiltered(
                             null,
                             search_edittext.text.toString()
                         )
                     )
-                )*/
+                )
                 initFiltersChips()
             }
             true
