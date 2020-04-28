@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="@dimen/spacing_m"
             android:layout_marginEnd="@dimen/spacing_m"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:textSize="20dp"
             android:ems="10"
             android:inputType="textMultiLine|textPersonName"
@@ -48,30 +48,54 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/detailProduitImageView" />
     <TextView
-            android:id="@+id/priceTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/priceLabelTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_m"
             android:layout_marginStart="@dimen/spacing_m"
             android:layout_marginEnd="@dimen/spacing_m"
             android:singleLine="true"
-            style="@style/h4_headline_basic_600"
-            android:textColor="@color/primary_02_400"
-            android:text=" Prix : 10 €"
-            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/h5_headline_basic_600"
+            android:text="Prix à l'unité :"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView" />
     <TextView
-            android:id="@+id/categoryTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/priceValueTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/spacing_m"
-            android:layout_marginEnd="@dimen/spacing_m"
             android:singleLine="true"
-            android:text="Ceci est la magnifique description d'une pomme granit"
+            style="@style/h4_headline_basic_600"
+            android:textColor="@color/primary_02_400"
+            tools:text="10 €"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/priceLabelTextView"
+            app:layout_constraintBottom_toBottomOf="@id/priceLabelTextView"
+            app:layout_constraintTop_toTopOf="@id/priceLabelTextView" />
+    <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_m"
+            style="@style/h4_headline_basic_600"
+            android:singleLine="true"
+            android:text="Catégorie :"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
+            app:layout_constraintTop_toBottomOf="@+id/priceLabelTextView" />
+
+    <TextView
+            android:id="@+id/categoryValueView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:layout_marginStart="@dimen/spacing_m"
+            android:singleLine="true"
+            style="@style/p1_paragraph_basic_600"
+            tools:text="II"
+            app:layout_constraintTop_toTopOf="@id/categoryTextView"
+            app:layout_constraintBottom_toBottomOf="@id/categoryTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/categoryTextView" />
 
     <ImageView
             android:id="@+id/imageView6"

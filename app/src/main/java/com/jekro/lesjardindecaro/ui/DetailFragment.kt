@@ -36,8 +36,11 @@ HomePageContract.View {
             uniteTextView.text = product?.unity
         }
 
-        priceTextView.text = "Prix à l'unité :" + String.format("%.2f", product!!.price.fractional.toFloat() / 100) + " €"
-        categoryTextView.text = product.cat
+        priceValueTextView.text = "${String.format("%.2f", product!!.price.fractional.toFloat() / 100)} €"
+        if (!product.cat.isNullOrEmpty())
+            categoryValueView.text = product.cat
+        else
+            categoryTextView.visibility = View.GONE
 
         product_number.setText(product!!.defaultQuantity.toString())
 
