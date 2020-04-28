@@ -66,12 +66,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         val categoryEpicerieCave = configuration.categories.first { category -> category.id == "26" }
         val promos = configuration.products.filter { product -> !product.reduce.isNullOrEmpty() }
         if (!promos.isNullOrEmpty()) {
-
-            val test = arrayListOf<Product>()
-            test.add(promos.first())
-            test.add(promos.first())
-
-            val adapter = HomePageCarrousselAdapter(context!!, test)
+            val adapter = HomePageCarrousselAdapter(context!!, promos)
             adapter?.onItemClick = { product ->
                 activity!!.supportFragmentManager.beginTransaction().add(
                     R.id.mainContainer,
@@ -98,9 +93,6 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryFruit)}, presenter.hashProductCategories)
             true
         }
-        /*panierImageView?.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent)
-            true
-        }*/
     }
 
     private fun initBannerViewPager() {

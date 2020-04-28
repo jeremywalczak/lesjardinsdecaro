@@ -11,6 +11,7 @@ import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.jekro.lesjardindecaro.R
+import com.jekro.lesjardindecaro.showCartDialog
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
@@ -157,6 +158,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                     /*floatingButton.action?.let {
                         notifyModuleInteractor(it, null)
                     }*/
+                    showCartDialog()
                     Handler().postDelayed({
                         panierImageView.isEnabled = true
                     }, 1000)

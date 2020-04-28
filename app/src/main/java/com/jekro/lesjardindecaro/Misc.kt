@@ -18,7 +18,11 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.jekro.lesjardindecaro.ui.GenericBottomSheetDialogFragment
+import com.jekro.lesjardindecaro.ui.home.HomePageFragment
 import com.squareup.picasso.Picasso
 import com.squareup.picasso.RequestCreator
 import com.squareup.picasso.Transformation
@@ -170,4 +174,12 @@ fun TextView.setHtmlText(html: String?) {
             null
         }
     }
+}
+
+fun AppCompatActivity.showCartDialog() {
+    val frag = GenericBottomSheetDialogFragment.newInstance(
+        HomePageFragment::class.java.name,
+        ""
+    )
+    frag.show(supportFragmentManager, "cartDialog")
 }

@@ -47,6 +47,7 @@ dependencies {
     implementation "org.koin:koin-android:1.0.2"
     implementation 'org.koin:koin-android-scope:2.0.0-rc-2'
     implementation 'androidx.viewpager:viewpager:1.0.0'
+    implementation "io.paperdb:paperdb:2.6"
 
 
     implementation 'com.squareup.okhttp:okhttp:2.2.0'
