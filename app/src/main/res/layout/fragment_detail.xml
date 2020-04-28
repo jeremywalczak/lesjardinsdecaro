@@ -163,9 +163,11 @@
             app:layout_constraintTop_toTopOf="@+id/product_number"
             android:focusable="true" />
 
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
             android:id="@+id/addBuy"
-            style="@style/button_large_filled_primary"
+            style="@style/Widget.MaterialComponents.Button"
+            android:backgroundTint="@color/primary_02_400"
+            android:textColor="@color/basic_100"
             android:layout_width="200dp"
             android:layout_height="59dp"
             android:clickable="true"
@@ -178,5 +180,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/product_number"
             app:layout_constraintVertical_bias="0.435" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

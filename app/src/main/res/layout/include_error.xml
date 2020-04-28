@@ -57,9 +57,11 @@
         android:gravity="center"
         android:layout_weight="1"
         android:orientation="vertical">
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/retry_button"
-            style="@style/button_large_retry_filled_primary"
+            style="@style/Widget.MaterialComponents.Button"
+            android:backgroundTint="@color/primary_02_400"
+            android:textColor="@color/basic_100"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
