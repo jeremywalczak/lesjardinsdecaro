@@ -6,8 +6,8 @@
     <color name="background_color">#ffffffff</color>
     <color name="basic_100">#ffffffff</color>
     <color name="basic_200">#fff4f4f4</color>
-    <color name="basic_250">#fff5f5f5</color>
-    <color name="basic_300">#ffe2e1e1</color>
+    <color name="basic_250">#ffe2e2e2</color>
+    <color name="basic_300">#fff0f0f0</color>
     <color name="basic_400">#ffcdcbcb</color>
     <color name="basic_500">#ff979191</color>
     <color name="basic_600">#ff333333</color>

@@ -519,7 +519,7 @@
         <item name="android:fontFamily">@font/sana_sans_alt_regular</item>
     </style>
     <style name="button_large_filled_primary" parent="@style/Widget.AppCompat.Button.Borderless">
-        <item name="android:background">@color/basic_300</item>
+        <item name="android:background">@color/basic_250</item>
         <item name="android:radius">15dp</item>
         <item name="android:textColor">#ff00d68f</item>
         <item name="android:textAllCaps">false</item>
