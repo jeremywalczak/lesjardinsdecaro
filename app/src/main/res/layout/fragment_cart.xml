@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <RelativeLayout
+        android:id="@+id/main_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/basic_300"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/cart_trash_demo"
+            android:layout_width="80dp"
+            android:layout_height="85dp"
+            android:layout_alignParentEnd="true"
+            android:background="@color/primary_01_500"
+            android:padding="24dp"
+            android:src="@drawable/ic_trash"
+            android:tint="@color/basic_100" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/products_list_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layoutAnimation="@anim/recycler_animation"
+            tools:listitem="@layout/list_item_cart_product" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cart_validate_button"
+            style="@style/button_large_filled_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:visibility="invisible"
+            tools:text="Valider mon panier : 135,55 €" />
+
+        <LinearLayout
+            android:id="@+id/cart_minimum_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/basic_400"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="11dp"
+            android:visibility="invisible"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/cart_minimum_actual_amount"
+                style="@style/h6_headline_basic_600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Valider mon panier : 17,55 €" />
+
+            <TextView
+                android:id="@+id/cart_minimum_amount"
+                style="@style/s2_subtitle_basic_600"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Minimum d’achat : 20 €" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <include
+        layout="@layout/include_error"
+        tools:visibility="gone" />
+</RelativeLayout>

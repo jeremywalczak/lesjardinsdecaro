@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="QuantityFlatView">
+        <attr name="max" format="integer" />
+        <attr name="value" format="integer" />
+        <attr name="small" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingView">
+        <attr name="shapeColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingButton">
+        <attr name="text" format="reference" />
+        <attr name="textColor" format="color" />
+        <attr name="loadingColor" format="color" />
+        <attr name="background" format="reference" />
+        <attr name="style" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="JellyToggleButton">
+        <attr name="jtbLeftBackgroundColor" format="color|reference" />
+        <attr name="jtbRightBackgroundColor" format="color|reference" />
+        <attr name="jtbLeftThumbColor" format="color|reference" />
+        <attr name="jtbRightThumbColor" format="color|reference" />
+        <attr name="jtbLeftTextColor" format="color|reference" />
+        <attr name="jtbRightTextColor" format="color|reference" />
+        <attr name="jtbLeftTextTypeface" format="string" />
+        <attr name="jtbRightTextTypeface" format="string" />
+        <attr name="jtbLeftTextSize" format="dimension|reference" />
+        <attr name="jtbRightTextSize" format="dimension|reference" />
+        <attr name="jtbLeftText" format="string|reference" />
+        <attr name="jtbRightText" format="string|reference" />
+
+        <attr name="jtbTextMarginLeft" format="dimension|reference" />
+        <attr name="jtbTextMarginRight" format="dimension|reference" />
+        <attr name="jtbTextMarginTop" format="dimension|reference" />
+        <attr name="jtbTextMarginBottom" format="dimension|reference" />
+        <attr name="jtbTextMarginCenter" format="dimension|reference" />
+
+        <attr name="jtbThumbRadius" format="dimension|reference" />
+
+        <attr name="jtbBackgroundMeasureRatioValue" format="float|reference" />
+        <attr name="jtbBackgroundRadius" format="dimension|reference" />
+
+        <attr name="jtbColorChangeType" format="enum">
+            <enum name="rgb" value="0" />
+            <enum name="hsv" value="1" />
+        </attr>
+
+        <attr name="jtbJelly" format="enum">
+            <enum name="itself" value="0" />
+            <enum name="lazy_tremble_head_fatty" value="1" />
+            <enum name="lazy_tremble_head_slim_jim" value="2" />
+            <enum name="lazy_tremble_tail_fatty" value="3" />
+            <enum name="lazy_tremble_tail_slim_jim" value="4" />
+            <enum name="lazy_tremble_body_fatty" value="5" />
+            <enum name="lazy_tremble_body_slim_jim" value="6" />
+            <enum name="lazy_stiff_fatty" value="7" />
+            <enum name="lazy_stiff_slim_jim" value="8" />
+            <enum name="active_tremble_head_fatty" value="9" />
+            <enum name="active_tremble_head_slim_jim" value="10" />
+            <enum name="active_tremble_tail_fatty" value="11" />
+            <enum name="active_tremble_tail_slim_jim" value="12" />
+            <enum name="active_tremble_body_fatty" value="13" />
+            <enum name="active_tremble_body_slim_jim" value="14" />
+            <enum name="active_stiff_fatty" value="15" />
+            <enum name="active_stiff_slim_jim" value="16" />
+            <enum name="random" value="17" />
+        </attr>
+
+        <attr name="jtbEaseType" format="enum">
+            <enum name="ease_in_sine" value="0" />
+            <enum name="ease_out_sine" value="1" />
+            <enum name="ease_in_out_sine" value="2" />
+            <enum name="ease_in_quad" value="3" />
+            <enum name="ease_out_quad" value="4" />
+            <enum name="ease_in_out_quad" value="5" />
+            <enum name="ease_in_cubic" value="6" />
+            <enum name="ease_out_cubic" value="7" />
+            <enum name="ease_in_out_cubic" value="8" />
+            <enum name="ease_in_quart" value="9" />
+            <enum name="ease_out_quart" value="10" />
+            <enum name="ease_in_out_quart" value="11" />
+            <enum name="ease_in_quint" value="12" />
+            <enum name="ease_out_quint" value="13" />
+            <enum name="ease_in_out_quint" value="14" />
+            <enum name="ease_in_expo" value="15" />
+            <enum name="ease_out_expo" value="16" />
+            <enum name="ease_in_out_expo" value="17" />
+            <enum name="ease_in_circ" value="18" />
+            <enum name="ease_out_circ" value="19" />
+            <enum name="ease_in_out_circ" value="20" />
+            <enum name="ease_in_back" value="21" />
+            <enum name="ease_out_back" value="22" />
+            <enum name="ease_in_out_back" value="23" />
+            <enum name="ease_in_elastic" value="24" />
+            <enum name="ease_out_elastic" value="25" />
+            <enum name="ease_in_out_elastic" value="26" />
+            <enum name="ease_in_bounce" value="27" />
+            <enum name="ease_out_bounce" value="28" />
+            <enum name="ease_in_out_bounce" value="29" />
+            <enum name="linear" value="30" />
+        </attr>
+        <attr name="jtbDuration" format="integer|reference" />
+        <attr name="jtbTouchMoveRatioValue" format="float|reference" />
+        <attr name="jtbBezierControlValue" format="float|reference" />
+        <attr name="jtbStretchDistanceRatioValue" format="float|reference" />
+        <attr name="jtbBezierScaleRatioValue" format="float|reference" />
+        <attr name="jtbMoveToSameStateCallListener" format="boolean|reference" />
+        <attr name="jtbDraggable" format="boolean|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="token">
+        <attr name="tokenOption" format="string" />
+    </declare-styleable>
+
+    <!--    common generic -->
+    <attr name="label" format="reference" />
+    <attr name="feedback" format="reference" />
+    <attr name="isRequired" format="boolean" />
+    <attr name="type" format="string" />
+    <attr name="isChecked" format="boolean" />
+    <attr name="action" format="boolean" />
+    <attr name="autoValidate" format="boolean" />
+    <attr name="id" format="string" />
+    <!--    end common generic -->
+
+    <declare-styleable name="GenericInputText">
+        <attr name="label" />
+        <attr name="assistiveText" format="reference" />
+        <attr name="inputText" format="reference" />
+        <attr name="leadingIcon" format="reference" />
+        <attr name="trailingIcon" format="reference" />
+        <attr name="feedback" />
+        <attr name="isRequired" />
+        <attr name="type" />
+        <attr name="validationRegex" format="string" />
+        <attr name="id" />
+        <attr name="action" />
+        <attr name="autoValidate" />
+    </declare-styleable>
+
+    <declare-styleable name="GenericInputList">
+        <attr name="id" />
+        <attr name="label" />
+        <attr name="feedback" />
+        <attr name="isRequired" />
+        <attr name="autoValidate" />
+    </declare-styleable>
+
+    <declare-styleable name="GenericInputCheckBox">
+        <attr name="label" />
+        <attr name="isChecked" />
+        <attr name="isRequired" />
+        <attr name="id" />
+        <attr name="autoValidate" />
+    </declare-styleable>
+
+    <declare-styleable name="GenericInputRadioGroup">
+        <attr name="isRequired" />
+        <attr name="id" />
+        <attr name="autoValidate" />
+    </declare-styleable>
+
+    <declare-styleable name="GenericInputToggleButton">
+        <attr name="label" />
+        <attr name="isChecked" />
+        <attr name="id" />
+        <attr name="autoValidate" />
+    </declare-styleable>
+
+    <!-- Theme to use for modal bottom sheet dialogs spawned from this theme. -->
+    <attr name="bottomSheetDialogTheme" format="reference" />
+    <!-- Style to use for modal bottom sheets in this theme. -->
+    <attr name="bottomSheetStyle" format="reference" />
+
+    <declare-styleable name="BottomSheetBehavior_Layout">
+        <!-- The height of the bottom sheet when it is collapsed. -->
+        <attr name="behavior_peekHeight" format="dimension">
+            <!-- Peek at the 16:9 ratio keyline of its parent -->
+            <enum name="auto" value="-1" />
+        </attr>
+        <!-- Whether this bottom sheet can be hidden by dragging it further downwards -->
+        <attr name="behavior_hideable" format="boolean" />
+        <!-- Skip the collapsed state once expanded; no effect unless it is hideable -->
+        <attr name="behavior_skipCollapsed" format="boolean" />
+        <!-- Whether height of expanded sheet wraps content or not -->
+        <attr name="behavior_fitToContents" format="boolean" />
+        <!-- The ratio to be used to set the height of half-expanded state in proportion to parent, when
+             fitToContents is false. Defaults to true half, 0.5, if not explicitly set. Ratio must be a
+             float value between 0 and 1 and produce a half-expanded state height larger than the
+             peek height for the half-expanded state to be operational -->
+        <attr name="behavior_halfExpandedRatio" format="reference|float" />
+        <!-- The top offset of the BottomSheet in the expanded-state when fitsToContent is false.
+             The default value is 0, which results in the sheet matching the parent's top. -->
+        <attr name="behavior_expandedOffset" format="reference|integer" />
+        <!-- Shape appearance style reference for BottomSheet. Attribute declaration is in the shape
+             package. -->
+        <attr name="shapeAppearance" />
+        <!-- Shape appearance overlay style reference for BottomSheet. To be used to augment attributes
+             declared in the shapeAppearance. Attribute declaration is in the shape package. -->
+        <attr name="shapeAppearanceOverlay" />
+        <!-- Background color used by the BottomSheetBehavior background drawable when shape theming is
+             enabled. Accepts a ColorStateList or ColorInt. If shape theming is not enabled,
+             android:background should instead be utilized to set the background resource. -->
+        <attr name="backgroundTint" />
+        <!-- Behavior properties will be saved and restored by evaluating each flag.
+              usage: app:behavior_saveFlags=”hideable|skipCollapsed” -->
+        <attr name="behavior_saveFlags">
+            <!-- This flag will preserve the peekHeight on configuration change. -->
+            <flag name="peekHeight" value="0x1" />
+            <!-- This flag will preserve the fitToContents boolean value on configuration change. -->
+            <flag name="fitToContents" value="0x2" />
+            <!-- This flag will preserve the hideable boolean value on configuration change. -->
+            <flag name="hideable" value="0x4" />
+            <!-- This flag will preserve the skipCollapsed boolean value on configuration change. -->
+            <flag name="skipCollapsed" value="0x8" />
+            <!-- This flag will preserve the all the aforementioned values on configuration change. -->
+            <flag name="all" value="-1" />
+            <!-- This flag will not preserve the aforementioned values on configuration change. The only
+                 value preserved will be the positional state, e.g. collapsed, hidden, expanded, etc.
+                 This is the default behavior. -->
+            <flag name="none" value="0" />
+        </attr>
+        <attr name="android:elevation" />
+
+    </declare-styleable>
+
+</resources>
