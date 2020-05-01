@@ -27,7 +27,7 @@ HomePageContract.View {
         val product = arguments?.getParcelable<Product>(PRODUCT)
         val shouldMoveCartButton = arguments?.getBoolean(SHOULD_MOVE_CART_BUTTON)
         product?.let {
-            detailProduitImageView?.load("http://lejardindecaro.fr${product.image.url}")
+            detailProduitImageView?.load("http://lejardindecaro.fr${product.image.url}", placeholder = R.drawable.logo_jardin_caro)
             descriptionTextView.text = product.description
             titleTextView.text = product.title
         }

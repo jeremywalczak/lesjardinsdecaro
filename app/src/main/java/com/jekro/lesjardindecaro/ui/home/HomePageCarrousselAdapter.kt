@@ -42,7 +42,7 @@ private val placeholder: Int? = null
         titleTextView.text = products[position].title
 
         products[position].image.url?.let {
-            imageView.load("http://lejardindecaro.fr${it}")
+            imageView.load("http://lejardindecaro.fr${it}", placeholder = R.drawable.logo_jardin_caro)
         }
 
         rowView.setOnClickListener {
