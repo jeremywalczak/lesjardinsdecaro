@@ -19,7 +19,7 @@ class ConfigurationRepository (val service: ConfigurationService) {
         insertInBook("cart", cart)
     }
 
-    fun getCart(): String? {
+    fun getCart(): Cart? {
         return readFromBook("cart")
     }
 

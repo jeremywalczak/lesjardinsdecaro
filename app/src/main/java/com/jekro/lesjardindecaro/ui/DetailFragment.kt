@@ -5,22 +5,22 @@ import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
 import com.auchan.uikit.module.ModuleInteractor
+import com.google.android.material.snackbar.Snackbar
 import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.load
+import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.ui.home.HomePageActivity
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
+import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-class DetailFragment : AbsFragment<HomePageContract.View, HomePageContract.Presenter>(),
-HomePageContract.View {
-
-    override fun displayResult(configuration: Configuration) {
-    }
+class DetailFragment : AbsFragment<DetailContract.View, DetailContract.Presenter>(),
+DetailContract.View {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -62,16 +62,34 @@ HomePageContract.View {
 
             true
         }
+
+        addBuy?.setOnClickListener {
+            vibrateClickEffect()
+            var cart = presenter.configurationRepo.getCart()
+            if (cart == null)
+                cart = Cart(mutableMapOf(), 0F, false, null)
+
+            if (cart.productsQuantity[product] == null)
+                cart.productsQuantity[product] =  Integer.parseInt(product_number.text.toString())
+            else
+                cart.productsQuantity[product] =  cart.productsQuantity[product]!!.plus(Integer.parseInt(product_number.text.toString()))
+
+            cart.amountTotal = 0F
+            cart.productsQuantity.keys.forEach { product ->
+                val quantity = if (product.unity.isNullOrEmpty()) cart.productsQuantity[product]!! else cart.productsQuantity[product]!!/100
+                cart.amountTotal += ((product.price.fractional.toFloat() / 100) * quantity)
+            }
+            Snackbar.make(view!!, "Ce produit a été ajouté à votre panier", Snackbar.LENGTH_LONG).show()
+            presenter.configurationRepo.saveCart(cart)
+            activity?.onBackPressed()
+        }
         if (shouldMoveCartButton != null && shouldMoveCartButton)
             (activity as HomePageActivity).moveCart()
     }
 
     private fun animateButton(view: View, motionEvent: MotionEvent, operation: (() -> Unit)?) {
         if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-            view.performHapticFeedback(
-                HapticFeedbackConstants.VIRTUAL_KEY,
-                HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING
-            )
+            vibrateClickEffect()
             view.alpha = 0.9F
             view.scaleX = 0.9F
             view.scaleY = 0.9F
@@ -84,18 +102,19 @@ HomePageContract.View {
         }
     }
 
+    override fun displayResult() {
+    }
+
 
     override fun setRequesting(requesting: Boolean) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun displayError(throwable: Throwable) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun getLayoutId(): Int = R.layout.fragment_detail
 
-    override val presenter: HomePageContract.Presenter by inject { parametersOf(this) }
+    override val presenter: DetailContract.Presenter by inject { parametersOf(this) }
     override val moduleInteractor: ModuleInteractor by inject()
 
     companion object {

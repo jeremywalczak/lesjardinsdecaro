@@ -3,23 +3,20 @@ package com.jekro.lesjardindecaro.ui.home
 import android.os.Bundle
 import android.os.Handler
 import android.view.Gravity
-import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.auchan.uikit.module.ModuleInteractor
 import com.jekro.lesjardindecaro.Constants
-import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
+import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.ui.DetailFragment
 import com.jekro.lesjardindecaro.ui.list.ListProductFragment
+import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_homepage.*
 import org.koin.android.ext.android.inject
@@ -40,6 +37,11 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     override fun getLoadingContainerId(): Int? = R.id.loading_container
 
     override fun getCartView(): Int? = R.id.panierImageView
+
+    override fun getLayoutId(): Int = R.layout.fragment_homepage
+
+    override val presenter: HomePageContract.Presenter by inject { parametersOf(this) }
+    override val moduleInteractor: ModuleInteractor by inject()
 
     override fun displayResult(configuration: Configuration) {
         /*BackgroundMail.newBuilder(activity!!)
@@ -130,10 +132,6 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
     }
 
-    override fun getLayoutId(): Int = R.layout.fragment_homepage
-
-    override val presenter: HomePageContract.Presenter by inject { parametersOf(this) }
-    override val moduleInteractor: ModuleInteractor by inject()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -152,10 +150,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
 
     private fun animateCategoryButton(view: View, motionEvent: MotionEvent, productsFiltered: List<Product>? = null, hashMapProductCategories: HashMap<Product, List<Category>>) {
         if (motionEvent.action == MotionEvent.ACTION_DOWN) {
-            view.performHapticFeedback(
-                HapticFeedbackConstants.VIRTUAL_KEY,
-                HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING
-            )
+            vibrateClickEffect()
             view.alpha = 0.9F
             view.scaleX = 0.9F
             view.scaleY = 0.9F

@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import com.jakewharton.picasso.OkHttp3Downloader
 import com.jekro.lesjardindecaro.SVGRequestHandler
 import com.squareup.picasso.Picasso
+import io.paperdb.Paper
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.android.logger.AndroidLogger
@@ -15,6 +16,8 @@ class InitApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        Paper.init(this)
+
         startKoin{
             androidLogger()
             androidContext(this@InitApplication)
@@ -22,12 +25,12 @@ class InitApplication : Application() {
             modules(networkModule)
         }
 
-        Picasso.setSingletonInstance(
+        /*Picasso.setSingletonInstance(
             Picasso.Builder(this.applicationContext)
                 .downloader(OkHttp3Downloader(this.applicationContext))
                 .addRequestHandler(SVGRequestHandler())
                 .defaultBitmapConfig(Bitmap.Config.RGB_565)
                 .build()
-        )
+        )*/
     }
 }

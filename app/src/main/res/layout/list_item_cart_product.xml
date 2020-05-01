@@ -54,7 +54,7 @@
         tools:text="-20% Lorem ipsum"
         tools:visibility="visible" />
 
-    <com.auchan.uikit.view.QuantityFlatView
+    <com.jekro.lesjardindecaro.ui.QuantityFlatView
         android:id="@+id/list_item_product_quantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,16 +102,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="111.25 €" />
 
-    <TextView
-        android:id="@+id/list_item_product_deposit"
-        style="@style/c1_caption_basic_600"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="@dimen/spacing_s"
-        android:layout_marginBottom="@dimen/spacing_s"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/list_item_product_price"
-        tools:text="+ 3,10€ consignés" />
 </androidx.constraintlayout.widget.ConstraintLayout>

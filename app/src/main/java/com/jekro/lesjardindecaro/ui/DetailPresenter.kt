@@ -6,7 +6,7 @@ import com.jekro.lesjardindecaro.ui.home.HomePageContract
 
 class DetailPresenter (
     override var view: DetailContract.View,
-    private var  configurationRepo: ConfigurationRepository
+    override var  configurationRepo: ConfigurationRepository
 ) : AbsPresenter<DetailContract.View, DetailContract.Presenter>(),
     DetailContract.Presenter {
 

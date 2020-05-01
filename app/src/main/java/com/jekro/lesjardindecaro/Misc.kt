@@ -4,9 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Bitmap
-import android.os.Build
-import android.os.Handler
-import android.os.Looper
+import android.os.*
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
@@ -20,13 +18,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jekro.lesjardindecaro.ui.GenericBottomSheetDialogFragment
-import com.jekro.lesjardindecaro.ui.home.HomePageFragment
-import com.squareup.picasso.Picasso
+import com.jekro.lesjardindecaro.ui.cart.CartFragment
 import com.squareup.picasso.RequestCreator
 import com.squareup.picasso.Transformation
-import kotlinx.android.synthetic.main.list_item_product.*
 import java.util.*
 
 fun Activity.hideKeyboard() {
@@ -171,8 +166,17 @@ fun TextView.setHtmlText(html: String?) {
 
 fun AppCompatActivity.showCartDialog() {
     val frag = GenericBottomSheetDialogFragment.newInstance(
-        HomePageFragment::class.java.name,
+        CartFragment::class.java.name,
         ""
     )
     frag.show(supportFragmentManager, "cartDialog")
+}
+
+fun Fragment.vibrateClickEffect() {
+    val vibrator = context?.getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+    if (Build.VERSION.SDK_INT >= 26) {
+        vibrator.vibrate(VibrationEffect.createOneShot(40, 1))
+    } else {
+        vibrator.vibrate(40)
+    }
 }

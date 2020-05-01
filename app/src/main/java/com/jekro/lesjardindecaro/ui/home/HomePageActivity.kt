@@ -46,6 +46,9 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
 
         initX = panierImageView.x
         initY = panierImageView.y
+
+        if (!isCartListenerInitilised)
+            initListenerCart()
     }
 
     fun moveCart() {
@@ -112,9 +115,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                     start()
                 }
             }, 1)
-            if (!isCartListenerInitilised)
-                initListenerCart()
-
         }
     }
 
@@ -155,9 +155,6 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                     panierImageView.x = lastX
                     panierImageView.isEnabled = false
                     boundFabZoom()
-                    /*floatingButton.action?.let {
-                        notifyModuleInteractor(it, null)
-                    }*/
                     showCartDialog()
                     Handler().postDelayed({
                         panierImageView.isEnabled = true
