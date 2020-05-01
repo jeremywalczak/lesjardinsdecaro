@@ -29,13 +29,6 @@ import com.squareup.picasso.Transformation
 import kotlinx.android.synthetic.main.list_item_product.*
 import java.util.*
 
-class Constants {
-    companion object {
-        const val IMAGE_FIT = "FIT"
-        const val IMAGE_CROP = "CROP"
-    }
-}
-
 fun Activity.hideKeyboard() {
     hideKeyboard(if (currentFocus == null) View(this) else currentFocus)
 }

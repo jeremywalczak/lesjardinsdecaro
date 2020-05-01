@@ -55,5 +55,7 @@ dependencies {
     implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    implementation 'com.airbnb.android:lottie:3.4.0'
+
     implementation 'com.github.luongvo:GmailBackground:2.1.1'
 }

@@ -1,4 +1,4 @@
-package com.auchan.uikit.mvp
+package com.jekro.lesjardindecaro.mvp
 
 import io.reactivex.Single
 import kotlin.reflect.KFunction1

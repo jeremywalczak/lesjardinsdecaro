@@ -12,6 +12,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import com.auchan.uikit.module.ModuleInteractor
+import com.jekro.lesjardindecaro.Constants
 import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Category
@@ -32,9 +33,13 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
 
     private val swipeTimer = Timer()
 
+    override fun getContentContainerId(): Int? = R.id.homeContainer
+
+    override fun getInitErrorContainerId(): Int? = R.id.error_container
+
+    override fun getLoadingContainerId(): Int? = R.id.loading_container
+
     override fun displayResult(configuration: Configuration) {
-        activity!!.findViewById<FrameLayout>(R.id.mainContainer).visibility = View.VISIBLE
-        activity!!.findViewById<LinearLayout>(R.id.error_container).visibility = View.GONE
         activity!!.findViewById<ImageView>(R.id.panierImageView).visibility = View.VISIBLE
         /*BackgroundMail.newBuilder(activity!!)
             .withUsername("lesjardinsdecaro@gmail.com")
@@ -93,6 +98,11 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryFruit)}, presenter.hashProductCategories)
             true
         }
+
+        setState(Constants.CONTENT)
+    }
+
+    override fun setRequesting(requesting: Boolean) {
     }
 
     private fun initBannerViewPager() {
@@ -111,16 +121,12 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         }, 5000, 5000)
     }
 
-    override fun setRequesting(requesting: Boolean) {
-    }
-
-    override fun displayError(throwable: Throwable) {
+    override fun displayInitError(throwable: Throwable) {
         activity!!.findViewById<ImageView>(R.id.panierImageView).visibility = View.GONE
-        activity!!.findViewById<FrameLayout>(R.id.mainContainer).visibility = View.GONE
-        activity!!.findViewById<LinearLayout>(R.id.error_container).visibility = View.VISIBLE
         activity!!.findViewById<AppCompatButton>(R.id.retry_button)?.setOnClickListener {
             presenter.retry()
         }
+        setState(Constants.ERROR)
         Toast.makeText(activity, throwable.message, Toast.LENGTH_LONG).show()
     }
 
@@ -129,9 +135,19 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     override val presenter: HomePageContract.Presenter by inject { parametersOf(this) }
     override val moduleInteractor: ModuleInteractor by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
         presenter.start()
+    }
+
+    override fun setInitRequesting(requesting: Boolean) {
+        if (requesting) {
+            setState(Constants.REQUESTING)
+        }
+    }
+
+    override fun displayError(throwable: Throwable) {
+        displayInitError(throwable)
     }
 
     private fun animateCategoryButton(view: View, motionEvent: MotionEvent, productsFiltered: List<Product>? = null, hashMapProductCategories: HashMap<Product, List<Category>>) {

@@ -1,7 +1,7 @@
 package com.jekro.lesjardindecaro.ui.list
 
-import com.auchan.uikit.mvp.BasePresenter
-import com.auchan.uikit.mvp.BaseView
+import com.jekro.lesjardindecaro.mvp.BasePresenter
+import com.jekro.lesjardindecaro.mvp.BaseView
 import com.jekro.lesjardindecaro.model.AutoCompleteEntry
 import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Product

@@ -26,7 +26,8 @@ class HomePagePresenter (
                 it
             },
             view::displayResult,
-            view::displayError
+            view::displayError,
+            true
         )
     }
 

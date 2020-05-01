@@ -1,4 +1,4 @@
-package com.auchan.uikit.mvp
+package com.jekro.lesjardindecaro.mvp
 
 interface BaseView<P : BasePresenter<*>> {
 
@@ -9,5 +9,15 @@ interface BaseView<P : BasePresenter<*>> {
     fun displayError(throwable: Throwable)
 
     fun displayInitError(throwable: Throwable) = displayError(throwable)
+
+    fun getLoadingContainerId(): Int? = null
+
+    fun setState(state: String) {}
+
+    fun getContentContainerId(): Int? = null
+
+    fun getEmptyStateContainerId(): Int? = null
+
+    fun getInitErrorContainerId(): Int? = null
 
 }
