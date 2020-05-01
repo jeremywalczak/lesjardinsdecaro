@@ -16,7 +16,7 @@
         android:layout_height="32dp"
         android:layout_margin="2dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_minus"
+        android:src="@drawable/ic_cart_minus"
         android:tint="@color/basic_400" />
 
     <ProgressBar
@@ -47,6 +47,6 @@
         android:layout_height="32dp"
         android:layout_margin="2dp"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_plus"
+        android:src="@drawable/ic_cart_plus"
         android:tint="@color/basic_400" />
 </LinearLayout>

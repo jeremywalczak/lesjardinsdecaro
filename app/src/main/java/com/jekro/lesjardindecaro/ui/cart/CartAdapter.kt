@@ -40,11 +40,8 @@ class CartAdapter(private val context: Context, var items: MutableList<Product>,
         when (holder) {
             is ViewHolderProductInterface -> items[position]?.let {
                 holder.list_item_product_name.text = it.title
-                holder.list_item_product_price.text = it.price.toString()
-                holder.list_item_product_picture.load(
-                    it.image.url,
-                    placeholder = R.drawable.logo_jardin_caro
-                )
+                holder.list_item_product_price.text = "${String.format("%.2f",it.price.fractional.toFloat() / 100)}€"
+                holder.list_item_product_picture.load("http://lejardindecaro.fr${it.image.url}", placeholder = R.drawable.logo_jardin_caro)
                 holder.list_item_product_quantity.setValue(cart.productsQuantity[it]!!)
                 holder.list_item_product_quantity.setMax(999)
                 holder.list_item_product_quantity.setAsyncChangeRequestListener(object :
@@ -57,9 +54,7 @@ class CartAdapter(private val context: Context, var items: MutableList<Product>,
                         cartCallback?.onQuantityRemoveRequested(newValue, it.id!!)
                     }
                 })
-                holder.list_item_product_price.text = it.price.toString()
                 holder.list_item_product_picture.alpha = 1f
-                holder.list_item_product_unavailable.visibility = View.GONE
                 holder.list_item_product_quantity.visibility = View.VISIBLE
                 holder.list_item_product_promo.visibility = View.VISIBLE
                 holder.list_item_product_price.visibility = View.VISIBLE

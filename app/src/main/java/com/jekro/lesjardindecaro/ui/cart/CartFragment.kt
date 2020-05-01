@@ -2,7 +2,6 @@ package com.jekro.lesjardindecaro.ui.cart
 
 import android.os.Bundle
 import android.os.Handler
-import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,12 +12,10 @@ import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.toPx
-import com.jekro.lesjardindecaro.ui.DetailFragment
 import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import kotlin.math.min
 
 class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     CartContract.View {
@@ -46,7 +43,6 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         }
 
         initAdapterCallback()
-        //val indexFirstProduct = cart.productsQuantity.keys.toMutableList().indexOfFirst {  }
         if (!deleteDisplayedOnce) {
             deleteDisplayedOnce = true
             displayFirstProductAnimation(0)
@@ -80,7 +76,8 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         if (adapter == null) {
-            presenter.configurationRepo.getCart()?.let {
+            presenter.cart = presenter.configurationRepo.getCart()
+            presenter.cart?.let {
                 displayResult(it)
             }
         } else {
@@ -151,12 +148,12 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
 
             override fun onQuantityAddRequested(value: Int, id: String) {
                 vibrateClickEffect()
-                //presenter.updateQuantity(id, value)
+                presenter.updateQuantity(value, id)
             }
 
             override fun onQuantityRemoveRequested(value: Int, id: String) {
                 vibrateClickEffect()
-                //presenter.updateQuantity(id, value)
+                presenter.updateQuantity(value, id)
             }
 
             override fun onCartClearClicked() {

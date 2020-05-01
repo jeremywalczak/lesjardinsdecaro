@@ -11,6 +11,10 @@ interface CartContract {
         fun updateViewButtons()
 
         var  configurationRepo: ConfigurationRepository
+
+        var cart: Cart?
+
+        fun updateQuantity(id: Int, value: String)
     }
 
     interface View : BaseView<Presenter> {

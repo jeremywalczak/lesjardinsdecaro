@@ -106,7 +106,7 @@ class QuantityFlatView : LinearLayout {
         quantity_remove.isEnabled = value > 0
         if (max == null || value < max!!) {
             quantity_add.isEnabled = true
-            quantity_add.setImageResource(R.drawable.ic_plus)
+            quantity_add.setImageResource(R.drawable.ic_cart_plus)
         } else {
             quantity_add.isEnabled = false
             quantity_add.setImageResource(R.drawable.ic_max)
