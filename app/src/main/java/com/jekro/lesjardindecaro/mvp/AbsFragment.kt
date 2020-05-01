@@ -43,12 +43,14 @@ abstract class AbsFragment<V, P : BasePresenter<V>> : BaseView<P>, Fragment(){
         when (state) {
             Constants.REQUESTING -> {
                 getLoadingContainerId()?.let { view!!.findViewById<View>(it).visibility = View.VISIBLE }
+                getCartView()?.let { activity!!.findViewById<View>(it).visibility = View.GONE }
                 getInitErrorContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
                 getContentContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
                 getEmptyStateContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
             }
             Constants.ERROR -> {
                 getLoadingContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
+                getCartView()?.let { activity!!.findViewById<View>(it).visibility = View.GONE }
                 getInitErrorContainerId()?.let { view!!.findViewById<View>(it).visibility = View.VISIBLE }
                 getContentContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
                 getEmptyStateContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
@@ -65,12 +67,14 @@ abstract class AbsFragment<V, P : BasePresenter<V>> : BaseView<P>, Fragment(){
             }
             Constants.CONTENT -> {
                 getLoadingContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
+                getCartView()?.let { activity!!.findViewById<View>(it).visibility = View.VISIBLE }
                 getInitErrorContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
                 getContentContainerId()?.let { view!!.findViewById<View>(it).visibility = View.VISIBLE }
                 getEmptyStateContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
             }
             Constants.EMPTY -> {
                 getLoadingContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
+                getCartView()?.let { activity!!.findViewById<View>(it).visibility = View.GONE }
                 getInitErrorContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
                 getContentContainerId()?.let { view!!.findViewById<View>(it).visibility = View.GONE }
                 getEmptyStateContainerId()?.let { view!!.findViewById<View>(it).visibility = View.VISIBLE }

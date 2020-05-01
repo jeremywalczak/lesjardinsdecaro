@@ -6,6 +6,7 @@ import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository
+import java.util.concurrent.TimeUnit
 
 class HomePagePresenter (
     override var view: HomePageContract.View,

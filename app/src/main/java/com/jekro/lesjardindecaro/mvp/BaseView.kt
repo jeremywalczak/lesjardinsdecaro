@@ -12,6 +12,8 @@ interface BaseView<P : BasePresenter<*>> {
 
     fun getLoadingContainerId(): Int? = null
 
+    fun getCartView(): Int? = null
+
     fun setState(state: String) {}
 
     fun getContentContainerId(): Int? = null

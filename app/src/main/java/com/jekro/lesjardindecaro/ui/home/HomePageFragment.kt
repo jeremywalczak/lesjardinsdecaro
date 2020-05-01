@@ -39,8 +39,9 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
 
     override fun getLoadingContainerId(): Int? = R.id.loading_container
 
+    override fun getCartView(): Int? = R.id.panierImageView
+
     override fun displayResult(configuration: Configuration) {
-        activity!!.findViewById<ImageView>(R.id.panierImageView).visibility = View.VISIBLE
         /*BackgroundMail.newBuilder(activity!!)
             .withUsername("lesjardinsdecaro@gmail.com")
             .withPassword("jeje200889")
@@ -122,7 +123,6 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     }
 
     override fun displayInitError(throwable: Throwable) {
-        activity!!.findViewById<ImageView>(R.id.panierImageView).visibility = View.GONE
         activity!!.findViewById<AppCompatButton>(R.id.retry_button)?.setOnClickListener {
             presenter.retry()
         }
