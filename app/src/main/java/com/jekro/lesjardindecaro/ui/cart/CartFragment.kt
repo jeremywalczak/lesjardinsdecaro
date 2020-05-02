@@ -93,7 +93,7 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     }
 
     private fun initPriceButton(cart: Cart) {
-        cart_validate_button.text = "Valider mon panier : " + cart.amountTotal + " €"
+        cart_validate_button.text = "Valider mon panier : " + String.format("%.2f",cart.amountTotal) + " €"
 
         cart_validate_button.setOnClickListener {
            /* trackEvent("Click - Validate basket", "", "", "Mcommerce - Basket")
@@ -141,6 +141,7 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     override fun displayPopUpDelete(id: String, quantity: Int) {
         activity?.showDialogWithConfirm(
             title = "Suppression produit",
+            message = "Etes-vous sûr de vouloir supprimer ce produit ?",
             okButton = "Supprimer",
             oKFunction = { presenter.forceUpdateQuantity(id, quantity) },
             cancelButton = "Annuler",
@@ -148,7 +149,7 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
                 swipeToDelete?.setSwipeEnabled(true)
                 adapter?.notifyDataSetChanged()
             },
-            cancellable = true
+            cancellable = false
         )
     }
 

@@ -42,8 +42,8 @@ class CartAdapter(private val context: Context, var items: MutableList<Product>,
                 val quantity = if (it.unity.isNullOrEmpty()) cart.productsQuantity[it]!! else cart.productsQuantity[it]!!/100
                 holder.list_item_product_price.text = "${String.format("%.2f",(it.price.fractional.toFloat() / 100) * quantity)}€"
                 holder.list_item_product_picture.load("http://lejardindecaro.fr${it.image.url}", placeholder = R.drawable.logo_jardin_caro)
-                holder.list_item_product_quantity.setValue(cart.productsQuantity[it]!!, it.unity, it.defaultQuantity)
-                holder.list_item_product_quantity.setMax(999)
+                holder.list_item_product_quantity.setValue(cart.productsQuantity[it]!!, it.unity?:"", it.defaultQuantity)
+                holder.list_item_product_quantity.setMax(99999)
                 holder.list_item_product_quantity.setAsyncChangeRequestListener(object :
                     QuantityFlatView.AsyncChangeRequestListener {
                     override fun onQuantityAddRequested(newValue: Int) {
