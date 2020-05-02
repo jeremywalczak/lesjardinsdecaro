@@ -89,16 +89,16 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         accountImageView?.setOnClickListener {
             activity!!.drawer_layout.openDrawer(Gravity.LEFT)
         }
-        legumesImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryLegume)}, presenter.hashProductCategories)
+        legumeButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryLegume)}, presenter.hashProductCategories)
             true
         }
-        epicerieImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
+        epicerieButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
             true
         }
-        caveImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
+        produitButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
             true
         }
-        fruitsImageView.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryFruit)}, presenter.hashProductCategories)
+        fruitButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryFruit)}, presenter.hashProductCategories)
             true
         }
 
