@@ -44,6 +44,7 @@
     <color name="secondary_01_900">#ff003c4c</color>
     <color name="success_100">#ff8cfac7</color>
     <color name="success_200">#ff00d68f</color>
+    <color name="success_300">#ff4dce39</color>
     <color name="warning_100">#ffffe59e</color>
     <color name="warning_200">#ffffaa00</color>
 </resources>
