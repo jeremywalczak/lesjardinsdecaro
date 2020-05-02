@@ -7,7 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
-import com.auchan.uikit.module.ModuleInteractor
+import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.Constants
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Category

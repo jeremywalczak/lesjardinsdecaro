@@ -167,7 +167,7 @@ fun TextView.setHtmlText(html: String?) {
 fun AppCompatActivity.showCartDialog() {
     val frag = GenericBottomSheetDialogFragment.newInstance(
         CartFragment::class.java.name,
-        "Mon pannier"
+        "Mon panier"
     )
     frag.show(supportFragmentManager, "cartDialog")
 }

@@ -1,7 +1,5 @@
-package com.auchan.uikit.mvp
+package com.jekro.lesjardindecaro.mvp
 
-import com.jekro.lesjardindecaro.mvp.BasePresenter
-import com.jekro.lesjardindecaro.mvp.BaseView
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -40,7 +40,8 @@ class CartAdapter(private val context: Context, var items: MutableList<Product>,
         when (holder) {
             is ViewHolderProductInterface -> items[position]?.let {
                 holder.list_item_product_name.text = it.title
-                holder.list_item_product_price.text = "${String.format("%.2f",it.price.fractional.toFloat() / 100)}€"
+                val quantity = if (it.unity.isNullOrEmpty()) cart.productsQuantity[it]!! else cart.productsQuantity[it]!!/100
+                holder.list_item_product_price.text = "${String.format("%.2f",(it.price.fractional.toFloat() / 100) * quantity)}€"
                 holder.list_item_product_picture.load("http://lejardindecaro.fr${it.image.url}", placeholder = R.drawable.logo_jardin_caro)
                 holder.list_item_product_quantity.setValue(cart.productsQuantity[it]!!)
                 holder.list_item_product_quantity.setMax(999)

@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import com.auchan.uikit.module.ModuleInteractor
+import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.Constants
-import com.jekro.lesjardindecaro.R
 
 abstract class AbsFragment<V, P : BasePresenter<V>> : BaseView<P>, Fragment(){
     abstract val presenter: P

@@ -1,4 +1,4 @@
-package com.auchan.uikit.module
+package com.jekro.lesjardindecaro.module
 
 class ModuleInteractor {
     var containerId: Int = 0
