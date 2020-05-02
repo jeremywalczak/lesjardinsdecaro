@@ -1,19 +1,16 @@
 package com.jekro.lesjardindecaro.ui
 
 import android.os.Bundle
-import android.view.HapticFeedbackConstants
 import android.view.MotionEvent
 import android.view.View
-import com.auchan.uikit.module.ModuleInteractor
+import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.google.android.material.snackbar.Snackbar
 import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.load
 import com.jekro.lesjardindecaro.model.Cart
-import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.ui.home.HomePageActivity
-import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_detail.*
 import org.koin.android.ext.android.inject

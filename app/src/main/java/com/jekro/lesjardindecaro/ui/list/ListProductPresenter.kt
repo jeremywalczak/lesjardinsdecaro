@@ -1,6 +1,6 @@
 package com.jekro.lesjardindecaro.ui.list
 
-import com.auchan.uikit.mvp.AbsPresenter
+import com.jekro.lesjardindecaro.mvp.AbsPresenter
 import com.jekro.lesjardindecaro.model.AutoCompleteEntry
 import com.jekro.lesjardindecaro.model.AutoCompleteViewType
 import com.jekro.lesjardindecaro.model.Category

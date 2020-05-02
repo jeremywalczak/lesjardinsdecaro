@@ -1,6 +1,6 @@
 package com.jekro.lesjardindecaro.ui.cart
 
-import com.auchan.uikit.mvp.AbsPresenter
+import com.jekro.lesjardindecaro.mvp.AbsPresenter
 import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 

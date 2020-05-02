@@ -12,7 +12,7 @@ import android.view.inputmethod.EditorInfo
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.auchan.uikit.module.ModuleInteractor
+import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable

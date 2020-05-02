@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.auchan.uikit.module.ModuleInteractor
+import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.SwipeToDeleteCallback
 import com.jekro.lesjardindecaro.model.Cart
