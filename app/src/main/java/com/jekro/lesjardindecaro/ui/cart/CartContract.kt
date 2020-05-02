@@ -14,11 +14,17 @@ interface CartContract {
 
         var cart: Cart?
 
-        fun updateQuantity(id: Int, value: String)
+        fun updateQuantity(id: String, value: Int)
+
+        fun deleteProduct(id: String)
+
+        fun forceUpdateQuantity(id: String, value: Int)
     }
 
     interface View : BaseView<Presenter> {
         fun displayResult(cart: Cart)
+
+        fun displayPopUpDelete(id: String, quantity: Int)
 
         fun requestDeleteProduct(product: Product)
     }

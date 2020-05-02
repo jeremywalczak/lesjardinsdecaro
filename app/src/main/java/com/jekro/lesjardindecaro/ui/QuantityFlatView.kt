@@ -23,6 +23,8 @@ class QuantityFlatView : LinearLayout {
 
     private var max: Int? = null
     private var value: Int = 0
+    private var unity: String? = null
+    private var defaultQuantity: Int = 1
     private var valueChangeListener: ValueChangeListener? = null
     private var small: Boolean = false
     private var asyncListener: AsyncChangeRequestListener? = null
@@ -52,11 +54,11 @@ class QuantityFlatView : LinearLayout {
                     quantity_value.visibility = View.GONE
                     quantity_remove.isEnabled = false
                     quantity_add.isEnabled = false
-                    asyncListener!!.onQuantityRemoveRequested(value - 1)
+                    asyncListener!!.onQuantityRemoveRequested(value - defaultQuantity)
                 }
             } else {
                 if (value > 0) {
-                    setValue(value - 1)
+                    setValue(value - defaultQuantity, unity, defaultQuantity)
                 }
             }
         }
@@ -68,11 +70,11 @@ class QuantityFlatView : LinearLayout {
                     quantity_value.visibility = View.GONE
                     quantity_remove.isEnabled = false
                     quantity_add.isEnabled = false
-                    asyncListener!!.onQuantityAddRequested(value + 1)
+                    asyncListener!!.onQuantityAddRequested(value + defaultQuantity)
                 }
             } else {
                 if (max == null || (value < max!!)) {
-                    setValue(value + 1)
+                    setValue(value + defaultQuantity, unity, defaultQuantity)
                 }
             }
         }
@@ -88,11 +90,13 @@ class QuantityFlatView : LinearLayout {
 
     fun getValue(): Int = value
 
-    fun setValue(newValue: Int) {
+    fun setValue(newValue: Int, newUnity: String? = null, newDefaultQuantity : Int) {
         quantity_loading.visibility = View.GONE
         quantity_value.visibility = View.VISIBLE
         value = newValue
-        quantity_value.text = newValue.toString()
+        unity = newUnity
+        defaultQuantity = newDefaultQuantity
+        quantity_value.text = newValue.toString() + unity
         valueChangeListener?.onQuantityChanged(newValue)
         enableButtons()
     }

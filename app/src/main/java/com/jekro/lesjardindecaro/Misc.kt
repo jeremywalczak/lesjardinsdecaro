@@ -2,11 +2,13 @@ package com.jekro.lesjardindecaro
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
 import android.content.res.Resources
 import android.graphics.Bitmap
 import android.os.*
 import android.text.Editable
 import android.text.Html
+import android.text.InputFilter
 import android.text.TextWatcher
 import android.text.method.LinkMovementMethod
 import android.util.Log
@@ -14,10 +16,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.jekro.lesjardindecaro.ui.GenericBottomSheetDialogFragment
 import com.jekro.lesjardindecaro.ui.cart.CartFragment
 import com.squareup.picasso.RequestCreator
@@ -179,4 +183,59 @@ fun Fragment.vibrateClickEffect() {
     } else {
         vibrator.vibrate(40)
     }
+}
+
+fun Activity.showDialogWithConfirm(
+    title: String? = null,
+    message: String? = null,
+    okButton: String,
+    oKFunction: (() -> Unit),
+    cancelButton: String? = null,
+    cancelFunction: (() -> Unit)? = null,
+    neutralButton: String? = null,
+    neutralFunction: (() -> Unit)? = null,
+    cancellable: Boolean = false,
+    onShowListener: DialogInterface.OnShowListener? = null
+) {
+    val createdDialog = MaterialAlertDialogBuilder(this, R.style.AlertDialogTheme)
+        .setTitle(title)
+        .setMessage(message)
+        .setCancelable(cancellable)
+        .setPositiveButton(okButton) { _, _ -> oKFunction.invoke() }
+        .setNegativeButton(cancelButton) { _, _ -> cancelFunction?.invoke() }
+        .setNeutralButton(neutralButton) { _, _ -> neutralFunction?.invoke() }
+        .create()
+    createdDialog.setOnShowListener(onShowListener)
+    createdDialog.setCanceledOnTouchOutside(cancellable)
+    createdDialog.setOnCancelListener {
+        cancelFunction?.invoke()
+    }
+    createdDialog.show()
+}
+
+private fun Activity.buildInputDialog(hint: String?, textInput: String?, type: Int?): EditText {
+    val input = EditText(this)
+    input.hint = hint
+    val params = FrameLayout.LayoutParams(
+        ViewGroup.LayoutParams.MATCH_PARENT,
+        ViewGroup.LayoutParams.WRAP_CONTENT
+    )
+    input.layoutParams = params
+    input.setLines(1)
+    input.maxLines = 1
+    input.requestFocus()
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        input.importantForAutofill = View.IMPORTANT_FOR_AUTOFILL_NO
+    }
+    type?.let {
+        input.inputType = type
+    }
+    val filters = arrayOfNulls<InputFilter>(1)
+    filters[0] = InputFilter.LengthFilter(50)
+    input.filters = filters
+    if (!textInput.isNullOrEmpty()) {
+        input.setText(textInput)
+        input.setSelection(textInput.toCharArray().size)
+    }
+    return input
 }

@@ -15,6 +15,7 @@ import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_detail.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import kotlin.random.Random
 
 class DetailFragment : AbsFragment<DetailContract.View, DetailContract.Presenter>(),
 DetailContract.View {
@@ -39,14 +40,13 @@ DetailContract.View {
         else
             categoryTextView.visibility = View.GONE
 
-        product_number.setText(product!!.defaultQuantity.toString())
+        product_number.setText(product.defaultQuantity.toString())
 
         var numberProduct = product_number.text.toString().toInt()
         minus?.setOnTouchListener { view, motionEvent ->
             animateButton(view, motionEvent) {
-                if ((product?.unity.isNullOrEmpty() && numberProduct > 1) ||
-                    (!product?.unity.isNullOrEmpty() && numberProduct > 100)) {
-                    numberProduct -= if (product?.unity.isNullOrEmpty()) 1 else 100
+                if (numberProduct > product.defaultQuantity) {
+                    numberProduct -= product.defaultQuantity
                     product_number.setText(numberProduct.toString())
                 }
             }
@@ -54,7 +54,7 @@ DetailContract.View {
             true
         }
         plus?.setOnTouchListener { view, motionEvent ->
-            animateButton(view, motionEvent) {numberProduct += if (product?.unity.isNullOrEmpty()) 1 else 100
+            animateButton(view, motionEvent) {numberProduct += product.defaultQuantity
                 product_number.setText(numberProduct.toString())}
 
             true
@@ -64,7 +64,7 @@ DetailContract.View {
             vibrateClickEffect()
             var cart = presenter.configurationRepo.getCart()
             if (cart == null)
-                cart = Cart(mutableMapOf(), 0F, false, null)
+                cart = Cart(Random(10000).nextInt(), "", mutableMapOf(), 0F, false, null)
 
             if (cart.productsQuantity[product] == null)
                 cart.productsQuantity[product] =  Integer.parseInt(product_number.text.toString())

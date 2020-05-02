@@ -1,19 +1,18 @@
 package com.jekro.lesjardindecaro.ui.cart
 
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jekro.lesjardindecaro.*
 import com.jekro.lesjardindecaro.module.ModuleInteractor
-import com.jekro.lesjardindecaro.R
-import com.jekro.lesjardindecaro.SwipeToDeleteCallback
 import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.mvp.AbsFragment
-import com.jekro.lesjardindecaro.toPx
-import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_cart.*
 import kotlinx.android.synthetic.main.include_empty.*
 import org.koin.android.ext.android.inject
@@ -37,7 +36,6 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     override fun displayResult(cart: Cart) {
         if (adapter != null) {
             adapter!!.items = cart.productsQuantity.keys.toMutableList()
-            adapter!!.clearLoadingAndNotifyDataSetChanged()
             adapter!!.notifyDataSetChanged()
         } else {
             adapter = CartAdapter(context!!, cart.productsQuantity.keys.toMutableList(), cart)
@@ -51,6 +49,8 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         }
         initSwipe()
         initPriceButton(cart)
+        empty_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.VISIBLE else View.GONE
+        main_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
     private fun displayFirstProductAnimation(indexFirstProduct: Int) {
@@ -66,6 +66,8 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     }
 
     override fun requestDeleteProduct(product: Product) {
+        presenter.deleteProduct(product.id!!)
+        swipeToDelete?.setSwipeEnabled(false)
     }
 
     override fun setRequesting(requesting: Boolean) {
@@ -78,8 +80,8 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
         presenter.cart = presenter.configurationRepo.getCart()
-        presenter.cart?.let {
-            displayResult(it)
+        if (presenter.cart != null && !presenter.cart?.productsQuantity.isNullOrEmpty()) {
+            displayResult(presenter.cart!!)
         }
         empty_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.VISIBLE else View.GONE
         main_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.GONE else View.VISIBLE
@@ -88,44 +90,10 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     private fun initRecyclerView() {
         linearLayoutManager = LinearLayoutManager(context!!)
         products_list_recycler.layoutManager = linearLayoutManager
-        products_list_recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                updateButtonPosition()
-            }
-        })
-    }
-
-    private fun updateButtonPosition() {
-        /*if (presenter.isCartEmpty())
-            return
-
-        handler.post {
-            val position = linearLayoutManager?.findLastVisibleItemPosition()
-
-            if (position == -1 || position == null)
-                return@post
-
-            if (adapter != null && adapter?.isFooter(position) == true) {
-                val view = linearLayoutManager!!.findViewByPosition(position)
-                val parentTop = view!!.top
-                val buttonTop = view.findViewById<View>(getViewToAnimateInRecycler())
-                val totalTop = parentTop + buttonTop.top
-                if (totalTop > getViewToAnimateInRoot().top) {
-                    if (buttonWrapContent == null || !buttonWrapContent!!) {
-                        expandBottomButton()
-                    }
-                } else {
-                    if (buttonWrapContent == null || buttonWrapContent!!) {
-                        collapseBottomButton()
-                    }
-                }
-                getViewToAnimateInRoot().y = min(totalTop, getViewToAnimateInRoot().top).toFloat()
-            }
-        }*/
     }
 
     private fun initPriceButton(cart: Cart) {
-        cart_validate_button.text = "Total : " + cart.amountTotal
+        cart_validate_button.text = "Valider mon panier : " + cart.amountTotal + " €"
 
         cart_validate_button.setOnClickListener {
            /* trackEvent("Click - Validate basket", "", "", "Mcommerce - Basket")
@@ -143,12 +111,12 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
 
             override fun onQuantityAddRequested(value: Int, id: String) {
                 vibrateClickEffect()
-                presenter.updateQuantity(value, id)
+                presenter.updateQuantity(id, value)
             }
 
             override fun onQuantityRemoveRequested(value: Int, id: String) {
                 vibrateClickEffect()
-                presenter.updateQuantity(value, id)
+                presenter.updateQuantity(id, value)
             }
 
             override fun onCartClearClicked() {
@@ -168,6 +136,20 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
                 //presenter.validateCart()
             }
         }
+    }
+
+    override fun displayPopUpDelete(id: String, quantity: Int) {
+        activity?.showDialogWithConfirm(
+            title = "Suppression produit",
+            okButton = "Supprimer",
+            oKFunction = { presenter.forceUpdateQuantity(id, quantity) },
+            cancelButton = "Annuler",
+            cancelFunction = {
+                swipeToDelete?.setSwipeEnabled(true)
+                adapter?.notifyDataSetChanged()
+            },
+            cancellable = true
+        )
     }
 
     private fun initSwipe() {

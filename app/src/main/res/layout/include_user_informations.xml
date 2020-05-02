@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="@dimen/spacing_s">
+
+    <TextView
+            android:id="@+id/name_label"
+            style="@style/input_01_label"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_height="wrap_content"
+            tools:text="Nom"/>
+
+    <EditText
+            android:id="@+id/name_input"
+            style="@style/input_01_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingEnd ="@dimen/spacing_s"
+            android:paddingStart = "@dimen/spacing_s"
+            android:drawablePadding = "@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
+            tools:text="Label value">
+    </EditText>
+
+    <TextView
+            android:id="@+id/firstname_label"
+            style="@style/input_01_label"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_height="wrap_content"
+            tools:text="Prénom"/>
+
+    <EditText
+            android:id="@+id/firstname_input"
+            style="@style/input_01_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingEnd ="@dimen/spacing_s"
+            android:paddingStart = "@dimen/spacing_s"
+            android:drawablePadding = "@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
+            tools:text="Label value">
+    </EditText>
+
+    <TextView
+            android:id="@+id/mail_label"
+            style="@style/input_01_label"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_height="wrap_content"
+            tools:text="E-mail"/>
+
+    <EditText
+            android:id="@+id/mail_input"
+            style="@style/input_01_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingEnd ="@dimen/spacing_s"
+            android:paddingStart = "@dimen/spacing_s"
+            android:drawablePadding = "@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
+            tools:text="Label value">
+    </EditText>
+
+    <TextView
+            android:id="@+id/phone_label"
+            style="@style/input_01_label"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_height="wrap_content"
+            tools:text="Téléphone"/>
+
+    <EditText
+            android:id="@+id/phone_input"
+            style="@style/input_01_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:paddingEnd ="@dimen/spacing_s"
+            android:paddingStart = "@dimen/spacing_s"
+            android:drawablePadding = "@dimen/spacing_xs"
+            android:layout_marginTop="@dimen/spacing_xs"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
+            tools:text="Label value">
+    </EditText>
+
+    <!--<DatePicker
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>-->
+</LinearLayout>

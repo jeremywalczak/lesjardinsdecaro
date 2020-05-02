@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.list_item_cart_product.*
 class CartAdapter(private val context: Context, var items: MutableList<Product>, var cart: Cart) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var loadingIndex: Int? = null
     var cartCallback: CartCallback? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -43,7 +42,7 @@ class CartAdapter(private val context: Context, var items: MutableList<Product>,
                 val quantity = if (it.unity.isNullOrEmpty()) cart.productsQuantity[it]!! else cart.productsQuantity[it]!!/100
                 holder.list_item_product_price.text = "${String.format("%.2f",(it.price.fractional.toFloat() / 100) * quantity)}€"
                 holder.list_item_product_picture.load("http://lejardindecaro.fr${it.image.url}", placeholder = R.drawable.logo_jardin_caro)
-                holder.list_item_product_quantity.setValue(cart.productsQuantity[it]!!)
+                holder.list_item_product_quantity.setValue(cart.productsQuantity[it]!!, it.unity, it.defaultQuantity)
                 holder.list_item_product_quantity.setMax(999)
                 holder.list_item_product_quantity.setAsyncChangeRequestListener(object :
                     QuantityFlatView.AsyncChangeRequestListener {
@@ -66,19 +65,6 @@ class CartAdapter(private val context: Context, var items: MutableList<Product>,
 
     fun getProductAtPosition(position: Int): Product {
         return items[position]
-    }
-
-    fun setPositionLoading(product: Product) {
-        val element = items.indexOfFirst { it.id == product.id }
-        if (element != -1) {
-            loadingIndex = element
-            notifyItemChanged(element)
-        }
-    }
-
-    fun clearLoadingAndNotifyDataSetChanged() {
-        loadingIndex = null
-        notifyDataSetChanged()
     }
 
     inner class ViewHolderProductInterface(override val containerView: View) :
