@@ -2,6 +2,7 @@ package com.jekro.lesjardindecaro.ui.cart
 
 import android.os.Bundle
 import android.os.Handler
+import android.view.View
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -14,6 +15,7 @@ import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.toPx
 import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_cart.*
+import kotlinx.android.synthetic.main.include_empty.*
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
@@ -75,19 +77,12 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         initRecyclerView()
-        if (adapter == null) {
-            presenter.cart = presenter.configurationRepo.getCart()
-            presenter.cart?.let {
-                displayResult(it)
-            }
-        } else {
-            products_list_recycler.adapter = adapter
-            initPriceButton(adapter!!.cart)
-            initSwipe()
-            handler.post {
-                presenter.updateViewButtons()
-            }
+        presenter.cart = presenter.configurationRepo.getCart()
+        presenter.cart?.let {
+            displayResult(it)
         }
+        empty_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.VISIBLE else View.GONE
+        main_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
     private fun initRecyclerView() {

@@ -72,4 +72,8 @@
     <include
         layout="@layout/include_error"
         tools:visibility="gone" />
+
+    <include
+            layout="@layout/include_empty"
+            tools:visibility="gone" />
 </RelativeLayout>
