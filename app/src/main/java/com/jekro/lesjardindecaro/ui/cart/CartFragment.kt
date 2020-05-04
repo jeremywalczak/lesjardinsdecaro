@@ -1,6 +1,7 @@
 package com.jekro.lesjardindecaro.ui.cart
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.view.View
@@ -96,9 +97,7 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         cart_validate_button.text = "Valider mon panier : " + String.format("%.2f",cart.amountTotal) + " €"
 
         cart_validate_button.setOnClickListener {
-           /* trackEvent("Click - Validate basket", "", "", "Mcommerce - Basket")
-            cart_validate_button.isEnabled = false
-            presenter.validateCart()*/
+           startActivity(Intent(context, ValidateCartActivity::class.java), null)
         }
     }
 
