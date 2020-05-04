@@ -2,8 +2,8 @@
 <RelativeLayout
         android:orientation="vertical"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:padding="@dimen/spacing_m"
         android:layout_width="match_parent"
+        android:padding="@dimen/spacing_s"
         android:layout_height="match_parent">
 
     <include
@@ -24,18 +24,44 @@
     <EditText
             android:id="@+id/comment_user_informations"
             android:layout_width="match_parent"
-            android:lines="5"
-            android:maxLines="5"
+            android:lines="2"
+            android:maxLines="2"
             android:layout_below="@id/comment_label"
             android:inputType="textMultiLine"
-            android:layout_height="100dp"/>
-
-
-    <RadioGroup
-            android:layout_below="@id/comment_user_informations"
-            android:id="@+id/date_radio_group"
-            android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
+
+
+    <TextView
+            android:id="@+id/date_label"
+            style="@style/input_01_label"
+            android:layout_below="@+id/comment_user_informations"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_height="wrap_content"
+            android:text="Choisir une date de retrait (9H00/12H30 - 16H00/19H30 et non disponible les lundi matin et dimanche après midi)"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:weightSum="10"
+            android:layout_below="@id/date_label">
+        <DatePicker
+                android:id="@+id/datePicker"
+                android:layout_below="@id/comment_user_informations"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:layout_height="wrap_content"
+                android:calendarViewShown="false"
+                android:datePickerMode="spinner"/>
+        <TimePicker
+                android:id="@+id/timePicker"
+                android:layout_width="0dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:timePickerMode="spinner"/>
+
+    </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
             android:id="@+id/cart_validate_button"

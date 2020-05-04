@@ -10,7 +10,7 @@
             android:id="@+id/name_label"
             style="@style/input_01_label"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:layout_height="wrap_content"
             android:text="Nom"/>
 
@@ -32,7 +32,7 @@
             android:id="@+id/firstname_label"
             style="@style/input_01_label"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:layout_height="wrap_content"
             android:text="Prénom"/>
 
@@ -54,7 +54,7 @@
             android:id="@+id/mail_label"
             style="@style/input_01_label"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:layout_height="wrap_content"
             android:text="E-mail"/>
 
@@ -76,7 +76,7 @@
             android:id="@+id/phone_label"
             style="@style/input_01_label"
             android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/spacing_s"
+            android:layout_marginTop="@dimen/spacing_xs"
             android:layout_height="wrap_content"
             android:text="Téléphone"/>
 
