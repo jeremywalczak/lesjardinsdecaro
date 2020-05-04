@@ -18,7 +18,7 @@ class ValidateCartActivity : AppCompatActivity() {
         cal.add(Calendar.DAY_OF_MONTH, 3)
         datePicker.maxDate = cal.timeInMillis
         cal = Calendar.getInstance()
-        cal.add(Calendar.DAY_OF_MONTH, -1)
+        cal.add(Calendar.DAY_OF_MONTH, 1)
         datePicker.minDate = cal.timeInMillis
         val timePicker = findViewById<TimePicker>(R.id.timePicker)
         timePicker.setIs24HourView(true)
