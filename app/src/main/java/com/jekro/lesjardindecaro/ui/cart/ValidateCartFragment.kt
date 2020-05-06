@@ -1,9 +1,7 @@
 package com.jekro.lesjardindecaro.ui.cart
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.DatePicker
-import android.widget.TimePicker
+import android.os.Handler
 import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
 import com.google.android.material.snackbar.Snackbar
 import com.jekro.lesjardindecaro.R
@@ -11,12 +9,9 @@ import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.User
 import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.mvp.AbsFragment
-import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import kotlinx.android.synthetic.main.fragment_validate_cart.*
 import kotlinx.android.synthetic.main.include_user_informations.*
-import kotlinx.android.synthetic.main.include_user_informations.view.*
 import org.koin.android.ext.android.inject
-import org.koin.core.context.GlobalContext
 import org.koin.core.parameter.parametersOf
 import java.text.SimpleDateFormat
 import java.util.*
@@ -26,6 +21,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
 
     override val presenter: ValidateCartContract.Presenter by inject { parametersOf(this) }
     override val moduleInteractor: ModuleInteractor by inject()
+    private val swipeTimer = Timer()
 
     override fun getLayoutId(): Int = R.layout.fragment_validate_cart
 
@@ -130,7 +126,15 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
             .withOnSuccessCallback(object : BackgroundMail.OnSendingCallback {
                 override fun onSuccess() {
                     Snackbar.make(view!!, "Votre commande a bien été envoyée :D", Snackbar.LENGTH_LONG).show()
-                    //activity?.onBackPressed()
+                    val handler = Handler()
+                    swipeTimer.schedule(object : TimerTask() {
+                        override fun run() {
+                            handler.post(Runnable {
+                                activity?.finish()
+                            })
+                        }
+                    }, 3000, 3000)
+
                 }
 
                 override fun onFail(e: Exception) {

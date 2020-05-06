@@ -62,7 +62,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
             carrousselHomePageViewPager.adapter = adapter
             initBannerViewPager()
         }
-        
+
         accountImageView?.setOnClickListener {
             activity!!.drawer_layout.openDrawer(Gravity.LEFT)
         }
