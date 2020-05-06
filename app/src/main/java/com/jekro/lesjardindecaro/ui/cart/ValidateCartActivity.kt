@@ -28,17 +28,19 @@ class ValidateCartActivity : AppCompatActivity() {
         val timePicker = findViewById<TimePicker>(R.id.timePicker)
         timePicker.setIs24HourView(true)
 
-        /*datePicker.setOnTouchListener (object : View.OnTouchListener {
-            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                when (event?.action) {
-                    MotionEvent.ACTION_DOWN -> {
-                        /*val myDate = SimpleDateFormat("dd-MM-yyyy").parse(datePicker.dayOfMonth+"-"+datePicker.month+"-"+datePicker.year);
-                        val simpleDateFormat = SimpleDateFormat("EEEE")
-                        val dayName = simpleDateFormat.format(myDate)*/
-                    }
-                }
-                return v?.onTouchEvent(event) ?: true
-            }
-        })*/
+
+        val today  = Calendar.getInstance()
+        datePicker.init(
+            today.get(Calendar.YEAR),
+            today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)
+        ) { _, _, _, _ ->
+            val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString());
+            val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
+            val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
+            val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
+            validateDateTextView.text = "Date choisie : " + dayName + " " + datePicker.dayOfMonth + " " + monthName + " " + yearName
+        }
+
     }
 }
