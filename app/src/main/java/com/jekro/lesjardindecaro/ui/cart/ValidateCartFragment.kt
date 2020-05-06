@@ -1,5 +1,6 @@
 package com.jekro.lesjardindecaro.ui.cart
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.DatePicker
 import android.widget.TimePicker
@@ -48,6 +49,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         timePicker.setIs24HourView(true)
 
 
+
         val today  = Calendar.getInstance()
         datePicker.init(
             today.get(Calendar.YEAR),
@@ -59,7 +61,21 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
             val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
             val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
             validateDateTextView.text = "Date choisie : " + dayName + " " + datePicker.dayOfMonth + " " + monthName + " " + yearName
+            val msginit = validateDateTextView.text
+            timePicker.setOnTimeChangedListener { _, hour, minute -> var hour = hour
+
+                if (validateDateTextView != null) {
+                    val hour = if (hour < 10) "0" + hour else hour
+                    val min = if (minute < 10) "0" + minute else minute
+                    // display format of time
+                    val msg = " $hour : $min"
+                    validateDateTextView.text= "$msginit   à   $msg"
+
+                }
+            }
         }
+
+
 
         cart_validate_button?.setOnClickListener {
             val user = presenter.configurationRepo.getUser()?:User()
