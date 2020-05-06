@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.cart.ValidateCartActivity" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
+        <activity android:name=".ui.cart.ValidateCartActivity" android:screenOrientation="portrait" android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
     </application>
 
 </manifest>
