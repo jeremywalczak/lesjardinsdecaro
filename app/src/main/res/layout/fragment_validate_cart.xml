@@ -17,9 +17,19 @@
                 android:padding="@dimen/spacing_s"
                 android:layout_height="match_parent">
 
+            <TextView
+                    android:id="@+id/description_label"
+                    style="@style/input_01_label"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginBottom="@dimen/spacing_s"
+                    android:layout_height="wrap_content"
+                    android:text="Veuillez saisir les informations ci-dessous pour valider votre réservation : "/>
+
             <include
                     android:id="@+id/id_layout_user_informations"
                     layout="@layout/include_user_informations"
+                    android:layout_below="@id/description_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -74,6 +84,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         style="@style/input_01_label"
+                        android:layout_marginBottom="@dimen/spacing_s"
                         android:text="Date choisie : "/>
 
             </LinearLayout>

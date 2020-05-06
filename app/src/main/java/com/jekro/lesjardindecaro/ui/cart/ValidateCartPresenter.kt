@@ -11,5 +11,4 @@ class ValidateCartPresenter (
 
     override fun start() {
     }
-
 }

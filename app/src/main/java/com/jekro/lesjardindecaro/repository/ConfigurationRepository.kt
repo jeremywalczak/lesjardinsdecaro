@@ -3,6 +3,7 @@ package com.jekro.lesjardindecaro.repository
 import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.Configuration
 import com.jekro.lesjardindecaro.model.Product
+import com.jekro.lesjardindecaro.model.User
 import com.jekro.lesjardindecaro.service.ConfigurationService
 import io.paperdb.Paper
 import io.reactivex.Single
@@ -21,6 +22,14 @@ class ConfigurationRepository (val service: ConfigurationService) {
 
     fun getCart(): Cart? {
         return readFromBook("cart")
+    }
+
+    fun saveUser(user: User) {
+        insertInBook("user", user)
+    }
+
+    fun getUser(): User? {
+        return readFromBook("user")
     }
 
     private fun <T> readFromBook(key: String): T? {

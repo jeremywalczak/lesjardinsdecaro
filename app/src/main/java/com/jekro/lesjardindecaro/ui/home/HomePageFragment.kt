@@ -44,30 +44,6 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     override val moduleInteractor: ModuleInteractor by inject()
 
     override fun displayResult(configuration: Configuration) {
-        /*BackgroundMail.newBuilder(activity!!)
-            .withUsername("lesjardinsdecaro@gmail.com")
-            .withPassword("jeje200889")
-            .withSenderName("Application Android Yacaro")
-            .withMailTo("dav.bastien@gmail.com")
-            .withType(BackgroundMail.TYPE_PLAIN)
-            .withSubject("Test")
-            .withBody("Vegeta est naze")
-            .withSendingMessage("hello")
-            .withOnSuccessCallback(object : OnSendingCallback {
-                override fun onSuccess() {
-                    // do some magic
-                    Toast.makeText(activity, "nice :D", Toast.LENGTH_LONG).show()
-                }
-
-                override fun onFail(e: Exception) {
-                    // do some magic
-                    Toast.makeText(activity, "Oooooh :(", Toast.LENGTH_LONG).show()
-                }
-            })
-            .send()*/
-
-
-
         val products = configuration.products.filter { it.status == "1" }
         val categoryFruit = configuration.categories.first { category -> category.id == "24" }
         val categoryLegume = configuration.categories.first { category -> category.id == "25" }
@@ -82,10 +58,11 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
                 ).addToBackStack(DetailFragment::class.java.toString()).commit()
 
             }
+            carrousselHomePageViewPager.visibility = View.VISIBLE
             carrousselHomePageViewPager.adapter = adapter
             initBannerViewPager()
         }
-
+        
         accountImageView?.setOnClickListener {
             activity!!.drawer_layout.openDrawer(Gravity.LEFT)
         }

@@ -10,5 +10,5 @@ data class Cart(
     var productsQuantity: MutableMap<Product, Int> = mutableMapOf(),
     var amountTotal: Float = 0F,
     var isCompleted: Boolean = false,
-    val dateOrder: String? = null
+    var dateOrder: String? = null
 ) : Parcelable
