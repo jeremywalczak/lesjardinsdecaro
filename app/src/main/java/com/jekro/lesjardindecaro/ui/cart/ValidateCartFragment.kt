@@ -39,7 +39,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         }
 
         var cal = Calendar.getInstance()
-        cal.add(Calendar.DAY_OF_MONTH, 7)
+        cal.add(Calendar.DAY_OF_MONTH, 3)
         datePicker.maxDate = cal.timeInMillis
         cal = Calendar.getInstance()
         cal.add(Calendar.DAY_OF_MONTH, 1)
