@@ -34,9 +34,7 @@ class ListProductAdapter(
         val product = objects[position]
         couponsItemHolder.product = product
         couponsItemHolder.product_title.text = product.title
-        product.image.url?.let {
-            couponsItemHolder.produit_image.load("http://lejardindecaro.fr${product.image.url}", placeholder = R.drawable.logo_jardin_caro)
-        }
+        couponsItemHolder.produit_image.load("http://lejardindecaro.fr${product.image.url?:""}", placeholder = R.drawable.logo_jardin_caro)
         couponsItemHolder.priceTextView.text = (product.price.fractional.toFloat() / 100).toString() + " €"
         couponsItemHolder.categoryTextView.text = product.cat
         couponsItemHolder.originTextView.text = product.origin
