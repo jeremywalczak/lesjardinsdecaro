@@ -32,6 +32,7 @@ DetailContract.View {
         if (!product?.unity.isNullOrEmpty()) {
             uniteTextView.visibility = View.VISIBLE
             uniteTextView.text = product?.unity
+            priceLabelTextView.text = "Prix au Kilo :"
         }
 
         priceValueTextView.text = "${String.format("%.2f", product!!.price.fractional.toFloat() / 100)} €"
@@ -74,7 +75,8 @@ DetailContract.View {
             cart.amountTotal = 0F
             cart.productsQuantity.keys.forEach { product ->
                 val quantity = if (product.unity.isNullOrEmpty()) cart.productsQuantity[product]!! else cart.productsQuantity[product]!!/100
-                cart.amountTotal += ((product.price.fractional.toFloat() / 100) * quantity)
+                val divider = if (product.unity.isNullOrEmpty()) 100 else 1000
+                cart.amountTotal += ((product.price.fractional.toFloat() / divider) * quantity)
             }
             Snackbar.make(view!!, "Ce produit a été ajouté à votre panier", Snackbar.LENGTH_LONG).show()
             presenter.configurationRepo.saveCart(cart)

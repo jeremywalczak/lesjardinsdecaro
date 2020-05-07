@@ -43,7 +43,8 @@ class CartPresenter (
             cart!!.amountTotal = 0F
             cart!!.productsQuantity.keys.forEach { product ->
                 val quantity = if (product.unity.isNullOrEmpty()) cart!!.productsQuantity[product]!! else cart!!.productsQuantity[product]!!/100
-                cart!!.amountTotal += ((product.price.fractional.toFloat() / 100) * quantity)
+                val divider = if (product.unity.isNullOrEmpty()) 100 else 1000
+                cart!!.amountTotal += ((product.price.fractional.toFloat() / divider) * quantity)
             }
             configurationRepo.saveCart(cart!!)
             view.displayResult(cart!!)

@@ -16,7 +16,7 @@ class ConfigurationRepository (val service: ConfigurationService) {
         return service.getConfiguration()
     }
 
-    fun saveCart(cart: Cart) {
+    fun saveCart(cart: Cart?) {
         insertInBook("cart", cart)
     }
 

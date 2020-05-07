@@ -88,6 +88,14 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         main_container.visibility = if (presenter.cart == null || presenter.cart?.productsQuantity.isNullOrEmpty()) View.GONE else View.VISIBLE
     }
 
+    override fun onResume() {
+        super.onResume()
+        if (presenter.configurationRepo.getCart() == null) {
+            empty_container.visibility = View.VISIBLE
+            main_container.visibility = View.GONE
+        }
+    }
+
     private fun initRecyclerView() {
         linearLayoutManager = LinearLayoutManager(context!!)
         products_list_recycler.layoutManager = linearLayoutManager
@@ -97,6 +105,7 @@ class CartFragment : AbsFragment<CartContract.View, CartContract.Presenter>(),
         cart_validate_button.text = "Valider mon panier : " + String.format("%.2f",cart.amountTotal) + " €"
 
         cart_validate_button.setOnClickListener {
+            vibrateClickEffect()
            startActivity(Intent(context, ValidateCartActivity::class.java), null)
         }
     }

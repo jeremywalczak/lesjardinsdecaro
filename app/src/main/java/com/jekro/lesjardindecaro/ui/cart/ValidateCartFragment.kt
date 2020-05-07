@@ -9,6 +9,7 @@ import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.User
 import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.mvp.AbsFragment
+import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_validate_cart.*
 import kotlinx.android.synthetic.main.include_user_informations.*
 import org.koin.android.ext.android.inject
@@ -74,6 +75,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
 
 
         cart_validate_button?.setOnClickListener {
+            vibrateClickEffect()
             val user = presenter.configurationRepo.getUser()?:User()
             user.firstname = firstname_input.text.toString()
             user.name = name_input.text.toString()
@@ -90,7 +92,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
 
     private fun sendMailToYacaro() {
         val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
-                +"-"+Calendar.getInstance().get(Calendar.MONTH).toString()+"-"+Calendar.getInstance().get(Calendar.YEAR).toString())
+                +"-"+(Calendar.getInstance().get(Calendar.MONTH)+1).toString()+"-"+Calendar.getInstance().get(Calendar.YEAR).toString())
         val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
         val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
         val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
@@ -104,13 +106,14 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         body +=  "TELEPHONE : " +  user.phone + "\n"
         body +=  "RETRAIT LE : " +  order.dateOrder + "\n"
         body +=  "NB PRODUITS : " +  order.productsQuantity.keys.size + "\n"
-        body +=  "MONTANT : " +  order.amountTotal + "\n"
+        body +=  "MONTANT : ${String.format("%.2f",order.amountTotal)}€\n"
         body +=  "COMMENTAIRE : " +  order.comment + "\n"
         body +=  "\n\n"
 
         order.productsQuantity.keys.forEach { product ->
             val quantity = if (product.unity.isNullOrEmpty()) order.productsQuantity[product]!! else order.productsQuantity[product]!!/100
-            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + product.unity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / 100) * quantity)}€ \n\n"
+            val divider = if (product.unity.isNullOrEmpty()) 100 else 1000
+            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + product.unity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / divider) * quantity)}€ \n\n"
         }
 
 
@@ -126,6 +129,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
             .withOnSuccessCallback(object : BackgroundMail.OnSendingCallback {
                 override fun onSuccess() {
                     Snackbar.make(view!!, "Votre commande a bien été envoyée :D", Snackbar.LENGTH_LONG).show()
+                    presenter.configurationRepo.saveCart(null)
                     val handler = Handler()
                     swipeTimer.schedule(object : TimerTask() {
                         override fun run() {
