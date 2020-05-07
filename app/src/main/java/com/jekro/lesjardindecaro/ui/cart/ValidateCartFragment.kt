@@ -110,7 +110,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
 
         order.productsQuantity.keys.forEach { product ->
             val quantity = if (product.unity.isNullOrEmpty()) order.productsQuantity[product]!! else order.productsQuantity[product]!!/100
-            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + quantity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / 100) * quantity)}€ \n\n"
+            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + product.unity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / 100) * quantity)}€ \n\n"
         }
 
 
@@ -120,7 +120,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
             .withSenderName("Application Android Yacaro")
             .withMailTo("jeremwalczak@gmail.com")
             .withType(BackgroundMail.TYPE_PLAIN)
-            .withSubject("Commande Android du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
+            .withSubject("Commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
             .withBody(body)
             .withSendingMessage("Envoie de votre commande en cours...")
             .withOnSuccessCallback(object : BackgroundMail.OnSendingCallback {

@@ -72,7 +72,7 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
         epicerieButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
             true
         }
-        produitButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryEpicerieCave)}, presenter.hashProductCategories)
+        produitButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products, presenter.hashProductCategories)
             true
         }
         fruitButton.setOnTouchListener { view, motionEvent -> animateCategoryButton(view, motionEvent, products.filter { presenter.hashProductCategories[it]!!.contains(categoryFruit)}, presenter.hashProductCategories)
