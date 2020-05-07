@@ -9,6 +9,8 @@ import com.jekro.lesjardindecaro.ui.cart.CartContract
 import com.jekro.lesjardindecaro.ui.cart.CartPresenter
 import com.jekro.lesjardindecaro.ui.cart.ValidateCartContract
 import com.jekro.lesjardindecaro.ui.cart.ValidateCartPresenter
+import com.jekro.lesjardindecaro.ui.contact.ContactContract
+import com.jekro.lesjardindecaro.ui.contact.ContactPresenter
 import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import com.jekro.lesjardindecaro.ui.home.HomePagePresenter
 import com.jekro.lesjardindecaro.ui.list.ListProductContract
@@ -76,6 +78,13 @@ val initModule = module {
 
     factory<UserContract.Presenter> { params ->
         UserPresenter(
+            params[0],
+            get()
+        )
+    }
+
+    factory<ContactContract.Presenter> { params ->
+        ContactPresenter(
             params[0],
             get()
         )

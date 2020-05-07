@@ -2,6 +2,7 @@ package com.jekro.lesjardindecaro.ui.home
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
@@ -10,8 +11,10 @@ import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import com.jekro.lesjardindecaro.Constants.Companion.PERMISSION_GEOLOC_REQUEST_CODE
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.showCartDialog
+import com.jekro.lesjardindecaro.ui.contact.ContactFragment
 import com.jekro.lesjardindecaro.ui.user.UserFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
@@ -257,7 +260,10 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
                 ).addToBackStack(UserFragment::class.java.toString()).commit()
             }
             R.id.nav_contact -> {
-
+                supportFragmentManager.beginTransaction().add(
+                    R.id.mainContainer,
+                    ContactFragment()
+                ).addToBackStack(ContactFragment::class.java.toString()).commit()
             }
         }
 

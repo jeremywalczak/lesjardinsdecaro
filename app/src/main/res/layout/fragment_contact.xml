@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@color/basic_100"
+        android:padding="@dimen/spacing_m"
+        android:clickable="true"
+        android:focusable="true">
+
+    <ImageView
+            android:id="@+id/map_title_imageView"
+            android:layout_width="200dp"
+            android:layout_height="100dp"
+            android:src="@drawable/logo_jardin_caro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+            android:id="@+id/map_mag_imageView"
+            app:layout_constraintTop_toBottomOf="@id/map_title_imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:layout_marginTop="@dimen/spacing_m"
+            android:scaleType="centerCrop"
+            android:src="@drawable/map_magasin"/>
+
+    <TextView
+            android:id="@+id/mag_adress_textView"
+            app:layout_constraintTop_toBottomOf="@id/map_mag_imageView"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_m"
+            style="@style/input_01_label"
+            android:text="1 avenue de Toulouse, centre commercial l'Orée du village, 31620 Castelnau d'estretefonds"/>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/spacing_m"
+
+            app:layout_constraintTop_toBottomOf="@+id/mag_adress_textView">
+
+        <ImageView
+                android:id="@+id/store_details_action_phone"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="@drawable/shape_oval_basic_200"
+                android:padding="@dimen/spacing_s"
+                android:src="@drawable/ic_phone" />
+
+        <ImageView
+                android:id="@+id/store_details_action_email"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="@drawable/shape_oval_basic_200"
+                android:padding="@dimen/spacing_s"
+                android:src="@drawable/ic_email" />
+
+        <ImageView
+                android:id="@+id/store_details_action_itinerary"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="@dimen/spacing_m"
+                android:background="@drawable/shape_oval_basic_200"
+                android:padding="@dimen/spacing_s"
+                android:src="@drawable/ic_itinerary" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
