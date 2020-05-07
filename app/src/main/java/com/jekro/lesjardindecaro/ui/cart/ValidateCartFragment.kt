@@ -9,6 +9,7 @@ import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.User
 import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.mvp.AbsFragment
+import com.jekro.lesjardindecaro.showDialogWithConfirm
 import com.jekro.lesjardindecaro.vibrateClickEffect
 import kotlinx.android.synthetic.main.fragment_validate_cart.*
 import kotlinx.android.synthetic.main.include_user_informations.*
@@ -38,7 +39,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         }
 
         var cal = Calendar.getInstance()
-        cal.add(Calendar.DAY_OF_MONTH, 3)
+        cal.add(Calendar.DAY_OF_MONTH, 7)
         datePicker.maxDate = cal.timeInMillis
         cal = Calendar.getInstance()
         cal.add(Calendar.DAY_OF_MONTH, 1)
@@ -77,61 +78,71 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
     }
 
     private fun sendMailToYacaro() {
-        val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
-                +"-"+(Calendar.getInstance().get(Calendar.MONTH)+1).toString()+"-"+Calendar.getInstance().get(Calendar.YEAR).toString())
-        val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
-        val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
-        val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
+        if (checkInputFields()) {
+            val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(Calendar.getInstance().get(Calendar.DAY_OF_MONTH).toString()
+                    +"-"+(Calendar.getInstance().get(Calendar.MONTH)+1).toString()+"-"+Calendar.getInstance().get(Calendar.YEAR).toString())
+            val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
+            val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
+            val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
 
-        val user = presenter.configurationRepo.getUser()!!
-        val order = presenter.configurationRepo.getCart()!!
-        var body = "ID : " +  order.id + "\n"
-        body +=  "NOM : " +  user.name + "\n"
-        body +=  "PRENOM : " +  user.firstname + "\n"
-        body +=  "EMAIL : " +  user.mail + "\n"
-        body +=  "TELEPHONE : " +  user.phone + "\n"
-        body +=  "RETRAIT LE : " +  order.dateOrder + "\n"
-        body +=  "NB PRODUITS : " +  order.productsQuantity.keys.size + "\n"
-        body +=  "MONTANT : ${String.format("%.2f",order.amountTotal)}€\n"
-        body +=  "COMMENTAIRE : " +  order.comment + "\n"
-        body +=  "\n\n"
+            val user = presenter.configurationRepo.getUser()!!
+            val order = presenter.configurationRepo.getCart()!!
+            var body = "ID : " +  order.id + "\n"
+            body +=  "NOM : " +  user.name + "\n"
+            body +=  "PRENOM : " +  user.firstname + "\n"
+            body +=  "EMAIL : " +  user.mail + "\n"
+            body +=  "TELEPHONE : " +  user.phone + "\n"
+            body +=  "RETRAIT LE : " +  order.dateOrder + "\n"
+            body +=  "NB PRODUITS : " +  order.productsQuantity.keys.size + "\n"
+            body +=  "MONTANT : ${String.format("%.2f",order.amountTotal)}€\n"
+            body +=  "COMMENTAIRE : " +  order.comment + "\n"
+            body +=  "\n\n"
 
-        order.productsQuantity.keys.forEach { product ->
-            val quantity = if (product.unity.isNullOrEmpty()) order.productsQuantity[product]!! else order.productsQuantity[product]!!/100
-            val divider = if (product.unity.isNullOrEmpty()) 100 else 1000
-            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + product.unity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / divider) * quantity)}€ \n\n"
+            order.productsQuantity.keys.forEach { product ->
+                val quantity = if (product.unity.isNullOrEmpty()) order.productsQuantity[product]!! else order.productsQuantity[product]!!/100
+                val divider = if (product.unity.isNullOrEmpty()) 100 else 1000
+                body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + product.unity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / divider) * quantity)}€ \n\n"
+            }
+
+
+            BackgroundMail.newBuilder(activity!!)
+                .withUsername("lesjardinsdecaro@gmail.com")
+                .withPassword("jeje200889")
+                .withSenderName("Application Android Yacaro")
+                .withMailTo("jeremwalczak@gmail.com")
+                .withType(BackgroundMail.TYPE_PLAIN)
+                .withSubject("Commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
+                .withBody(body)
+                .withSendingMessage("Envoie de votre commande en cours...")
+                .withOnSuccessCallback(object : BackgroundMail.OnSendingCallback {
+                    override fun onSuccess() {
+                        Snackbar.make(view!!, "Votre commande a bien été envoyée :D", Snackbar.LENGTH_LONG).show()
+                        presenter.configurationRepo.saveCart(null)
+                        val handler = Handler()
+                        swipeTimer.schedule(object : TimerTask() {
+                            override fun run() {
+                                handler.post(Runnable {
+                                    activity?.finish()
+                                })
+                            }
+                        }, 3000, 3000)
+
+                    }
+
+                    override fun onFail(e: Exception) {
+                        Snackbar.make(view!!, "Un problème est survenue, veuillez ressayer ou nous contacter si le problème persiste", Snackbar.LENGTH_LONG).show()
+                    }
+                })
+                .send()
+        } else {
+            activity?.showDialogWithConfirm(
+                title = "Saisie incorrecte",
+                message = "Veuillez corriger les champs en rouge s'il vous plait",
+                okButton = "Ok",
+                oKFunction = {},
+                cancellable = false
+            )
         }
-
-
-        BackgroundMail.newBuilder(activity!!)
-            .withUsername("lesjardinsdecaro@gmail.com")
-            .withPassword("jeje200889")
-            .withSenderName("Application Android Yacaro")
-            .withMailTo("jeremwalczak@gmail.com")
-            .withType(BackgroundMail.TYPE_PLAIN)
-            .withSubject("Commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
-            .withBody(body)
-            .withSendingMessage("Envoie de votre commande en cours...")
-            .withOnSuccessCallback(object : BackgroundMail.OnSendingCallback {
-                override fun onSuccess() {
-                    Snackbar.make(view!!, "Votre commande a bien été envoyée :D", Snackbar.LENGTH_LONG).show()
-                    presenter.configurationRepo.saveCart(null)
-                    val handler = Handler()
-                    swipeTimer.schedule(object : TimerTask() {
-                        override fun run() {
-                            handler.post(Runnable {
-                                activity?.finish()
-                            })
-                        }
-                    }, 3000, 3000)
-
-                }
-
-                override fun onFail(e: Exception) {
-                    Snackbar.make(view!!, "Un problème est survenue, veuillez ressayer ou nous contacter si le problème persiste", Snackbar.LENGTH_LONG).show()
-                }
-            })
-            .send()
     }
     override fun displayResult(cart: Cart) {
     }
@@ -149,9 +160,43 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
         val hour =  timePicker.currentHour
         val min = timePicker.currentMinute
-        // display format of time
-        val msg = " $hour : $min"
-        validateDateTextView.text =  "Date choisie : " + dayName + " " + datePicker.dayOfMonth + " " + monthName + " " + yearName + " à   $msg"
+        val minStr = if (min <= 9) "0$min" else min
+        val msg = " $hour : $minStr"
+        validateDateTextView.text =  dayName + " " + datePicker.dayOfMonth + " " + monthName + " " + yearName + " à $msg"
 
+    }
+
+    private fun checkInputFields() : Boolean {
+        name_label.setTextAppearance(context,  if (name_input.text.isNullOrEmpty()) R.style.input_01_label_error else R.style.input_01_label_success)
+        firstname_label.setTextAppearance(context,  if (firstname_input.text.isNullOrEmpty()) R.style.input_01_label_error else R.style.input_01_label_success)
+        phone_label.setTextAppearance(context,  if (phone_input.text.isNullOrEmpty()) R.style.input_01_label_error else R.style.input_01_label_success)
+        mail_label.setTextAppearance(context,  if (mail_input.text.isNullOrEmpty()) R.style.input_01_label_error else R.style.input_01_label_success)
+
+        val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(datePicker.dayOfMonth.toString()+"-"+(datePicker.month+1).toString()+"-"+datePicker.year.toString());
+        val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
+        val hour =  timePicker.currentHour
+        val min = timePicker.currentMinute
+        var dateIsOk = true
+        validateDateTextView.setTextAppearance(context,  R.style.input_01_label_success)
+        if (dayName == "dimanche" && (hour > 12 || (hour == 12 && min > 30))) {
+            validateDateTextView.setTextAppearance(context,  R.style.input_01_label_error)
+            dateIsOk = false
+        } else if (dayName == "lundi" && hour < 16) {
+            validateDateTextView.setTextAppearance(context,  R.style.input_01_label_error)
+            dateIsOk = false
+        } else if (hour >= 20 || hour < 9){
+            validateDateTextView.setTextAppearance(context,  R.style.input_01_label_error)
+            dateIsOk = false
+        } else if (hour == 12 && min > 30){
+            validateDateTextView.setTextAppearance(context,  R.style.input_01_label_error)
+            dateIsOk = false
+        }  else if (hour == 13 || hour == 14 ||hour == 15 || (hour == 16 && min < 30) || (hour == 19 && min > 30)){
+            validateDateTextView.setTextAppearance(context,  R.style.input_01_label_error)
+            dateIsOk = false
+        }
+
+
+        return !name_input.text.isNullOrEmpty() && !firstname_input.text.isNullOrEmpty() && !phone_input.text.isNullOrEmpty()
+                && !mail_input.text.isNullOrEmpty() && dateIsOk
     }
 }
