@@ -12,6 +12,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.showCartDialog
+import com.jekro.lesjardindecaro.ui.user.UserFragment
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.app_bar_home_page.*
 
@@ -250,7 +251,10 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         // Handle navigation view item clicks here.
         when (item.itemId) {
             R.id.nav_myinformations -> {
-                // Handle the camera action
+                supportFragmentManager.beginTransaction().add(
+                    R.id.mainContainer,
+                    UserFragment()
+                ).addToBackStack(UserFragment::class.java.toString()).commit()
             }
             R.id.nav_contact -> {
 

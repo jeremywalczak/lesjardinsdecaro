@@ -24,7 +24,7 @@ import com.jekro.lesjardindecaro.model.AutoCompleteViewType
 import com.jekro.lesjardindecaro.model.Category
 import com.jekro.lesjardindecaro.model.Product
 import com.jekro.lesjardindecaro.toDp
-import com.jekro.lesjardindecaro.ui.DetailFragment
+import com.jekro.lesjardindecaro.ui.detail.DetailFragment
 import com.jekro.lesjardindecaro.ui.home.HomePageActivity
 import kotlinx.android.synthetic.main.activity_home_page.*
 import kotlinx.android.synthetic.main.fragment_list.*

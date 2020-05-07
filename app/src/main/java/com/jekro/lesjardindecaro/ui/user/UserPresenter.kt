@@ -1,13 +1,13 @@
-package com.jekro.lesjardindecaro.ui
+package com.jekro.lesjardindecaro.ui.user
 
 import com.jekro.lesjardindecaro.mvp.AbsPresenter
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 
-class DetailPresenter (
-    override var view: DetailContract.View,
+class UserPresenter (
+    override var view: UserContract.View,
     override var  configurationRepo: ConfigurationRepository
-) : AbsPresenter<DetailContract.View, DetailContract.Presenter>(),
-    DetailContract.Presenter {
+) : AbsPresenter<UserContract.View, UserContract.Presenter>(),
+    UserContract.Presenter {
 
     override fun start() {
     }

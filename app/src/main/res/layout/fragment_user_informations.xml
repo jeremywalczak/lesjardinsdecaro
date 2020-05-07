@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        android:orientation="vertical"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:padding="@dimen/spacing_s"
+        android:background="@color/basic_200"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_height="match_parent">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <RelativeLayout
+                android:orientation="vertical"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:padding="@dimen/spacing_s"
+                android:layout_height="match_parent">
+
+            <TextView
+                    android:id="@+id/description_user_label"
+                    style="@style/input_01_label"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/spacing_s"
+                    android:layout_marginBottom="@dimen/spacing_s"
+                    android:layout_height="wrap_content"
+                    android:text="Vous pouvez modifier vos informations personnelles qui vous serviront lors de la validation de la commande"/>
+
+            <include
+                    android:id="@+id/id_layout_user_informations"
+                    layout="@layout/include_user_informations"
+                    android:layout_below="@id/description_user_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+    <com.google.android.material.button.MaterialButton
+            android:id="@+id/user_validate_button"
+            style="@style/Widget.MaterialComponents.Button"
+            android:backgroundTint="@color/primary_02_400"
+            android:textColor="@color/basic_100"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="Valider mes informations" />
+
+</RelativeLayout>

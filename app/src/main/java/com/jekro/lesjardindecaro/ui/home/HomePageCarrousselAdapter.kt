@@ -8,10 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.PagerAdapter
 import com.jekro.lesjardindecaro.*
-import com.jekro.lesjardindecaro.Constants.Companion.IMAGE_CROP
 import com.jekro.lesjardindecaro.model.Product
-import com.jekro.lesjardindecaro.ui.DetailFragment
-import com.squareup.picasso.Picasso
 
 class HomePageCarrousselAdapter (
 private val context: Context,

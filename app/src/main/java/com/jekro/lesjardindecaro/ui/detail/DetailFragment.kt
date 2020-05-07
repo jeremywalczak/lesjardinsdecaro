@@ -1,4 +1,4 @@
-package com.jekro.lesjardindecaro.ui
+package com.jekro.lesjardindecaro.ui.detail
 
 import android.os.Bundle
 import android.view.MotionEvent

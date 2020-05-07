@@ -3,9 +3,8 @@ package com.jekro.lesjardindecaro.init
 import com.jekro.lesjardindecaro.model.Environment
 import com.jekro.lesjardindecaro.repository.ConfigurationRepository
 import com.jekro.lesjardindecaro.service.ConfigurationService
-import com.jekro.lesjardindecaro.service.ConfigurationServiceMock
-import com.jekro.lesjardindecaro.ui.DetailContract
-import com.jekro.lesjardindecaro.ui.DetailPresenter
+import com.jekro.lesjardindecaro.ui.detail.DetailContract
+import com.jekro.lesjardindecaro.ui.detail.DetailPresenter
 import com.jekro.lesjardindecaro.ui.cart.CartContract
 import com.jekro.lesjardindecaro.ui.cart.CartPresenter
 import com.jekro.lesjardindecaro.ui.cart.ValidateCartContract
@@ -14,7 +13,8 @@ import com.jekro.lesjardindecaro.ui.home.HomePageContract
 import com.jekro.lesjardindecaro.ui.home.HomePagePresenter
 import com.jekro.lesjardindecaro.ui.list.ListProductContract
 import com.jekro.lesjardindecaro.ui.list.ListProductPresenter
-import io.reactivex.schedulers.Schedulers.single
+import com.jekro.lesjardindecaro.ui.user.UserContract
+import com.jekro.lesjardindecaro.ui.user.UserPresenter
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -69,6 +69,13 @@ val initModule = module {
 
     factory<DetailContract.Presenter> { params ->
         DetailPresenter(
+            params[0],
+            get()
+        )
+    }
+
+    factory<UserContract.Presenter> { params ->
+        UserPresenter(
             params[0],
             get()
         )
