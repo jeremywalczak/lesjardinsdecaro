@@ -45,34 +45,20 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         datePicker.minDate = cal.timeInMillis
         timePicker.setIs24HourView(true)
 
-
-
         val today  = Calendar.getInstance()
         datePicker.init(
             today.get(Calendar.YEAR),
             today.get(Calendar.MONTH),
             today.get(Calendar.DAY_OF_MONTH)
         ) { _, _, _, _ ->
-            val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(datePicker.dayOfMonth.toString()+"-"+datePicker.month.toString()+"-"+datePicker.year.toString());
-            val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
-            val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
-            val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
-            validateDateTextView.text = "Date choisie : " + dayName + " " + datePicker.dayOfMonth + " " + monthName + " " + yearName
-            val msginit = validateDateTextView.text
-            timePicker.setOnTimeChangedListener { _, hour, minute -> var hour = hour
-
-                if (validateDateTextView != null) {
-                    val hour = if (hour < 10) "0" + hour else hour
-                    val min = if (minute < 10) "0" + minute else minute
-                    // display format of time
-                    val msg = " $hour : $min"
-                    validateDateTextView.text= "$msginit   à   $msg"
-
-                }
-            }
+            updateDate()
         }
 
+        timePicker.setOnTimeChangedListener { _, hour, minute ->
+            updateDate()
+        }
 
+        updateDate()
 
         cart_validate_button?.setOnClickListener {
             vibrateClickEffect()
@@ -154,5 +140,18 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
     }
 
     override fun displayError(throwable: Throwable) {
+    }
+
+    private fun updateDate() {
+        val myDate = SimpleDateFormat("dd-MM-yyyy", Locale.FRANCE).parse(datePicker.dayOfMonth.toString()+"-"+(datePicker.month+1).toString()+"-"+datePicker.year.toString());
+        val dayName =  SimpleDateFormat("EEEE", Locale.FRANCE).format(myDate)
+        val monthName = SimpleDateFormat("MMMM", Locale.FRANCE).format(myDate)
+        val yearName = SimpleDateFormat("YYYY", Locale.FRANCE).format(myDate)
+        val hour =  timePicker.currentHour
+        val min = timePicker.currentMinute
+        // display format of time
+        val msg = " $hour : $min"
+        validateDateTextView.text =  "Date choisie : " + dayName + " " + datePicker.dayOfMonth + " " + monthName + " " + yearName + " à   $msg"
+
     }
 }
