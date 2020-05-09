@@ -2,16 +2,14 @@ package com.jekro.lesjardindecaro.ui.home
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
-import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.view.*
 import android.view.animation.DecelerateInterpolator
-import com.google.android.material.navigation.NavigationView
-import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import com.jekro.lesjardindecaro.Constants.Companion.PERMISSION_GEOLOC_REQUEST_CODE
+import androidx.core.view.GravityCompat
+import com.google.android.material.navigation.NavigationView
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.showCartDialog
 import com.jekro.lesjardindecaro.ui.contact.ContactFragment
@@ -56,6 +54,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
     }
 
     fun moveCart() {
+        panierImageView.visibility = View.VISIBLE
         val currentFragment = supportFragmentManager.findFragmentById(R.id.mainContainer)
         if (currentFragment is HomePageFragment) {
             shouldMoveCart = false
@@ -193,7 +192,7 @@ class HomePageActivity : AppCompatActivity(), NavigationView.OnNavigationItemSel
         }, 1)
     }
 
-    fun boundFabZoom() {
+    private fun boundFabZoom() {
         val scaleX = panierImageView.scaleX
         val scaleY = panierImageView.scaleY
         val animSet = AnimatorSet()
