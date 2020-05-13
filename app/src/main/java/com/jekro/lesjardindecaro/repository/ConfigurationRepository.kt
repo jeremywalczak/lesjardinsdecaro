@@ -1,9 +1,6 @@
 package com.jekro.lesjardindecaro.repository
 
-import com.jekro.lesjardindecaro.model.Cart
-import com.jekro.lesjardindecaro.model.Configuration
-import com.jekro.lesjardindecaro.model.Product
-import com.jekro.lesjardindecaro.model.User
+import com.jekro.lesjardindecaro.model.*
 import com.jekro.lesjardindecaro.service.ConfigurationService
 import io.paperdb.Paper
 import io.reactivex.Single
@@ -14,6 +11,14 @@ class ConfigurationRepository (val service: ConfigurationService) {
 
     fun getConfiguration(): Single<Configuration> {
         return service.getConfiguration()
+    }
+
+    fun saveHistoricOrder(historicOrder: HistoricOrder) {
+        insertInBook("historicOrder", historicOrder)
+    }
+
+    fun getHistoricOrder(): HistoricOrder? {
+        return readFromBook("historicOrder")
     }
 
     fun saveCart(cart: Cart?) {

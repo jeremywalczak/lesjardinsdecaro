@@ -65,7 +65,7 @@ DetailContract.View {
             vibrateClickEffect()
             var cart = presenter.configurationRepo.getCart()
             if (cart == null)
-                cart = Cart(Random(10000).nextInt(), "", mutableMapOf(), 0F, false, null)
+                cart = Cart((0..999999999).random(), "", mutableMapOf(), 0F, false, null)
 
             if (cart.productsQuantity[product] == null)
                 cart.productsQuantity[product] =  Integer.parseInt(product_number.text.toString())

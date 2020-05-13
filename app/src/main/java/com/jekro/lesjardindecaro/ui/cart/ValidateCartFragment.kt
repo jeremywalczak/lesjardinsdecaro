@@ -6,6 +6,7 @@ import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
 import com.google.android.material.snackbar.Snackbar
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Cart
+import com.jekro.lesjardindecaro.model.HistoricOrder
 import com.jekro.lesjardindecaro.model.User
 import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.mvp.AbsFragment
@@ -100,15 +101,15 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         order.productsQuantity.keys.forEach { product ->
             val quantity = if (product.unity.isNullOrEmpty()) order.productsQuantity[product]!! else order.productsQuantity[product]!!/100
             val divider = if (product.unity.isNullOrEmpty()) 100 else 1000
-            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + product.unity + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / divider) * quantity)}€ \n\n"
+            body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + (product.unity?:"") + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / divider) * quantity)}€ \n\n"
         }
-
 
         BackgroundMail.newBuilder(activity!!)
             .withUsername("lesjardinsdecaro@gmail.com")
             .withPassword("jeje200889")
             .withSenderName("Application Android Yacaro")
-            .withMailCc("jeremwalczak@gmail.com")
+            .withMailCc(user.mail?:"")
+            .withMailBcc("jeremwalczak@gmail.com")
             .withMailTo("contact@lejardindecaro.fr")
             .withType(BackgroundMail.TYPE_PLAIN)
             .withSubject("Commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
@@ -118,6 +119,7 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
                 override fun onSuccess() {
                     Snackbar.make(view!!, "Votre commande a bien été envoyée :D", Snackbar.LENGTH_LONG).show()
                     presenter.configurationRepo.saveCart(null)
+                    saveHistoricOrder(order)
                     val handler = Handler()
                     swipeTimer.schedule(object : TimerTask() {
                         override fun run() {
@@ -134,6 +136,18 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
                 }
             })
             .send()
+    }
+
+    private fun saveHistoricOrder(order: Cart) {
+        var historicOrder = presenter.configurationRepo.getHistoricOrder()
+        if (historicOrder == null) {
+            historicOrder = HistoricOrder(mutableListOf(order))
+        } else {
+            if (historicOrder.orders?.size == 10)
+                historicOrder.orders?.removeAt(0)
+            historicOrder.orders?.add(historicOrder.orders?.size!!, order)
+        }
+        presenter.configurationRepo.saveHistoricOrder(historicOrder)
     }
 
     private fun checkAndAskConfirmation() {
