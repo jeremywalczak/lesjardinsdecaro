@@ -109,7 +109,6 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
             .withPassword("jeje200889")
             .withSenderName("Application Android Yacaro")
             .withMailCc(user.mail?:"")
-            .withMailBcc("jeremwalczak@gmail.com")
             .withMailTo("contact@lejardindecaro.fr")
             .withType(BackgroundMail.TYPE_PLAIN)
             .withSubject("Commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
