@@ -1,9 +1,6 @@
 package com.jekro.lesjardindecaro.ui.cart
 
 import android.os.Bundle
-import android.os.Handler
-import com.creativityapps.gmailbackgroundlibrary.BackgroundMail
-import com.google.android.material.snackbar.Snackbar
 import com.jekro.lesjardindecaro.R
 import com.jekro.lesjardindecaro.model.Cart
 import com.jekro.lesjardindecaro.model.HistoricOrder
@@ -12,6 +9,7 @@ import com.jekro.lesjardindecaro.module.ModuleInteractor
 import com.jekro.lesjardindecaro.mvp.AbsFragment
 import com.jekro.lesjardindecaro.showDialogWithConfirm
 import com.jekro.lesjardindecaro.vibrateClickEffect
+import de.cketti.mailto.EmailIntentBuilder
 import kotlinx.android.synthetic.main.fragment_validate_cart.*
 import kotlinx.android.synthetic.main.include_user_informations.*
 import org.koin.android.ext.android.inject
@@ -24,7 +22,6 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
 
     override val presenter: ValidateCartContract.Presenter by inject { parametersOf(this) }
     override val moduleInteractor: ModuleInteractor by inject()
-    private val swipeTimer = Timer()
 
     override fun getLayoutId(): Int = R.layout.fragment_validate_cart
 
@@ -104,37 +101,15 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
             body +=  "Produit : " +  product.title + " | Prix : ${String.format("%.2f",product.price.fractional.toFloat() / 100)}€ | Quantité : " + order.productsQuantity[product] + (product.unity?:"") + " | Total : " + "${String.format("%.2f",(product.price.fractional.toFloat() / divider) * quantity)}€ \n\n"
         }
 
-        BackgroundMail.newBuilder(activity!!)
-            .withUsername("lesjardinsdecaro@gmail.com")
-            .withPassword("jeje200889")
-            .withSenderName("Application Android Yacaro")
-            .withMailCc(user.mail?:"")
-            .withMailTo("contact@lejardindecaro.fr")
-            .withType(BackgroundMail.TYPE_PLAIN)
-            .withSubject("Commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
-            .withBody(body)
-            .withSendingMessage("Envoi de votre commande en cours...")
-            .withOnSuccessCallback(object : BackgroundMail.OnSendingCallback {
-                override fun onSuccess() {
-                    Snackbar.make(view!!, "Votre commande a bien été envoyée :D", Snackbar.LENGTH_LONG).show()
-                    presenter.configurationRepo.saveCart(null)
-                    saveHistoricOrder(order)
-                    val handler = Handler()
-                    swipeTimer.schedule(object : TimerTask() {
-                        override fun run() {
-                            handler.post(Runnable {
-                                activity?.finish()
-                            })
-                        }
-                    }, 3000, 3000)
 
-                }
+        EmailIntentBuilder.from(activity!!)
+            .to("contact@lejardindecaro.fr")
+            .subject("Application Android Yacaro : commande du " + dayName + " " + Calendar.getInstance().get(Calendar.DAY_OF_MONTH) + " " + monthName + " " + yearName)
+            .body(body)
+            .start()
 
-                override fun onFail(e: Exception) {
-                    Snackbar.make(view!!, "Un problème est survenue, veuillez ressayer ou nous contacter si le problème persiste", Snackbar.LENGTH_LONG).show()
-                }
-            })
-            .send()
+        presenter.configurationRepo.saveCart(null)
+        saveHistoricOrder(order)
     }
 
     private fun saveHistoricOrder(order: Cart) {
@@ -153,9 +128,12 @@ class ValidateCartFragment : AbsFragment<ValidateCartContract.View, ValidateCart
         if (checkInputFields()) {
             activity?.showDialogWithConfirm(
                 title = "Demande de validation",
-                message = "Confirmez vous l'envoi de la commande  ?",
+                message = "Votre application Mail préférée va s'ouvrir et pré-remplir un mail avec votre commande. Merci de cliquer sur le bouton d'envoi pour confirmer votre commande.",
                 okButton = "Ok",
-                oKFunction = { sendMailToYacaro() },
+                oKFunction = {
+                    sendMailToYacaro()
+                    activity!!.finishAffinity()
+                },
                 cancelButton = "Annuler",
                 cancelFunction = {
                 },

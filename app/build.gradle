@@ -9,13 +9,13 @@ androidExtensions {
 }
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 30
     defaultConfig {
         applicationId "com.jekro.lesjardindecaro"
         minSdkVersion 21
-        targetSdkVersion 28
-        versionCode 8
-        versionName "1.0.3"
+        targetSdkVersion 30
+        versionCode 9
+        versionName "1.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -57,5 +57,5 @@ dependencies {
 
     implementation 'com.airbnb.android:lottie:3.4.0'
 
-    implementation 'com.github.luongvo:GmailBackground:2.1.1'
+    implementation 'de.cketti.mailto:email-intent-builder:2.0.0'
 }
