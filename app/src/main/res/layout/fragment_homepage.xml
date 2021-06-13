@@ -81,7 +81,7 @@
                 android:textAppearance="@font/regular"
                 android:textStyle="bold"
                 android:maxLines="3"
-                android:text="Epicerie et cave"
+                android:text="Epicerie fine"
                 android:textSize= "15dp"
                 android:textColor="@color/basic_100"
                 app:cornerRadius="200dp"

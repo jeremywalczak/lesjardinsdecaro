@@ -44,10 +44,11 @@ class HomePageFragment : AbsFragment<HomePageContract.View, HomePageContract.Pre
     override val moduleInteractor: ModuleInteractor by inject()
 
     override fun displayResult(configuration: Configuration) {
+        print(configuration)
         val products = configuration.products.filter { it.status == "1" }
-        val categoryFruit = configuration.categories.first { category -> category.id == "24" }
-        val categoryLegume = configuration.categories.first { category -> category.id == "25" }
-        val categoryEpicerieCave = configuration.categories.first { category -> category.id == "26" }
+        val categoryFruit = configuration.categories.first { category -> category.id == "3" }
+        val categoryLegume = configuration.categories.first { category -> category.id == "4" }
+        val categoryEpicerieCave = configuration.categories.first { category -> category.id == "5" }
         val promos = configuration.products.filter { product -> !product.reduce.isNullOrEmpty() }
         if (!promos.isNullOrEmpty()) {
             val adapter = HomePageCarrousselAdapter(context!!, promos)
